@@ -1,0 +1,79 @@
+module au_top (
+    input clk,              // 100MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input usb_rx,           // USB->Serial input
+    output usb_tx,          // USB->Serial output
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8]     // DIP switches on IO Shield
+  ) {
+  
+  sig rst;                  // reset signal
+  alu sixteen_bit_alu;
+  answer_rom rom;
+  bin_to_dec btd(#DIGITS(4));
+  
+  const NUM_STATES = 110;
+  const NUM_STATE_BITS = $clog2(NUM_STATES);
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    button_conditioner btn_cnd(#CLK_FREQ(100000000));
+    
+    .rst(rst) {
+      answer_fsm ans(#STATES(NUM_STATE_BITS));
+      multi_seven_seg seg;
+    }
+  }
+  
+  .rst(rst) {
+      counter cnt(#SIZE(NUM_STATE_BITS), #DIV(26), #TOP(NUM_STATES));
+  }
+  
+  always {
+  btn_cnd.in = io_button[0];
+    cnt.clk = clk & (!io_dip[2][7] | btn_cnd.out);
+    
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    usb_tx = usb_rx;        // loop serial port
+    
+    led = 8h00;             // turn LEDs off
+    
+    io_led = 3x{{8h00}};    // turn LEDs off
+    io_seg = 8hff;          // turn segments off
+    io_sel = 4hf;           // select no digits
+    
+    ans.in = cnt.value;
+    
+    sixteen_bit_alu.a = ans.out[37:22];
+    sixteen_bit_alu.b = ans.out[21:6];
+    sixteen_bit_alu.alufn = ans.out[5:0];
+    
+    rom.address = ans.out;
+    
+    io_led[2][7:5] = c{sixteen_bit_alu.z, sixteen_bit_alu.v, sixteen_bit_alu.n};
+    io_led[2][4:2] = c{rom.out[2], rom.out[1], rom.out[0]};
+    
+    
+    io_led[1:0] = $build(sixteen_bit_alu.out, 2);
+    io_led[1:0] = $build(rom.out[18:3], 2);
+    
+    io_led[2][0] = ((|(rom.out[18:3] ^ sixteen_bit_alu.out)) | 
+                    (rom.out[2] ^ sixteen_bit_alu.z) | 
+                    (rom.out[1] ^ sixteen_bit_alu.v) | 
+                    (rom.out[0] ^ sixteen_bit_alu.n));
+    
+    btd.value = cnt.value;
+    seg.values = btd.digits;
+    
+    io_seg = ~seg.seg; // connect segments to the driver
+    io_sel = ~seg.sel; // connect digit select to the driver
+  }
+}

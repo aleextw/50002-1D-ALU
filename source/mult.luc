@@ -1,0 +1,10 @@
+module mult (
+    input a[16],
+    input b[16],
+    output p[16]
+  ) {
+
+  always {
+    p = a * b;
+  }
+}

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Mar  9 00:36:17 2022
+# Process ID: 11804
+# Current directory: C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/synth_1
+# Command line: vivado.exe -log au_top_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
+# Log file: C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/synth_1/au_top_0.vds
+# Journal file: C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source au_top_0.tcl -notrace

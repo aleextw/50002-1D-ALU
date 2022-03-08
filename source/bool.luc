@@ -1,0 +1,17 @@
+module bool (
+    input a[16],
+    input b[16],
+    input alufn[2],
+    output out[16]
+  ) {
+
+  always {
+    case(alufn) {
+      0: out = a ^ b;
+      1: out = a & b;
+      2: out = a;
+      3: out = a | b ; 
+      default: out = 16b0;
+    }
+  }
+}

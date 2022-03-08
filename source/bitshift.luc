@@ -1,0 +1,18 @@
+module bitshift (
+    input a[16],
+    input b[16],
+    input alufn[3],
+    output out[16]
+  ) {
+  
+  always {
+    case(alufn) {
+      0: out = a << b[3:0];
+      1: out = a >> b[3:0];
+      2: out = a >>> b[3:0];
+      3: out = (a >> (16 - b[3:0])) | (a << b[3:0]);
+      4: out = (a << (16 - b[3:0])) | (a >> b[3:0]);
+      default: out = a;
+    }
+  }
+}

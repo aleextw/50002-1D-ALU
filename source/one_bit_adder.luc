@@ -1,0 +1,13 @@
+module one_bit_adder (
+    input a,
+    input b,
+    input cin,
+    output sum,
+    output cout
+  ) {
+
+  always {
+    sum = a ^ b ^ cin;
+    cout = (a & b) | (a & cin) | (b & cin);
+  }
+}

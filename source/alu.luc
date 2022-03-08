@@ -1,0 +1,61 @@
+module alu (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    output out[16],
+    output z,
+    output v,
+    output n
+  ) {
+  
+  sixteen_bit_adder adder;
+  mult mlt;
+  bool bl;
+  bitshift bs;
+  compare cmp;
+  
+  sig temp_z;
+  sig temp_v;
+  sig temp_n;
+
+  always {
+    adder.a = a;
+    adder.b = b;
+    adder.alufn = alufn[0];
+    temp_z = adder.z;
+    temp_v = adder.v;
+    temp_n = adder.n;
+    
+    mlt.a = a;
+    mlt.b = b;
+    
+    bl.a = a;
+    bl.b = b;
+    bl.alufn = alufn[1:0];
+    
+    bs.a = a;
+    bs.b = b;
+    bs.alufn = alufn[2:0];
+    
+    cmp.z = temp_z;
+    cmp.v = temp_v;
+    cmp.n = temp_n;
+    cmp.alufn = alufn[2:0];
+    
+    case(alufn[5:4]) {
+      0: case(alufn[2]) {  // Arithmetic-
+        0: out = adder.s;  // Add / sub
+        1: out = mlt.p;    // Multiply
+        default: out = a;  // Assume passthrough 'a' as default
+      }
+      1: out = bl.out;     // Boolean
+      2: out = bs.out;     // Bitshift
+      3: out = cmp.out;    // Comparison
+      default: out = a;    // Assume passthrough 'a' as default
+    }
+    
+    z = temp_z;
+    v = temp_v;
+    n = temp_n;
+  }
+}
