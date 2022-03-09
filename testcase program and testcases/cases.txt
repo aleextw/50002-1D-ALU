@@ -1,0 +1,146 @@
+// Add test cases
+c{16h0, 16h0, 6b0}: out = c{16h0, 1, 0, 0};     // 0 + 0 = 0
+c{h7FFF, 16h0, 6b0}: out = c{h7FFF, 0, 0, 1};   // x + 0 = x
+c{16h0, h7FFF, 6b0}: out = c{h7FFF, 0, 0, 1};   // 0 + x = x
+c{hFFFF, 16h0, 6b0}: out = c{hFFFF, 0, 0, 1};   // (-x) + 0 = (-x)
+c{16h0, hFFFF, 6b0}: out = c{hFFFF, 0, 0, 1};   // 0 + (-x) = (-x)
+c{h1234, h3456, 6b0}: out = c{h468A, 0, 0, 0};  // 0x1234 + 0x3456 = 0x468A (Positive addition)
+c{hF801, hF820, 6b0}: out = c{hF021, 0, 0, 1};  // 0xF801 + 0xF820 = 0xF021 (Negative addition)
+c{hDE00, h00AD, 6b0}: out = c{hDEAD, 0, 0, 1};  // Negative + Positive; Overflow not possible
+c{h00EF, hBE00, 6b0}: out = c{hBEEF, 0, 0, 1};  // Positive + Negative; Overflow not possible
+c{hFFFF, hFFFF, 6b0}: out = c{hFFFE, 0, 0, 1};  // 0xFFFF + 0xFFFF = 0xFFFE
+c{h7000, h7000, 6b0}: out = c{hE000, 0, 1, 1};  // Positive overflow
+c{hFFFF, h0001, 6b0}: out = c{h0000, 1, 1, 0};  // Negative overflow
+
+// Subtract test cases
+// TODO: Double check overflow bit result
+c{16h0, 16h0, b000001}: out = c{16h0, 1, 0, 0};     // 0 - 0 = 0
+c{h7FFF, 16h0, b000001}: out = c{h7FFF, 0, 0, 1};   // x - 0 = x
+c{16h0, h7FFF, b000001}: out = c{h8001, 0, 1, 1};   // 0 - x = -x
+c{hFFFF, 16h0, b000001}: out = c{hFFFF, 0, 0, 1};   // (-x) - 0 = (-x)
+c{16h0, h7FFF, b000001}: out = c{h8001, 0, 1, 1};   // 0 - (-x) = x
+c{h7654, h5432, b000001}: out = c{h2222, 0, 0, 0};  // x - y, x > y > 0
+c{h5432, h7654, b000001}: out = c{hDDDE, 0, 1, 1};  // x - y, y > x > 0
+c{hEDCB, hDCBA, b000001}: out = c{h1111, 0, 1, 0};  // x - y, 0 > x > y
+c{hDCBA, hEDCB, b000001}: out = c{hEEEF, 0, 0, 1};  // x - y, 0 > y > x
+c{h7FFF, h8000, b000001}: out = c{hFFFF, 0, 0, 1};  // x - y, x > 0 > y; Positive overflow
+c{h8000, h7FFF, b000001}: out = c{h0001, 0, 0, 0};  // x - y, y > 0 > x; Negative overflow
+
+// Multiplication
+// z, v, n output bits set to 0 since multiplier doesn't set these bits
+c{16h0, 16h0, b000100}: out = c{16h0, 0, 0, 0};     // 0 x 0
+c{16h0, h7FFF, b000100}: out = c{16h0, 0, 0, 0};    // 0 x Positive
+c{16h0, hFFFF, b000100}: out = c{16h0, 0, 0, 0};    // 0 x Negative
+c{h7FFF, 16h0, b000100}: out = c{16h0, 0, 0, 0};    // Positive x 0
+c{hFFFF, 16h0, b000100}: out = c{16h0, 0, 0, 0};    // Negative x 0
+c{h0005, h0003, b000100}: out = c{h000F, 0, 0, 0};  // 5 x 3 = 15
+c{h0005, hFFFF, b000100}: out = c{hFFFB, 0, 0, 0};  // 5 x -1 = -5
+c{hFFFE, h0004, b000100}: out = c{hFFF8, 0, 0, 0};  // -2 x 4 = -8
+c{hFFFE, hFFFD, b000100}: out = c{h0006, 0, 1, 0};  // -2 x -3 = 6
+c{h7FFF, h7000, b000100}: out = c{h9000, 0, 0, 0};  // 32 767 x 28 672 = -28 672; Positive overflow
+c{h8000, h8FFF, b000100}: out = c{h8000, 0, 0, 0};  // -32 768 x -28 673 = -32 768; Negative overflow(?)
+
+// Boolean
+// z, v, n output bits set to 0 since boolean unit doesn't set these bits
+// XOR
+c{h0000, h0000, 6d16}: out = c{h0000, 0, 0, 0};  // 0x0000 ^ 0x0000 = 0x0000
+c{hFFFF, hFFFF, 6d16}: out = c{h0000, 0, 0, 0};  // 0xFFFF ^ 0xFFFF = 0x0000
+c{hFFFF, h0000, 6d16}: out = c{hFFFF, 0, 0, 0};  // 0xFFFF ^ 0x0000 = 0xFFFF
+c{h5555, hAAAA, 6d16}: out = c{h1111, 0, 0, 0};  // 0x5555 ^ 0xAAAA = 0x1111
+c{hFFFF, h5555, 6d16}: out = c{hAAAA, 0, 0, 0};  // 0xFFFF ^ 0x5555 = 0xAAAA; 0xFFFF xor any value flips all bits
+// AND
+c{h0000, h0000, 6d17}: out = c{h0000, 0, 0, 0};  // 0x0000 * 0x0000 = 0x0000
+c{hFFFF, hFFFF, 6d17}: out = c{hFFFF, 0, 0, 0};  // 0xFFFF * 0xFFFF = 0xFFFF
+c{hFFFF, h0000, 6d17}: out = c{h0000, 0, 0, 0};  // 0xFFFF * 0x0000 = 0x0000
+c{h5555, hAAAA, 6d17}: out = c{h0000, 0, 0, 0};  // 0x5555 * 0xAAAA = 0x0000
+c{hDEAD, h00FF, 6d17}: out = c{h00AD, 0, 0, 0};  // 0xDEAD * 0x00FF = 0x00AD; 0x00FF selects only the last 8 bits
+// "A"
+c{h0000, h0000, 6d18}: out = c{h0000, 0, 0, 0};  
+c{hFFFF, h0000, 6d18}: out = c{hFFFF, 0, 0, 0};
+c{hBEEF, h0000, 6d18}: out = c{hBEEF, 0, 0, 0};
+c{h1234, hABCD, 6d18}: out = c{h1234, 0, 0, 0};  // Value of B doesn't affect output of ALU
+// OR
+c{h0000, h0000, 6d19}: out = c{h0000, 0, 0, 0};  // Self-explanatory
+c{hFFFF, hFFFF, 6d19}: out = c{hFFFF, 0, 0, 0};
+c{hFFFF, h0000, 6d19}: out = c{hFFFF, 0, 0, 0};
+c{h5555, hAAAA, 6d19}: out = c{hFFFF, 0, 0, 0};
+c{hDE00, h00AD, 6d19}: out = c{hDEAD, 0, 0, 0};
+
+// Bitshift
+// shift left
+c{hDEAD, 16d5, 6d32}: out = c{hD5A0, 0, 0, 0};  // Shift to non-byte boundary
+c{hDEAD, 16d8, 6d32}: out = c{hAD00, 0, 0, 0};  // Shift to byte boundary; keep smallest byte
+c{hDEAD, 16d15, 6d32}: out = c{h8000, 0, 0, 0}; // Shift to max shift; keep LSB
+// shift right
+c{hDEAD, 16d5, 6d33}: out = c{h06F5, 0, 0, 0};  // Shift to non-byte boundary
+c{hDEAD, 16d8, 6d33}: out = c{h00DE, 0, 0, 0};  // Shift to byte boundary; keep biggest byte
+c{hDEAD, 16d15, 6d33}: out = c{h0001, 0, 0, 0}; // Shift to max shift; keep MSB
+// shift right arithmetic
+// Negative value
+c{hDEAD, 16d5, 6d34}: out = c{hFEF5, 0, 0, 0};  // Shift to non-byte boundary
+c{hDEAD, 16d8, 6d34}: out = c{hFFDE, 0, 0, 0};  // Shift to byte boundary; keep biggest byte and sign
+c{hDEAD, 16d15, 6d34}: out = c{hFFFF, 0, 0, 0}; // Shift to max shift; out = MSB * 16
+// Positive value
+c{h7CAB, 16d5, 6d34}: out = c{h03E5, 0, 0, 0};  // Shift to non-byte boundary
+c{h7CAB, 16d8, 6d34}: out = c{h007C, 0, 0, 0};  // Shift to byte boundary; keep biggest byte and sign
+c{h7CAB, 16d15, 6d34}: out = c{h0000, 0, 0, 0}; // Shift to max shift; out = MSB * 16
+// rotate left
+c{hDEAD, 16d5, 6d35}: out = c{hD5BB, 0, 0, 0};  // Rotate to non-byte boundary
+c{hDEAD, 16d8, 6d35}: out = c{hADDE, 0, 0, 0};  // Rotate to byte boundary; position of biggest and smallest byte are flipped
+c{hDEAD, 16d15, 6d35}: out = c{hEF56, 0, 0, 0}; // Rotate to max position; LSB becomes MSB
+// rotate right
+c{hDEAD, 16d5, 6d36}: out = c{h6EF5, 0, 0, 0};  // Rotate to non-byte boundary
+c{hDEAD, 16d8, 6d36}: out = c{hADDE, 0, 0, 0};  // Rotate to byte boundary; position of biggest and smallest byte are flipped
+c{hDEAD, 16d15, 6d36}: out = c{hBD5B, 0, 0, 0}; // Rotate to max position; MSB becomes LSB
+
+// Comparison
+// CMPEQ
+c{h8000, hFFFF, 6d51}: out = c{16h0, 0, 0, 1};  // Less than (Negative - Negative)
+c{h8000, h0000, 6d51}: out = c{16h0, 0, 0, 1};  // Less than (Negative - Zero)
+c{h8000, h7FFF, 6d51}: out = c{16h0, 0, 1, 0};  // Less than (Negative - Positive)
+c{h0000, h7FFF, 6d51}: out = c{16h0, 0, 1, 1};  // Less than (Zero - Positive)
+c{h0001, h7FFF, 6d51}: out = c{16h0, 0, 1, 1};  // Less than (Positive - Positive)
+
+c{h8000, h8000, 6d51}: out = c{h0001, 1, 1, 0};  // Equal to (Negative - Negative)
+c{h0000, h0000, 6d51}: out = c{h0001, 1, 0, 0};  // Equal to (Zero - Zero)
+c{h7FFF, h7FFF, 6d51}: out = c{h0001, 1, 0, 0};  // Equal to (Positive - Positive)
+
+c{hFFFF, h8000, 6d51}: out = c{16h0, 0, 1, 0};  // Greater than (Negative - Negative)
+c{h0000, h8000, 6d51}: out = c{16h0, 0, 0, 0};  // Greater than (Zero - Negative)
+c{h7FFF, h8000, 6d51}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Negative)
+c{h7FFF, h0000, 6d51}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Zero)
+c{h7FFF, h0001, 6d51}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Positive)
+
+// CMPLT
+c{h8000, hFFFF, 6d53}: out = c{h0001, 0, 0, 1};  // Less than (Negative - Negative)
+c{h8000, h0000, 6d53}: out = c{h0001, 0, 0, 1};  // Less than (Negative - Zero)
+c{h8000, h7FFF, 6d53}: out = c{h0001, 0, 1, 0};  // Less than (Negative - Positive)
+c{h0000, h7FFF, 6d53}: out = c{h0001, 0, 1, 1};  // Less than (Zero - Positive)
+c{h0001, h7FFF, 6d53}: out = c{h0001, 0, 1, 1};  // Less than (Positive - Positive)
+
+c{h8000, h8000, 6d53}: out = c{16h0, 1, 1, 0};  // Equal to (Negative - Negative)
+c{h0000, h0000, 6d53}: out = c{16h0, 1, 0, 0};  // Equal to (Zero - Zero)
+c{h7FFF, h7FFF, 6d53}: out = c{16h0, 1, 0, 0};  // Equal to (Positive - Positive)
+
+c{hFFFF, h8000, 6d53}: out = c{16h0, 0, 1, 0};  // Greater than (Negative - Negative)
+c{h0000, h8000, 6d53}: out = c{16h0, 0, 0, 0};  // Greater than (Zero - Negative)
+c{h7FFF, h8000, 6d53}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Negative)
+c{h7FFF, h0000, 6d53}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Zero)
+c{h7FFF, h0001, 6d53}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Positive)
+
+// CMPLE
+c{h8000, hFFFF, 6d55}: out = c{h0001, 0, 0, 1};  // Less than (Negative - Negative)
+c{h8000, h0000, 6d55}: out = c{h0001, 0, 0, 1};  // Less than (Negative - Zero)
+c{h8000, h7FFF, 6d55}: out = c{h0001, 0, 1, 0};  // Less than (Negative - Positive)
+c{h0000, h7FFF, 6d55}: out = c{h0001, 0, 1, 1};  // Less than (Zero - Positive)
+c{h0001, h7FFF, 6d55}: out = c{h0001, 0, 1, 1};  // Less than (Positive - Positive)
+
+c{h8000, h8000, 6d55}: out = c{h0001, 1, 1, 0};  // Equal to (Negative - Negative)
+c{h0000, h0000, 6d55}: out = c{h0001, 1, 0, 0};  // Equal to (Zero - Zero)
+c{h7FFF, h7FFF, 6d55}: out = c{h0001, 1, 0, 0};  // Equal to (Positive - Positive)
+
+c{hFFFF, h8000, 6d55}: out = c{16h0, 0, 1, 0};  // Greater than (Negative - Negative)
+c{h0000, h8000, 6d55}: out = c{16h0, 0, 0, 0};  // Greater than (Zero - Negative)
+c{h7FFF, h8000, 6d55}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Negative)
+c{h7FFF, h0000, 6d55}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Zero)
+c{h7FFF, h0001, 6d55}: out = c{16h0, 0, 0, 0};  // Greater than (Positive - Positive)
