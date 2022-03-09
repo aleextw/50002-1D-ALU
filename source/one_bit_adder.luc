@@ -1,3 +1,7 @@
+/*
+One-bit adder: This module takes three one-bit numbers a, b, and cin, and outputs their
+corresponding sum and carry-out.
+*/
 module one_bit_adder (
     input a,
     input b,

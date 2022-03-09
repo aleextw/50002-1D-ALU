@@ -25,10 +25,10 @@ INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/dat
 # update_compile_order -fileset sources_1
 # launch_runs -runs synth_1 -jobs 12
 INFO: [Vivado 12-4149] The synthesis checkpoint for IP 'C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/ip/mig_7series_0/mig_7series_0.xci' is already up-to-date
-[Wed Mar  9 00:36:14 2022] Launched synth_1...
+[Wed Mar  9 14:17:58 2022] Launched synth_1...
 Run output will be captured here: C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/synth_1/runme.log
 # wait_on_run synth_1
-[Wed Mar  9 00:36:14 2022] Waiting for synth_1 to finish...
+[Wed Mar  9 14:17:58 2022] Waiting for synth_1 to finish...
 
 *** Running vivado
     with args -log au_top_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
@@ -46,9 +46,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 39228 
+INFO: Helper process launched with PID 28924 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 674.293 ; gain = 177.387
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 673.469 ; gain = 177.914
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/au_top_0.v:7]
 	Parameter NUM_STATES bound to: 7'b1101110 
@@ -71,107 +71,7 @@ INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchit
 INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/alu_1.v:109]
 INFO: [Synth 8-6155] done synthesizing module 'alu_1' (7#1) [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/alu_1.v:7]
 INFO: [Synth 8-6157] synthesizing module 'answer_rom_2' [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:7]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000000000000000000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:20]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101110101011111111000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:23]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000000000000000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:26]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000001111000011101111000011101001001010001011110111010110101011111111000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:29]
-WARNING: [Synth 8-151] case item 124'b0000000000011110110110000111111110011111101001100001101101010010100101010001100101010001110110111101010011000110101110000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:32]
-WARNING: [Synth 8-151] case item 124'b1000010110111110011010011000010010010101110010110011000111101010010110010011010000111111101111001011001111001110100000000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:35]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100011001110111100000011000100110000000110101011001101000000101111010101011000100010010111010101000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:38]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000001011001101011001000111101001000100110100111101110111101010000101110101101101111011000000000000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:41]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000011011000111101001000001111001011000111000111000110101011111111000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:44]
-WARNING: [Synth 8-151] case item 124'b0000110101011100011100111001101011010011110111011100010111100001101011001111111101010100000110010100010111000000000000000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:47]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110011110100001001000000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:50]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000000000000000000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:56]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101110101011111111000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:59]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000000000000000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:62]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101110101011111111000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:65]
-WARNING: [Synth 8-151] case item 124'b0000110101011100110010100110001100110000110010010111110011110000110100100110011100000001001000101100010100000110001010000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:68]
-WARNING: [Synth 8-151] case item 124'b0000110000101000100111000110011010110111000111001011011100111111010001111100110110001001000110011010000010100101010100000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:71]
-WARNING: [Synth 8-151] case item 124'b1000010110011111111010001010101110101011111101000010010110000111001111110110111111001100101011000000010001111100110010000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:74]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100100100110010010101011011011110101010110011101101100000001100101100110001110110101001101111001001011000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:77]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011101001011101000100001011010000011110011010010101110011000000000000000000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:80]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110111110000011011101110001011010111110100011000101110101011111111000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:83]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101110101100000000100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:89]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000001111000011101111000011101001001010001011110111010110101100000000100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:92]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000000000000001100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:95]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000000000001100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:98]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000011010101111000000011010110101111100101101010100001010011111001111101100100100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:101]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000011010110000111000111000101110011001110110100101101001010100110101100000000100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:104]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100001101100110011100110100011110011100101010000100011011101011110000101100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:107]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100001111011110111010101100111011100101111011100010100010000100010100110100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:110]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111111100101011011111111100110010101010001100100000111000000000001100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:113]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000011110011100001001000101000110101110101100010111111101100000000100100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:116]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000011011000111101001000001111001011000111000111000110101110011011010000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:122]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000010011100010000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:125]
-WARNING: [Synth 8-151] case item 124'b0000110000101000100111010011001001111011001111001001010010011100100110001111010111011010110011000101001101011000111110010000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:128]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110101101100110101010000100011111100000010001001001001010111111001010000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:131]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000011011000111101001000001111001011000111000111000110101110011011010001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:137]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000010011100010001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:140]
-WARNING: [Synth 8-151] case item 124'b0000110000101000100111010011001001111011001111001001010010011100100110001111010111011010110011000101001101011000111110010001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:143]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001100111101100010100111000100110010011011010001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:146]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000010011100011010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:152]
-WARNING: [Synth 8-151] case item 124'b0111100110110101010000110111100110010111000101001000000110000111110011111011111111100100000110101011110000000010011100011010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:155]
-WARNING: [Synth 8-151] case item 124'b0000000000011110110110000111111110011111101001100001111010110101001001111110001111000011110111001101000010101000010001011010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:158]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000011011000111101001000001111001011000111000111000110101110011011011011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:164]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100011110100010101001110000100100110000000111011001111110000000010011100011011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:167]
-WARNING: [Synth 8-151] case item 124'b0000110000101000100111010011001001111011001111001001010010011100100110001111010111011010110011000101001101011000111110011011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:170]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100011001110111100000011000100110000000110101011001101000000101111010101011000100010011001110001011011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:173]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110110101011010001101010100111100000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:176]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100000110111000101000010100000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:179]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100111011110100000101001100000 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:182]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110110101011010001101010100111100001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:185]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100000110111000101000010100001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:188]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100111011110100000101001100001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:191]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110110101011010001101010100111101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:194]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100000110111000101000010101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:197]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100111011110100000101001101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:200]
-WARNING: [Synth 8-151] case item 124'b0000110101011111110101110110111001110101000101000110000100100001010011001110010011000011110010000000110001101010100111101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:203]
-WARNING: [Synth 8-151] case item 124'b0000110101011111110101110110111001110101000101000110000100100001010011001110010011000011110010110110010111000101000010101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:206]
-WARNING: [Synth 8-151] case item 124'b0000110101011111110101110110111001110101000101000110000100100001010011001110010011000011110010111100111110100000101001101010 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:209]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110110101011010001101010100111101011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:212]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100000110111000101000010101011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:215]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100111011110100000101001101011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:218]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110110101011010001101010101001000100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:221]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100000110111000101000100000100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:224]
-WARNING: [Synth 8-151] case item 124'b1000010010001010100110100100100000100010001100011110001000001100001111010011001010011011110111100111011110100000101011000100 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:227]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000101010011110010110111110110110100001011110111010111000110110101111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:230]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110110010000000011110100001101101010000000000000000000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:233]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110111110000011011101110001011010111110100011000101111000110110101111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:236]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101111000110110101111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:239]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000010001001000001111111011010110000001001011111001010111111000110110101111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:242]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000011110011011010111101111001000110010111011110101000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:245]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111111100101100010001010010110000100101111101000011111000110110101111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:251]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000001111000100101001110010001011101010010101110011000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:254]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000001101100011010111001001101011011100010111011110101000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:257]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011101001011101000100001011010000011110011010010101110011000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:260]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000011010110110111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:263]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110100001110111111111011 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:266]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000101010011110010110111110110110100001011110111010111000110110111010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:269]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110110010000000011110100001101101010000000000000000000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:272]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110111110000011011101110001011010111110100011000101111000110110111010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:275]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101111000110110111010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:278]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000010001001000001111111011010110000001001011111001010111111000110110111010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:281]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000011110011011010111101111001000110010111011110101000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:284]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111111100101100010001010010110000100101111101000011111000110110111010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:290]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000001111000100101001110010001011101010010101110011000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:293]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000001101100011010111001001101011011100010111011110101000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:296]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011101001011101000100001011010000011110011010010101110011000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:299]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000011010111000010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:302]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110100001111000001010101 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:305]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000101010011110010110111110110110100001011110111010111000110110111011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:308]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110110010000000011110100001101101010000000000000000000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:311]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000110110111110000011011101110001011010111110100011000101111000110110111011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:314]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000000001100000010111111001111101101101110100011000101111000110110111011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:317]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000010001001000001111111011010110000001001011111001010111111000110110111011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:320]
-WARNING: [Synth 8-151] case item 124'b0111100001011110111000010000110101011101101001000111000011110011011010111101111001000110010111011110101000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:323]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111111100101100010001010010110000100101111101000011111000110110111011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:329]
-WARNING: [Synth 8-151] case item 124'b1000010110111110110000010010101101001011100110100100000001111000100101001110010001011101010010101110011000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:332]
-WARNING: [Synth 8-151] case item 124'b0000000000000000000000000000000000000000000000000000001101100011010111001001101011011100010111011110101000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:335]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011101001011101000100001011010000011110011010010101110011000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:338]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110000011010111000011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:341]
-WARNING: [Synth 8-151] case item 124'b0000110101011111111000000001110111101101111101011100111110000101001010010000011000010110111011001111110100001111000001011111 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:344]
-INFO: [Common 17-14] Message 'Synth 8-151' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-151] case item 38'b00000000000000000111111111111111000001 is unreachable [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:16]
 INFO: [Synth 8-6155] done synthesizing module 'answer_rom_2' (8#1) [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v:7]
 INFO: [Synth 8-6157] synthesizing module 'bin_to_dec_3' [C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bin_to_dec_3.v:12]
 	Parameter DIGITS bound to: 3'b100 
@@ -239,7 +139,6 @@ WARNING: [Synth 8-3917] design au_top_0 has port led[3] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[2] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[1] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[0] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port io_led[17] driven by constant 0
 WARNING: [Synth 8-3331] design bitshift_12 has unconnected port b[15]
 WARNING: [Synth 8-3331] design bitshift_12 has unconnected port b[14]
 WARNING: [Synth 8-3331] design bitshift_12 has unconnected port b[13]
@@ -257,7 +156,6 @@ WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[4]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[3]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[1]
-WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[22]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[21]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[20]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[19]
@@ -281,7 +179,7 @@ WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 739.250 ; gain = 242.344
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 737.812 ; gain = 242.258
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -294,10 +192,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 739.250 ; gain = 242.344
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 737.812 ; gain = 242.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 739.250 ; gain = 242.344
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 737.812 ; gain = 242.258
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -315,26 +213,26 @@ Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.
 Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 871.320 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 870.055 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 871.320 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 870.055 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 871.320 ; gain = 374.414
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 870.055 ; gain = 374.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 871.320 ; gain = 374.414
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 870.055 ; gain = 374.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 871.320 ; gain = 374.414
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 870.055 ; gain = 374.500
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "out" won't be mapped to RAM because address size (38) is larger than maximum supported(25)
 INFO: [Synth 8-802] inferred FSM for state register 'M_state_q_reg' in module 'answer_fsm_6'
@@ -380,7 +278,7 @@ INFO: [Synth 8-5546] ROM "M_state_d" won't be mapped to RAM because it is too sp
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'M_state_q_reg' using encoding 'sequential' in module 'answer_fsm_6'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 871.320 ; gain = 374.414
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 870.055 ; gain = 374.500
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -399,7 +297,7 @@ Detailed RTL Component Info :
 	   2 Input      5 Bit       Adders := 1     
 	   2 Input      1 Bit       Adders := 1     
 +---XORs : 
-	   2 Input     16 Bit         XORs := 3     
+	   2 Input     16 Bit         XORs := 5     
 	   3 Input      1 Bit         XORs := 16    
 	   2 Input      1 Bit         XORs := 4     
 +---Registers : 
@@ -418,6 +316,7 @@ Detailed RTL Component Info :
 	   2 Input     25 Bit        Muxes := 1     
 	  12 Input     20 Bit        Muxes := 1     
 	   2 Input     20 Bit        Muxes := 1     
+	 110 Input     19 Bit        Muxes := 1     
 	   2 Input     18 Bit        Muxes := 1     
 	   4 Input     16 Bit        Muxes := 2     
 	   2 Input     16 Bit        Muxes := 6     
@@ -425,8 +324,6 @@ Detailed RTL Component Info :
 	   2 Input     14 Bit        Muxes := 3     
 	  12 Input     12 Bit        Muxes := 1     
 	   2 Input     12 Bit        Muxes := 1     
-	   3 Input     11 Bit        Muxes := 1     
-	   2 Input     11 Bit        Muxes := 1     
 	  10 Input     10 Bit        Muxes := 1     
 	  14 Input      8 Bit        Muxes := 2     
 	   2 Input      8 Bit        Muxes := 3     
@@ -436,7 +333,6 @@ Detailed RTL Component Info :
 	  15 Input      4 Bit        Muxes := 1     
 	   4 Input      4 Bit        Muxes := 1     
 	   7 Input      3 Bit        Muxes := 1     
-	  11 Input      2 Bit        Muxes := 1     
 	   4 Input      1 Bit        Muxes := 5     
 	   2 Input      1 Bit        Muxes := 14    
 	  13 Input      1 Bit        Muxes := 1     
@@ -456,7 +352,7 @@ Hierarchical RTL Component report
 Module au_top_0 
 Detailed RTL Component Info : 
 +---XORs : 
-	   2 Input     16 Bit         XORs := 1     
+	   2 Input     16 Bit         XORs := 2     
 	   2 Input      1 Bit         XORs := 3     
 Module one_bit_adder_18 
 Detailed RTL Component Info : 
@@ -476,6 +372,8 @@ Module bitshift_12
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input      5 Bit       Adders := 1     
++---XORs : 
+	   2 Input     16 Bit         XORs := 1     
 Module compare_13 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -492,9 +390,7 @@ Detailed RTL Component Info :
 Module answer_rom_2 
 Detailed RTL Component Info : 
 +---Muxes : 
-	   3 Input     11 Bit        Muxes := 1     
-	   2 Input     11 Bit        Muxes := 1     
-	  11 Input      2 Bit        Muxes := 1     
+	 110 Input     19 Bit        Muxes := 1     
 Module bin_to_dec_3 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -581,7 +477,6 @@ Warning: Parallel synthesis criteria is not met
 DSP Report: Generating DSP mlt/p0, operation Mode is: A*B.
 DSP Report: operator mlt/p0 is absorbed into DSP mlt/p0.
 INFO: [Synth 8-5546] ROM "out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "out" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "out" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "out" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5587] ROM size for "out" is below threshold of ROM address width. It will be mapped to LUTs
@@ -589,6 +484,7 @@ INFO: [Synth 8-5587] ROM size for "out" is below threshold of ROM address width.
 INFO: [Synth 8-5546] ROM "out" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5587] ROM size for "out" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5587] ROM size for "out" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5545] ROM "rom/out" won't be mapped to RAM because address size (38) is larger than maximum supported(25)
 WARNING: [Synth 8-3917] design au_top_0 has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[5] driven by constant 0
@@ -597,14 +493,12 @@ WARNING: [Synth 8-3917] design au_top_0 has port led[3] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[2] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[1] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port led[0] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port io_led[17] driven by constant 0
 WARNING: [Synth 8-3917] design au_top_0 has port io_seg[7] driven by constant 1
 WARNING: [Synth 8-3331] design alu_1 has unconnected port alufn[3]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[4]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[3]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[1]
-WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[22]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[21]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[20]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[19]
@@ -628,7 +522,7 @@ WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 871.320 ; gain = 374.414
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:00:57 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -655,13 +549,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 882.820 ; gain = 385.914
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:08 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 948.168 ; gain = 451.262
+Finished Timing Optimization : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -673,7 +567,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 957.207 ; gain = 460.301
+Finished Technology Mapping : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -697,7 +591,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -710,7 +604,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -722,25 +616,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -760,66 +654,65 @@ Report Cell Usage:
 |2     |CARRY4  |    23|
 |3     |DSP48E1 |     1|
 |4     |LUT1    |     6|
-|5     |LUT2    |    98|
-|6     |LUT3    |    32|
-|7     |LUT4    |    61|
-|8     |LUT5    |    73|
-|9     |LUT6    |   306|
-|10    |MUXF7   |     2|
-|11    |FDRE    |    78|
-|12    |FDSE    |     4|
-|13    |IBUF    |     5|
-|14    |OBUF    |    45|
+|5     |LUT2    |   132|
+|6     |LUT3    |    55|
+|7     |LUT4    |    78|
+|8     |LUT5    |    91|
+|9     |LUT6    |   454|
+|10    |FDRE    |    82|
+|11    |FDSE    |     4|
+|12    |IBUF    |     6|
+|13    |OBUF    |    45|
 +------+--------+------+
 
 Report Instance Areas: 
 +------+------------------+---------------------+------+
 |      |Instance          |Module               |Cells |
 +------+------------------+---------------------+------+
-|1     |top               |                     |   736|
-|2     |  ans             |answer_fsm_6         |    56|
-|3     |  btd             |bin_to_dec_3         |    61|
+|1     |top               |                     |   979|
+|2     |  ans             |answer_fsm_6         |    79|
+|3     |  btd             |bin_to_dec_3         |   102|
 |4     |  btn_cnd         |button_conditioner_5 |    40|
 |5     |    sync          |pipeline_14          |     3|
-|6     |  cnt             |counter_8            |   464|
+|6     |  cnt             |counter_8            |   634|
 |7     |  reset_cond      |reset_conditioner_4  |     5|
-|8     |  seg             |multi_seven_seg_7    |    52|
-|9     |    ctr           |counter_15           |    52|
-|10    |  sixteen_bit_alu |alu_1                |     6|
-|11    |    mlt           |mult_10              |     6|
+|8     |  seg             |multi_seven_seg_7    |    50|
+|9     |    ctr           |counter_15           |    50|
+|10    |  sixteen_bit_alu |alu_1                |    16|
+|11    |    mlt           |mult_10              |    16|
 +------+------------------+---------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.031 ; gain = 463.125
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 38 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 960.031 ; gain = 331.055
-Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 960.031 ; gain = 463.125
+Synthesis finished with 0 errors, 0 critical warnings and 36 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:10 ; elapsed = 00:01:15 . Memory (MB): peak = 1073.074 ; gain = 445.277
+Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1073.074 ; gain = 577.520
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 26 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 24 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 960.031 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1073.074 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-88 Infos, 187 Warnings, 0 Critical Warnings and 0 Errors encountered.
+87 Infos, 84 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 960.031 ; gain = 671.211
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 960.031 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:22 ; elapsed = 00:01:23 . Memory (MB): peak = 1073.074 ; gain = 785.625
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1073.074 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/synth_1/au_top_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 00:37:00 2022...
-[Wed Mar  9 00:37:04 2022] synth_1 finished
-wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:50 . Memory (MB): peak = 290.902 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 14:19:26 2022...
+[Wed Mar  9 14:19:28 2022] synth_1 finished
+wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:31 . Memory (MB): peak = 289.219 ; gain = 0.000
 # launch_runs impl_1 -to_step write_bitstream -jobs 12
-[Wed Mar  9 00:37:04 2022] Launched impl_1...
+[Wed Mar  9 14:19:28 2022] Launched impl_1...
 Run output will be captured here: C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/impl_1/runme.log
 # wait_on_run impl_1
-[Wed Mar  9 00:37:04 2022] Waiting for impl_1 to finish...
+[Wed Mar  9 14:19:28 2022] Waiting for impl_1 to finish...
 
 *** Running vivado
     with args -log au_top_0.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source au_top_0.tcl -notrace
@@ -835,7 +728,7 @@ Command: link_design -top au_top_0 -part xc7a35tftg256-1
 Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
-INFO: [Netlist 29-17] Analyzing 26 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 24 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2019.1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -846,13 +739,13 @@ Finished Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D ALU/work/constra
 Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 623.637 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 625.816 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 7 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 link_design completed successfully
-link_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 623.637 ; gain = 333.816
+link_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 625.816 ; gain = 334.969
 Command: opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
@@ -863,54 +756,54 @@ INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Project 1-461] DRC finished with 0 Errors
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.600 . Memory (MB): peak = 644.617 ; gain = 20.980
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.601 . Memory (MB): peak = 646.832 ; gain = 21.016
 
 Starting Cache Timing Information Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Ending Cache Timing Information Task | Checksum: 1d6180101
+Ending Cache Timing Information Task | Checksum: 22d973d7a
 
-Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1112.828 ; gain = 468.211
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1118.426 ; gain = 471.594
 
 Starting Logic Optimization Task
 
 Phase 1 Retarget
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Opt 31-49] Retargeted 0 cell(s).
-Phase 1 Retarget | Checksum: 1d6180101
+Phase 1 Retarget | Checksum: 22d973d7a
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.063 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
 
 Phase 2 Constant propagation
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Phase 2 Constant propagation | Checksum: 216d3dd55
+Phase 2 Constant propagation | Checksum: 199ac62cc
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.078 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
 
 Phase 3 Sweep
-Phase 3 Sweep | Checksum: 1f660a696
+Phase 3 Sweep | Checksum: 1dd3744b9
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.104 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
 
 Phase 4 BUFG optimization
-Phase 4 BUFG optimization | Checksum: 1f660a696
+Phase 4 BUFG optimization | Checksum: 1dd3744b9
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.069 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.125 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
 
 Phase 5 Shift Register Optimization
 INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
-Phase 5 Shift Register Optimization | Checksum: 1f660a696
+Phase 5 Shift Register Optimization | Checksum: 1dd3744b9
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.079 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.138 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
 
 Phase 6 Post Processing Netlist
-Phase 6 Post Processing Netlist | Checksum: 1f660a696
+Phase 6 Post Processing Netlist | Checksum: 1dd3744b9
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.082 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.146 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
 Opt_design Change Summary
 =========================
@@ -931,38 +824,38 @@ Opt_design Change Summary
 
 Starting Connectivity Check Task
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1250.230 ; gain = 0.000
-Ending Logic Optimization Task | Checksum: 1c4989905
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1260.391 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 228c680b7
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.096 . Memory (MB): peak = 1250.230 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.162 . Memory (MB): peak = 1260.391 ; gain = 0.000
 
 Starting Power Optimization Task
 INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
-Ending Power Optimization Task | Checksum: 1c4989905
+Ending Power Optimization Task | Checksum: 228c680b7
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1253.945 ; gain = 3.715
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1260.391 ; gain = 0.000
 
 Starting Final Cleanup Task
-Ending Final Cleanup Task | Checksum: 1c4989905
+Ending Final Cleanup Task | Checksum: 228c680b7
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1253.945 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.391 ; gain = 0.000
 
 Starting Netlist Obfuscation Task
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1253.945 ; gain = 0.000
-Ending Netlist Obfuscation Task | Checksum: 1c4989905
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.391 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 228c680b7
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1253.945 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
 24 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 opt_design completed successfully
-opt_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1253.945 ; gain = 630.309
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1253.945 ; gain = 0.000
+opt_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1260.391 ; gain = 634.574
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.035 . Memory (MB): peak = 1254.152 ; gain = 0.207
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1260.391 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/impl_1/au_top_0_opt.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_drc -file au_top_0_drc_opted.rpt -pb au_top_0_drc_opted.pb -rpx au_top_0_drc_opted.rpx
 Command: report_drc -file au_top_0_drc_opted.rpt -pb au_top_0_drc_opted.pb -rpx au_top_0_drc_opted.rpx
@@ -989,37 +882,37 @@ INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 
 Phase 1 Placer Initialization
 
 Phase 1.1 Placer Initialization Netlist Sorting
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1275.172 ; gain = 0.000
-Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 1435a4d78
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1277.293 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 13cdf3d5c
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1275.172 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1275.172 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1277.293 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1277.293 ; gain = 0.000
 
 Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 11a6ab341
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 154d5a0d9
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.709 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.733 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 1.3 Build Placer Netlist Model
-Phase 1.3 Build Placer Netlist Model | Checksum: 2048ab90b
+Phase 1.3 Build Placer Netlist Model | Checksum: 1fdfaa092
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.900 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.978 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 1.4 Constrain Clocks/Macros
-Phase 1.4 Constrain Clocks/Macros | Checksum: 2048ab90b
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1fdfaa092
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.902 . Memory (MB): peak = 1275.230 ; gain = 0.059
-Phase 1 Placer Initialization | Checksum: 2048ab90b
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.981 . Memory (MB): peak = 1280.422 ; gain = 3.129
+Phase 1 Placer Initialization | Checksum: 1fdfaa092
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.904 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.984 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 2 Global Placement
 
 Phase 2.1 Floorplanning
-Phase 2.1 Floorplanning | Checksum: 19e96b480
+Phase 2.1 Floorplanning | Checksum: 23f892477
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.995 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 2.2 Global Placement Core
 
@@ -1032,7 +925,7 @@ INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization wa
 INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
 INFO: [Physopt 32-949] No candidate nets found for HD net replication
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1275.230 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1280.422 ; gain = 0.000
 
 Summary of Physical Synthesis Optimizations
 ============================================
@@ -1050,55 +943,55 @@ Summary of Physical Synthesis Optimizations
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
-Phase 2.2.1 Physical Synthesis In Placer | Checksum: 16a6e1426
+Phase 2.2.1 Physical Synthesis In Placer | Checksum: 18407dcf5
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
-Phase 2.2 Global Placement Core | Checksum: dc8a28e0
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
+Phase 2.2 Global Placement Core | Checksum: 1bc860f39
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
-Phase 2 Global Placement | Checksum: dc8a28e0
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
+Phase 2 Global Placement | Checksum: 1bc860f39
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3 Detail Placement
 
 Phase 3.1 Commit Multi Column Macros
-Phase 3.1 Commit Multi Column Macros | Checksum: 13a7d26c7
+Phase 3.1 Commit Multi Column Macros | Checksum: 186e2c298
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.2 Commit Most Macros & LUTRAMs
-Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 16cd237d7
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 188789326
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.3 Area Swap Optimization
-Phase 3.3 Area Swap Optimization | Checksum: 19534d3bd
+Phase 3.3 Area Swap Optimization | Checksum: 175d7dde6
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.4 Pipeline Register Optimization
-Phase 3.4 Pipeline Register Optimization | Checksum: 14b4b7e36
+Phase 3.4 Pipeline Register Optimization | Checksum: 17b7e99b9
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.5 Small Shape Detail Placement
-Phase 3.5 Small Shape Detail Placement | Checksum: 1e7c63100
+Phase 3.5 Small Shape Detail Placement | Checksum: 19fa335db
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.6 Re-assign LUT pins
-Phase 3.6 Re-assign LUT pins | Checksum: 1b91d9915
+Phase 3.6 Re-assign LUT pins | Checksum: 22aefaeeb
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 3.7 Pipeline Register Optimization
-Phase 3.7 Pipeline Register Optimization | Checksum: 119eece6c
+Phase 3.7 Pipeline Register Optimization | Checksum: 270078aab
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
-Phase 3 Detail Placement | Checksum: 119eece6c
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
+Phase 3 Detail Placement | Checksum: 270078aab
 
-Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 1275.230 ; gain = 0.059
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1280.422 ; gain = 3.129
 
 Phase 4 Post Placement Optimization and Clean-Up
 
@@ -1106,58 +999,58 @@ Phase 4.1 Post Commit Optimization
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
 Phase 4.1.1 Post Placement Optimization
-Post Placement Optimization Initialization | Checksum: f0989a51
+Post Placement Optimization Initialization | Checksum: c7c67f64
 
 Phase 4.1.1.1 BUFG Insertion
 INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
-Phase 4.1.1.1 BUFG Insertion | Checksum: f0989a51
+Phase 4.1.1.1 BUFG Insertion | Checksum: c7c67f64
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
-INFO: [Place 30-746] Post Placement Timing Summary WNS=1.834. For the most accurate timing information please run report_timing.
-Phase 4.1.1 Post Placement Optimization | Checksum: 100f0b611
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.833. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 12705bcf5
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
-Phase 4.1 Post Commit Optimization | Checksum: 100f0b611
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
+Phase 4.1 Post Commit Optimization | Checksum: 12705bcf5
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
 
 Phase 4.2 Post Placement Cleanup
-Phase 4.2 Post Placement Cleanup | Checksum: 100f0b611
+Phase 4.2 Post Placement Cleanup | Checksum: 12705bcf5
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
 
 Phase 4.3 Placer Reporting
-Phase 4.3 Placer Reporting | Checksum: 100f0b611
+Phase 4.3 Placer Reporting | Checksum: 12705bcf5
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
 
 Phase 4.4 Final Placement Cleanup
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1284.219 ; gain = 0.000
-Phase 4.4 Final Placement Cleanup | Checksum: 1e7653329
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1290.371 ; gain = 0.000
+Phase 4.4 Final Placement Cleanup | Checksum: 172573882
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
-Phase 4 Post Placement Optimization and Clean-Up | Checksum: 1e7653329
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 172573882
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
-Ending Placer Task | Checksum: fed0c316
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
+Ending Placer Task | Checksum: 1004b863c
 
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 1284.219 ; gain = 9.047
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 1290.371 ; gain = 13.078
 INFO: [Common 17-83] Releasing license: Implementation
 53 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 place_design completed successfully
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1284.219 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1290.371 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.104 . Memory (MB): peak = 1285.262 ; gain = 1.043
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.118 . Memory (MB): peak = 1291.391 ; gain = 1.020
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/impl_1/au_top_0_placed.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_io -file au_top_0_io_placed.rpt
-report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.066 . Memory (MB): peak = 1285.262 ; gain = 0.000
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1291.391 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_placed.rpt -pb au_top_0_utilization_placed.pb
 INFO: [runtcl-4] Executing : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
-report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1285.262 ; gain = 0.000
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1291.391 ; gain = 0.000
 Command: route_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
@@ -1169,119 +1062,120 @@ INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more in
 
 Starting Routing Task
 INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
-Checksum: PlaceDB: 15a98817 ConstDB: 0 ShapeSum: e9273aff RouteDB: 0
+Checksum: PlaceDB: a3225846 ConstDB: 0 ShapeSum: 5d292df6 RouteDB: 0
 
 Phase 1 Build RT Design
-Phase 1 Build RT Design | Checksum: 163877c27
+Phase 1 Build RT Design | Checksum: a8defa17
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1388.633 ; gain = 90.320
-Post Restoration Checksum: NetGraph: cc8b21db NumContArr: 96fc5a4c Constraints: 0 Timing: 0
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1395.020 ; gain = 90.543
+Post Restoration Checksum: NetGraph: 3011259 NumContArr: a5dde7be Constraints: 0 Timing: 0
 
 Phase 2 Router Initialization
 
 Phase 2.1 Create Timer
-Phase 2.1 Create Timer | Checksum: 163877c27
+Phase 2.1 Create Timer | Checksum: a8defa17
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1394.695 ; gain = 96.383
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1403.082 ; gain = 98.605
 
 Phase 2.2 Fix Topology Constraints
-Phase 2.2 Fix Topology Constraints | Checksum: 163877c27
+Phase 2.2 Fix Topology Constraints | Checksum: a8defa17
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1400.695 ; gain = 102.383
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1409.125 ; gain = 104.648
 
 Phase 2.3 Pre Route Cleanup
-Phase 2.3 Pre Route Cleanup | Checksum: 163877c27
+Phase 2.3 Pre Route Cleanup | Checksum: a8defa17
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1400.695 ; gain = 102.383
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 1409.125 ; gain = 104.648
  Number of Nodes with overlaps = 0
 
 Phase 2.4 Update Timing
-Phase 2.4 Update Timing | Checksum: aa41caf2
+Phase 2.4 Update Timing | Checksum: 1af4b9081
 
-Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1407.914 ; gain = 109.602
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.217  | TNS=0.000  | WHS=-0.841 | THS=-26.672|
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1416.738 ; gain = 112.262
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.909  | TNS=0.000  | WHS=-0.824 | THS=-29.267|
 
-Phase 2 Router Initialization | Checksum: 146a76a6c
+Phase 2 Router Initialization | Checksum: d6fce25d
 
-Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1411.441 ; gain = 113.129
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1421.105 ; gain = 116.629
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 0.00446464 %
-  Global Horizontal Routing Utilization  = 0.0048152 %
+  Global Vertical Routing Utilization    = 0.00430519 %
+  Global Horizontal Routing Utilization  = 0.00442478 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
-  Number of Failed Nets               = 691
+  Number of Failed Nets               = 938
     (Failed Nets is the sum of unrouted and partially routed nets)
-  Number of Unrouted Nets             = 670
+  Number of Unrouted Nets             = 917
   Number of Partially Routed Nets     = 21
-  Number of Node Overlaps             = 18
+  Number of Node Overlaps             = 16
 
 
 Phase 3 Initial Routing
-Phase 3 Initial Routing | Checksum: 136d4725e
+Phase 3 Initial Routing | Checksum: 1b74a7ad2
 
-Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1412.180 ; gain = 113.867
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 1421.105 ; gain = 116.629
 
 Phase 4 Rip-up And Reroute
 
 Phase 4.1 Global Iteration 0
- Number of Nodes with overlaps = 113
+ Number of Nodes with overlaps = 163
+ Number of Nodes with overlaps = 12
  Number of Nodes with overlaps = 13
- Number of Nodes with overlaps = 10
  Number of Nodes with overlaps = 8
- Number of Nodes with overlaps = 9
- Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 7
+ Number of Nodes with overlaps = 5
  Number of Nodes with overlaps = 3
- Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
  Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.571  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.727  | TNS=0.000  | WHS=N/A    | THS=N/A    |
 
-Phase 4.1 Global Iteration 0 | Checksum: 20b47046a
+Phase 4.1 Global Iteration 0 | Checksum: 2c384d1ac
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
-Phase 4 Rip-up And Reroute | Checksum: 20b47046a
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
+Phase 4 Rip-up And Reroute | Checksum: 2c384d1ac
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
 
 Phase 5 Delay and Skew Optimization
 
 Phase 5.1 Delay CleanUp
-Phase 5.1 Delay CleanUp | Checksum: 20b47046a
+Phase 5.1 Delay CleanUp | Checksum: 2c384d1ac
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
 
 Phase 5.2 Clock Skew Optimization
-Phase 5.2 Clock Skew Optimization | Checksum: 20b47046a
+Phase 5.2 Clock Skew Optimization | Checksum: 2c384d1ac
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
-Phase 5 Delay and Skew Optimization | Checksum: 20b47046a
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
+Phase 5 Delay and Skew Optimization | Checksum: 2c384d1ac
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
 
 Phase 6 Post Hold Fix
 
 Phase 6.1 Hold Fix Iter
 
 Phase 6.1.1 Update Timing
-Phase 6.1.1 Update Timing | Checksum: 2258ce7f0
+Phase 6.1.1 Update Timing | Checksum: 22907022c
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.571  | TNS=0.000  | WHS=0.102  | THS=0.000  |
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=1.727  | TNS=0.000  | WHS=0.103  | THS=0.000  |
 
-Phase 6.1 Hold Fix Iter | Checksum: 2258ce7f0
+Phase 6.1 Hold Fix Iter | Checksum: 22907022c
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
-Phase 6 Post Hold Fix | Checksum: 2258ce7f0
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
+Phase 6 Post Hold Fix | Checksum: 22907022c
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
 
 Phase 7 Route finalize
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 0.183688 %
-  Global Horizontal Routing Utilization  = 0.197683 %
+  Global Vertical Routing Utilization    = 0.322251 %
+  Global Horizontal Routing Utilization  = 0.364263 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
@@ -1291,45 +1185,45 @@ Router Utilization Summary
   Number of Partially Routed Nets     = 0
   Number of Node Overlaps             = 0
 
-Phase 7 Route finalize | Checksum: 25723703c
+Phase 7 Route finalize | Checksum: 1f78cf576
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1413.246 ; gain = 114.934
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1421.902 ; gain = 117.426
 
 Phase 8 Verifying routed nets
 
  Verification completed successfully
-Phase 8 Verifying routed nets | Checksum: 25723703c
+Phase 8 Verifying routed nets | Checksum: 1f78cf576
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1414.215 ; gain = 115.902
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1422.859 ; gain = 118.383
 
 Phase 9 Depositing Routes
-Phase 9 Depositing Routes | Checksum: 1b7708f5f
+Phase 9 Depositing Routes | Checksum: 14cdd79c3
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1414.215 ; gain = 115.902
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1422.859 ; gain = 118.383
 
 Phase 10 Post Router Timing
-INFO: [Route 35-57] Estimated Timing Summary | WNS=2.571  | TNS=0.000  | WHS=0.102  | THS=0.000  |
+INFO: [Route 35-57] Estimated Timing Summary | WNS=1.727  | TNS=0.000  | WHS=0.103  | THS=0.000  |
 
 INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
-Phase 10 Post Router Timing | Checksum: 1b7708f5f
+Phase 10 Post Router Timing | Checksum: 14cdd79c3
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1414.215 ; gain = 115.902
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1422.859 ; gain = 118.383
 INFO: [Route 35-16] Router Completed Successfully
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1414.215 ; gain = 115.902
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:19 . Memory (MB): peak = 1422.859 ; gain = 118.383
 
 Routing Is Done.
 INFO: [Common 17-83] Releasing license: Implementation
 70 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 route_design completed successfully
-route_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:21 . Memory (MB): peak = 1414.215 ; gain = 128.953
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1414.215 ; gain = 0.000
+route_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:20 . Memory (MB): peak = 1422.859 ; gain = 131.469
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1422.859 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.127 . Memory (MB): peak = 1424.129 ; gain = 9.914
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.133 . Memory (MB): peak = 1432.762 ; gain = 9.902
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.runs/impl_1/au_top_0_routed.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_drc -file au_top_0_drc_routed.rpt -pb au_top_0_drc_routed.pb -rpx au_top_0_drc_routed.rpx
 Command: report_drc -file au_top_0_drc_routed.rpt -pb au_top_0_drc_routed.pb -rpx au_top_0_drc_routed.rpx
@@ -1380,7 +1274,7 @@ Loading route data...
 Processing options...
 Creating bitmap...
 Creating bitstream...
-Bitstream compression saved 13956672 bits.
+Bitstream compression saved 13665920 bits.
 Writing bitstream ./au_top_0.bit...
 Writing bitstream ./au_top_0.bin...
 INFO: [Vivado 12-1842] Bitgen Completed Successfully.
@@ -1388,11 +1282,11 @@ INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK 
 INFO: [Common 17-83] Releasing license: Implementation
 101 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 write_bitstream completed successfully
-write_bitstream: Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 1869.031 ; gain = 424.926
-INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 00:38:21 2022...
-[Wed Mar  9 00:38:25 2022] impl_1 finished
-wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:21 . Memory (MB): peak = 290.902 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 00:38:25 2022...
+write_bitstream: Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1878.848 ; gain = 425.086
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 14:20:45 2022...
+[Wed Mar  9 14:20:49 2022] impl_1 finished
+wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:21 . Memory (MB): peak = 289.219 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  9 14:20:49 2022...
 Vivado exited.
 
 Finished building project.

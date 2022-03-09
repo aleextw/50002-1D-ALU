@@ -1,3 +1,8 @@
+/*
+   Boolean: This module takes two binary numbers a and b, and performs a boolean 
+   operations on them specified by the last 2 bits of ALUFN.
+*/
+
 module bool (
     input a[16],
     input b[16],
@@ -7,10 +12,10 @@ module bool (
 
   always {
     case(alufn) {
-      0: out = a ^ b;
-      1: out = a & b;
-      2: out = a;
-      3: out = a | b ; 
+      0: out = a ^ b;   // XOR
+      1: out = a & b;   // AND
+      2: out = a;       // 'A' (Passthrough)
+      3: out = a | b ;  // OR
       default: out = 16b0;
     }
   }

@@ -1,3 +1,13 @@
+/*
+Sixteen-Bit Adder: This module takes two 16-bit numbers a and b, and performs addition or subtraction
+depending on the value of the last bit of alufn, outputting the result to s.
+z, v, and n are also set in this process:
+- z is 1 if s is 0
+- v is 1 if the MSB of the two input numbers differ from the MSB of s
+- n is 1 if s is negative
+   
+The adder is built this way in case we ever want to utilise the cout signal for something.
+*/
 module sixteen_bit_adder (
     input a[16],
     input b[16],

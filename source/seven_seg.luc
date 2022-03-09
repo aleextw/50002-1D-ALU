@@ -1,3 +1,8 @@
+/*
+Seven-segment: This module takes a binary value 0-9, and outputs the binary
+representation of the segments needed to be lit in order to set that value.
+*/
+
 module seven_seg (
     input char[4],
     output segs[7]

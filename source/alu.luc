@@ -1,3 +1,8 @@
+/*
+ALU: This module takes two 16-bit binary numbers a and b, and performs an operation on them
+depending on the value of alufn, outputting the result to out, and setting z, v, and n accordingly.
+*/
+
 module alu (
     input a[16],
     input b[16],
@@ -8,40 +13,43 @@ module alu (
     output n
   ) {
   
+  // Initialize our ALU modules
   sixteen_bit_adder adder;
   mult mlt;
   bool bl;
   bitshift bs;
   compare cmp;
   
+  // We can't read from the output of the module, so we store our z, v, and n values in temporary variables
   sig temp_z;
   sig temp_v;
   sig temp_n;
 
   always {
-    adder.a = a;
+    adder.a = a;            // Connect a and b inputs of the ALU to a and b inputs of the adder
     adder.b = b;
-    adder.alufn = alufn[0];
-    temp_z = adder.z;
+    adder.alufn = alufn[0]; // Connect last bit of ALUFN to ALUFN input of the adder
+    temp_z = adder.z;       // Connect z, v, and n outputs of our adder to our temporary variables
     temp_v = adder.v;
     temp_n = adder.n;
     
-    mlt.a = a;
+    mlt.a = a;              // Connect a and b inputs of the ALU to a and b inputs of the multiplier
     mlt.b = b;
     
-    bl.a = a;
+    bl.a = a;               // Connect a and b inputs of the ALU to a and b inputs of the boolean module
     bl.b = b;
-    bl.alufn = alufn[1:0];
+    bl.alufn = alufn[1:0];  // Connect last 2 bits of ALUFN to ALUFN input of the boolean module
     
-    bs.a = a;
+    bs.a = a;               // Connect a and b inputs of the ALU to a and b inputs of the bitshift module
     bs.b = b;
-    bs.alufn = alufn[2:0];
+    bs.alufn = alufn[2:0];  // Connect last 3 bits of ALUFN to ALUFN input of the bitshift module
     
-    cmp.z = temp_z;
+    cmp.z = temp_z;         // Connect our z, v, n temporary variables to our comparison module
     cmp.v = temp_v;
     cmp.n = temp_n;
-    cmp.alufn = alufn[2:0];
+    cmp.alufn = alufn[2:0]; // Connect last 3 bits of ALUFN to ALUFN input of the comparison module
     
+    // Output a value determine by the first 2 bits of ALUFN
     case(alufn[5:4]) {
       0: case(alufn[2]) {  // Arithmetic-
         0: out = adder.s;  // Add / sub
@@ -54,7 +62,7 @@ module alu (
       default: out = a;    // Assume passthrough 'a' as default
     }
     
-    z = temp_z;
+    z = temp_z;  // Connect z, v, n outputs of our ALU module to our temporary variables' z, v, n
     v = temp_v;
     n = temp_n;
   }

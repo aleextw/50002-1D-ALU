@@ -21,6 +21,8 @@ module au_top_0 (
   
   reg rst;
   
+  reg [15:0] error_out;
+  
   wire [16-1:0] M_sixteen_bit_alu_out;
   wire [1-1:0] M_sixteen_bit_alu_z;
   wire [1-1:0] M_sixteen_bit_alu_v;
@@ -114,9 +116,10 @@ module au_top_0 (
     M_rom_address = M_ans_out;
     io_led[16+5+2-:3] = {M_sixteen_bit_alu_z, M_sixteen_bit_alu_v, M_sixteen_bit_alu_n};
     io_led[16+2+2-:3] = {M_rom_out[2+0-:1], M_rom_out[1+0-:1], M_rom_out[0+0-:1]};
-    io_led[0+15-:16] = M_sixteen_bit_alu_out;
-    io_led[0+15-:16] = M_rom_out[3+15-:16];
-    io_led[16+0+0-:1] = (((|(M_rom_out[3+15-:16] ^ M_sixteen_bit_alu_out))) | (M_rom_out[2+0-:1] ^ M_sixteen_bit_alu_z) | (M_rom_out[1+0-:1] ^ M_sixteen_bit_alu_v) | (M_rom_out[0+0-:1] ^ M_sixteen_bit_alu_n));
+    error_out = M_sixteen_bit_alu_out ^ {15'h0000, io_dip[16+6+0-:1]};
+    io_led[16+1+0-:1] = io_dip[16+6+0-:1];
+    io_led[0+15-:16] = error_out;
+    io_led[16+0+0-:1] = (((|(M_rom_out[3+15-:16] ^ error_out))) | (M_rom_out[2+0-:1] ^ M_sixteen_bit_alu_z) | (M_rom_out[1+0-:1] ^ M_sixteen_bit_alu_v) | (M_rom_out[0+0-:1] ^ M_sixteen_bit_alu_n));
     M_btd_value = M_cnt_value;
     M_seg_values = M_btd_digits;
     io_seg = ~M_seg_seg;

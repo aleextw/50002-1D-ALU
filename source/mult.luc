@@ -1,3 +1,7 @@
+/*
+   Mult: This module takes two binary numbers a and b, and multiplies them.
+*/
+
 module mult (
     input a[16],
     input b[16],
@@ -5,6 +9,7 @@ module mult (
   ) {
 
   always {
-    p = a * b;
+    p = a * b;  // Set the output p of this module to be the result of
+                // multiplying a and b
   }
 }

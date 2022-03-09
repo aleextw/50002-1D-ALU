@@ -1,3 +1,8 @@
+/*
+   Compare: This module takes two binary numbers a and b, and performs a comparison
+   operation on them specified by the last 3 bits of ALUFN. 
+*/
+
 module compare (
     input z,
     input v,
@@ -8,9 +13,9 @@ module compare (
 
   always {
     case(alufn){
-      3: out = c{15b0, z};
-      5: out = c{15b0, n ^ v};
-      7: out = c{15b0, z + (n ^ v)};
+      3: out = c{15b0, z};            // CMPEQ
+      5: out = c{15b0, n ^ v};        // CMPLT
+      7: out = c{15b0, z + (n ^ v)};  // CMPLE
       default: out = 16b0;
     }
   }
