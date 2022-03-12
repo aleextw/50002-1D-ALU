@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module bitshift_12 (
+module bitshift_13 (
     input [15:0] a,
     input [15:0] b,
     input [2:0] alufn,

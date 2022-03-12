@@ -19,6 +19,11 @@ module au_top (
   // form needed for our multi-seven-segment module, e.g. 1010 -> {0000, 0000, 0001, 0000}
   bin_to_dec btd(#DIGITS(4)); 
   
+  // Temp signals so that we can init the DFFs, and still toggle their clocks later on
+  sig alufn_dff_clk;
+  sig a_dff_clk;
+  sig b_dff_clk;
+  
   const NUM_STATES = 110;     // Convenience constant to specify the number of states in our FSAM
   const NUM_STATE_BITS = $clog2(NUM_STATES);  // How many bits required to encode our specified number of states
   
@@ -26,7 +31,7 @@ module au_top (
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-    button_conditioner btn_cnd(#CLK_FREQ(100000000));  // Button conditioner to debounce our IO_button
+    button_conditioner btn_cnd(#CLK_FREQ(100000000));  // Button conditioner to debounce our counter advance IO_button
     
     .rst(rst) {
       answer_fsm ans(#STATES(NUM_STATE_BITS));  // Init our answer FSM (which requires both clk and rst signal)
@@ -39,15 +44,21 @@ module au_top (
       // Init with output size corresponding to number of FSM bits, and divide the clock signal by 26 bits to slow it down
       // We specify our top as the max number of states, so that it loops back to 0 after
       counter cnt(#SIZE(NUM_STATE_BITS), #DIV(26), #TOP(NUM_STATES));
+    
+      // Init our selector outside of the .clk() block so that we can pause its incrementing later on (specified below)
+      // Init with output size 2 (we only have 3 DFFs to select from), and divide the clock signal by 26 bits to slow it down
+      // We specify our top as 3, so that it loops back to 0 after
+      counter sel(#SIZE(2), #DIV(26), #TOP(3));
+      
+      // We use DFFs to save the states of ALUFN, A, and B, so that we can set all 3 from the FPGA itself, without any external circuitry
+      // Our clocks are going to be demultiplexed so that we can address one DFF at a time, hence 3 different signals
+      dff alufn_dff[16](.clk(alufn_dff_clk));
+      dff a_dff[16](.clk(a_dff_clk));
+      dff b_dff[16](.clk(b_dff_clk));
   }
   
   always {
-    btn_cnd.in = io_button[0];  // Set our io_button[0] (top button) as the input to our button conditioner
-    
-    // By setting the clk of our counter as such, we can pause operation by flipping the leftmost dip switch to high,
-    // then step through each output of the FSM by pressing our io_button[0] (which has been conditioned and debounced)
-    cnt.clk = clk & (!io_dip[2][7] | btn_cnd.out);
-    
+    /************************ MISC IO ELEMENT STUFF START ******************************/
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
@@ -58,21 +69,73 @@ module au_top (
     io_led = 3x{{8h00}};    // turn LEDs off
     io_seg = 8hff;          // turn segments off
     io_sel = 4hf;           // select no digits
+    /************************* MISC IO ELEMENT STUFF END *******************************/
     
-    ans.in = cnt.value;     // Our counter steps through each state and output of each state
+    /*************************** AUTOTESTER STUFF START ********************************/
+    btn_cnd.in = io_button[0];  // Set our io_button[0] (top button) as the input to our button conditioner
     
-    // Since the output of our answer FSM is formatted as {a, b, alufn}, 
-    sixteen_bit_alu.a = ans.out[37:22];    // We take the first 16 bits and pass it to the a input of our ALU
-    sixteen_bit_alu.b = ans.out[21:6];     // We take the next 16 bits and pass it to the b input of our ALU
-    sixteen_bit_alu.alufn = ans.out[5:0];  // We take the last 6 bits and pass it to the alufn input of our ALU
+    // By setting the clk of our counter as such, we can pause operation by flipping the leftmost dip switch to high,
+    // then step through each output of the FSM by pressing our io_button[0] (which has been conditioned and debounced)
+    cnt.clk = clk & (!io_dip[2][7] | btn_cnd.out);
+    
+    ans.in = cnt.value;     // Our counter steps through each state and output of each state of the FSM
+    /**************************** AUTOTESTER STUFF END *********************************/
+    
+    /************************** MAUNAL TESTER STUFF START ******************************/
+    sel.clk = clk & btn_cnd.out;  // Set the clock of our selector to only cycle when the button is held
+    
+    // Select a DFF to set depending on the selector
+    case (sel.value) {
+      0:                   // Set up ALUFN
+        alufn_dff_clk = 0;
+        a_dff_clk = 0;
+        b_dff_clk = 0;
+      1:                   // Set up A | Lock ALUFN
+        alufn_dff_clk = 1;
+        a_dff_clk = 0;
+        b_dff_clk = 0;
+      2:                   // Set up B | Lock A
+        alufn_dff_clk = 0;
+        a_dff_clk = 1;
+        b_dff_clk = 0;
+      3:                   // Lock B
+        alufn_dff_clk = 0;
+        a_dff_clk = 0;
+        b_dff_clk = 1;
+    }
+    
+    // All 3 inputs to our DFFs connect to the 16-bits available to us via io_dip[1:0]
+    // But only 1 DFF is written to at a time
+    alufn_dff.d = $flatten(io_dip[1:0]);
+    a_dff.d = $flatten(io_dip[1:0]);
+    b_dff.d = $flatten(io_dip[1:0]);
+    /*************************** MANUAL TESTER STUFF END *******************************/
+    
+    /******************************** ALU STUFF START **********************************/
+    case (io_dip[2][5]) {
+      1:  // Select our manual tester as the input to the ALU
+        sixteen_bit_alu.a = a_dff.q;
+        sixteen_bit_alu.b = b_dff.q;
+        sixteen_bit_alu.alufn = alufn_dff.q[5:0];
+      default:
+        // Treat our default / 0 as autotester
+        // Since the output of our answer FSM is formatted as {a, b, alufn}, 
+        sixteen_bit_alu.a = ans.out[37:22];    // We take the first 16 bits and pass it to the a input of our ALU
+        sixteen_bit_alu.b = ans.out[21:6];     // We take the next 16 bits and pass it to the b input of our ALU
+        sixteen_bit_alu.alufn = ans.out[5:0];  // We take the last 6 bits and pass it to the alufn input of our ALU
+      
+    }
     
     rom.address = ans.out;  // We also pass it to our ROM to get the correct answer
+    /********************************* ALU STUFF END ***********************************/
     
+    /***************************** OUTPUT STUFF START **********************************/
     // The first 3 LEDs of the leftmost bank indicate the z, v, n outputs of our ALU
     io_led[2][7:5] = c{sixteen_bit_alu.z, sixteen_bit_alu.v, sixteen_bit_alu.n};  
     
     // The next 3 LEDs indicate the z, v, n outputs of our ROM
-    io_led[2][4:2] = c{rom.out[2], rom.out[1], rom.out[0]};
+    // We AND the signal with our manual / auto tester indicator to only light up when we are testing from ROM / FSM
+    io_led[2][4:2] = c{rom.out[2] & !io_dip[2][5], rom.out[1] & !io_dip[2][5], rom.out[0] & !io_dip[2][5]};
     
     // Error case by flipping the second-from-the-left dipswitch to invert the LSB of the ALU output
     error_out = sixteen_bit_alu.out ^ c{15b0, io_dip[2][6]};  
@@ -82,17 +145,31 @@ module au_top (
     io_led[1:0] = $build(error_out, 2);
     
     // The rightmost LED of the leftmost bank indicates the correctness of our ALU by XOR-ing each output, then OR-ing all the results
-    // If the light is on, there is an error
-    // If the light is off, the output is equivalent hence correct
+    // - If the light is on, there is an error
+    // - If the light is off, the output is equivalent hence correct
+    // We AND the signal with our manual / auto tester indicator to only light up when we are testing from ROM / FSM
     io_led[2][0] = ((|(rom.out[18:3] ^ error_out)) |
                     (rom.out[2] ^ sixteen_bit_alu.z) | 
                     (rom.out[1] ^ sixteen_bit_alu.v) | 
-                    (rom.out[0] ^ sixteen_bit_alu.n));
+                    (rom.out[0] ^ sixteen_bit_alu.n)) & !io_dip[2][5];
     
-    btd.value = cnt.value;    // Get the 4-digit representation of our counter value
-    seg.values = btd.digits;  // and pass it to our seven-segment display module to parse
+    // If we are using our autotester, the seven-segment display shows the current test case
+    // If we are using our manual tester, the seven-segment display shows which input we are currently setting:
+    // - 0: NULL (Set up ALUFN)
+    // - 1: Set up A | Lock ALUFN 
+    // - 2: Set up B | Lock A
+    // - 3: Lock B
+    case (io_dip[2][5]) {
+      1:
+        btd.value = sel.value;
+        seg.values = btd.digits;
+      default:
+        btd.value = cnt.value;    // Get the 4-digit representation of our counter value
+        seg.values = btd.digits;  // and pass it to our seven-segment display module to parse
+    }
     
     io_seg = ~seg.seg; // connect segments to the driver
     io_sel = ~seg.sel; // connect digit select to the driver
+    /****************************** OUTPUT STUFF END ************************************/
   }
 }

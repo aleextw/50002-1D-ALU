@@ -54,6 +54,12 @@ module au_top_0 (
     .digits(M_btd_digits)
   );
   
+  reg alufn_dff_clk;
+  
+  reg a_dff_clk;
+  
+  reg b_dff_clk;
+  
   localparam NUM_STATES = 7'h6e;
   
   localparam NUM_STATE_BITS = 3'h7;
@@ -98,10 +104,22 @@ module au_top_0 (
     .clk(M_cnt_clk),
     .value(M_cnt_value)
   );
+  wire [2-1:0] M_sel_value;
+  reg [1-1:0] M_sel_clk;
+  counter_9 sel (
+    .rst(rst),
+    .clk(M_sel_clk),
+    .value(M_sel_value)
+  );
+  reg [15:0] M_alufn_dff_d, M_alufn_dff_q = 1'h0;
+  reg [15:0] M_a_dff_d, M_a_dff_q = 1'h0;
+  reg [15:0] M_b_dff_d, M_b_dff_q = 1'h0;
   
   always @* begin
-    M_btn_cnd_in = io_button[0+0-:1];
-    M_cnt_clk = clk & (!io_dip[16+7+0-:1] | M_btn_cnd_out);
+    M_a_dff_d = M_a_dff_q;
+    M_b_dff_d = M_b_dff_q;
+    M_alufn_dff_d = M_alufn_dff_q;
+    
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
     usb_tx = usb_rx;
@@ -109,20 +127,95 @@ module au_top_0 (
     io_led = 24'h000000;
     io_seg = 8'hff;
     io_sel = 4'hf;
+    M_btn_cnd_in = io_button[0+0-:1];
+    M_cnt_clk = clk & (!io_dip[16+7+0-:1] | M_btn_cnd_out);
     M_ans_in = M_cnt_value;
-    M_sixteen_bit_alu_a = M_ans_out[22+15-:16];
-    M_sixteen_bit_alu_b = M_ans_out[6+15-:16];
-    M_sixteen_bit_alu_alufn = M_ans_out[0+5-:6];
+    M_sel_clk = clk & M_btn_cnd_out;
+    
+    case (M_sel_value)
+      1'h0: begin
+        alufn_dff_clk = 1'h0;
+        a_dff_clk = 1'h0;
+        b_dff_clk = 1'h0;
+      end
+      1'h1: begin
+        alufn_dff_clk = 1'h1;
+        a_dff_clk = 1'h0;
+        b_dff_clk = 1'h0;
+      end
+      2'h2: begin
+        alufn_dff_clk = 1'h0;
+        a_dff_clk = 1'h1;
+        b_dff_clk = 1'h0;
+      end
+      2'h3: begin
+        alufn_dff_clk = 1'h0;
+        a_dff_clk = 1'h0;
+        b_dff_clk = 1'h1;
+      end
+    endcase
+    M_alufn_dff_d = io_dip[0+15-:16];
+    M_a_dff_d = io_dip[0+15-:16];
+    M_b_dff_d = io_dip[0+15-:16];
+    
+    case (io_dip[16+5+0-:1])
+      1'h1: begin
+        M_sixteen_bit_alu_a = M_a_dff_q;
+        M_sixteen_bit_alu_b = M_b_dff_q;
+        M_sixteen_bit_alu_alufn = M_alufn_dff_q[0+5-:6];
+      end
+      default: begin
+        M_sixteen_bit_alu_a = M_ans_out[22+15-:16];
+        M_sixteen_bit_alu_b = M_ans_out[6+15-:16];
+        M_sixteen_bit_alu_alufn = M_ans_out[0+5-:6];
+      end
+    endcase
     M_rom_address = M_ans_out;
     io_led[16+5+2-:3] = {M_sixteen_bit_alu_z, M_sixteen_bit_alu_v, M_sixteen_bit_alu_n};
-    io_led[16+2+2-:3] = {M_rom_out[2+0-:1], M_rom_out[1+0-:1], M_rom_out[0+0-:1]};
+    io_led[16+2+2-:3] = {M_rom_out[2+0-:1] & !io_dip[16+5+0-:1], M_rom_out[1+0-:1] & !io_dip[16+5+0-:1], M_rom_out[0+0-:1] & !io_dip[16+5+0-:1]};
     error_out = M_sixteen_bit_alu_out ^ {15'h0000, io_dip[16+6+0-:1]};
     io_led[16+1+0-:1] = io_dip[16+6+0-:1];
     io_led[0+15-:16] = error_out;
-    io_led[16+0+0-:1] = (((|(M_rom_out[3+15-:16] ^ error_out))) | (M_rom_out[2+0-:1] ^ M_sixteen_bit_alu_z) | (M_rom_out[1+0-:1] ^ M_sixteen_bit_alu_v) | (M_rom_out[0+0-:1] ^ M_sixteen_bit_alu_n));
-    M_btd_value = M_cnt_value;
-    M_seg_values = M_btd_digits;
+    io_led[16+0+0-:1] = (((|(M_rom_out[3+15-:16] ^ error_out))) | (M_rom_out[2+0-:1] ^ M_sixteen_bit_alu_z) | (M_rom_out[1+0-:1] ^ M_sixteen_bit_alu_v) | (M_rom_out[0+0-:1] ^ M_sixteen_bit_alu_n)) & !io_dip[16+5+0-:1];
+    
+    case (io_dip[16+5+0-:1])
+      1'h1: begin
+        M_btd_value = M_sel_value;
+        M_seg_values = M_btd_digits;
+      end
+      default: begin
+        M_btd_value = M_cnt_value;
+        M_seg_values = M_btd_digits;
+      end
+    endcase
     io_seg = ~M_seg_seg;
     io_sel = ~M_seg_sel;
   end
+  
+  always @(posedge alufn_dff_clk) begin
+    if (rst == 1'b1) begin
+      M_alufn_dff_q <= 1'h0;
+    end else begin
+      M_alufn_dff_q <= M_alufn_dff_d;
+    end
+  end
+  
+  
+  always @(posedge a_dff_clk) begin
+    if (rst == 1'b1) begin
+      M_a_dff_q <= 1'h0;
+    end else begin
+      M_a_dff_q <= M_a_dff_d;
+    end
+  end
+  
+  
+  always @(posedge b_dff_clk) begin
+    if (rst == 1'b1) begin
+      M_b_dff_q <= 1'h0;
+    end else begin
+      M_b_dff_q <= M_b_dff_d;
+    end
+  end
+  
 endmodule

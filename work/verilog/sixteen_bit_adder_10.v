@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module sixteen_bit_adder_9 (
+module sixteen_bit_adder_10 (
     input [15:0] a,
     input [15:0] b,
     input alufn,
@@ -25,7 +25,7 @@ module sixteen_bit_adder_9 (
   genvar GEN_adder0;
   generate
   for (GEN_adder0=0;GEN_adder0<5'h10;GEN_adder0=GEN_adder0+1) begin: adder_gen_0
-    one_bit_adder_18 adder (
+    one_bit_adder_19 adder (
       .a(M_adder_a[GEN_adder0*(1)+(1)-1-:(1)]),
       .b(M_adder_b[GEN_adder0*(1)+(1)-1-:(1)]),
       .cin(M_adder_cin[GEN_adder0*(1)+(1)-1-:(1)]),

@@ -23,7 +23,7 @@ module alu_1 (
   reg [16-1:0] M_adder_a;
   reg [16-1:0] M_adder_b;
   reg [1-1:0] M_adder_alufn;
-  sixteen_bit_adder_9 adder (
+  sixteen_bit_adder_10 adder (
     .a(M_adder_a),
     .b(M_adder_b),
     .alufn(M_adder_alufn),
@@ -36,7 +36,7 @@ module alu_1 (
   wire [16-1:0] M_mlt_p;
   reg [16-1:0] M_mlt_a;
   reg [16-1:0] M_mlt_b;
-  mult_10 mlt (
+  mult_11 mlt (
     .a(M_mlt_a),
     .b(M_mlt_b),
     .p(M_mlt_p)
@@ -46,7 +46,7 @@ module alu_1 (
   reg [16-1:0] M_bl_a;
   reg [16-1:0] M_bl_b;
   reg [2-1:0] M_bl_alufn;
-  bool_11 bl (
+  bool_12 bl (
     .a(M_bl_a),
     .b(M_bl_b),
     .alufn(M_bl_alufn),
@@ -57,7 +57,7 @@ module alu_1 (
   reg [16-1:0] M_bs_a;
   reg [16-1:0] M_bs_b;
   reg [3-1:0] M_bs_alufn;
-  bitshift_12 bs (
+  bitshift_13 bs (
     .a(M_bs_a),
     .b(M_bs_b),
     .alufn(M_bs_alufn),
@@ -69,7 +69,7 @@ module alu_1 (
   reg [1-1:0] M_cmp_v;
   reg [1-1:0] M_cmp_n;
   reg [3-1:0] M_cmp_alufn;
-  compare_13 cmp (
+  compare_14 cmp (
     .z(M_cmp_z),
     .v(M_cmp_v),
     .n(M_cmp_n),

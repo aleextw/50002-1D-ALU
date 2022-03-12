@@ -33,20 +33,21 @@ read_verilog -library xil_defaultlib {
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_fsm_6.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/answer_rom_2.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bin_to_dec_3.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bitshift_12.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bool_11.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bitshift_13.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/bool_12.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/button_conditioner_5.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/compare_13.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/counter_15.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/compare_14.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/counter_16.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/counter_8.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/decoder_17.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/mult_10.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/counter_9.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/decoder_18.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/mult_11.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/multi_seven_seg_7.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/one_bit_adder_18.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/pipeline_14.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/one_bit_adder_19.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/pipeline_15.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/reset_conditioner_4.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/seven_seg_16.v}
-  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/sixteen_bit_adder_9.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/seven_seg_17.v}
+  {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/sixteen_bit_adder_10.v}
   {C:/Users/Razer/Documents/alchitry/1D ALU/work/vivado/1D ALU/1D ALU.srcs/sources_1/imports/verilog/au_top_0.v}
 }
 # Mark all dcp files as not used in implementation to prevent them from being

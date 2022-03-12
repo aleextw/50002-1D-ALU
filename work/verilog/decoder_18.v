@@ -4,18 +4,20 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module one_bit_adder_18 (
-    input a,
-    input b,
-    input cin,
-    output reg sum,
-    output reg cout
+/*
+   Parameters:
+     WIDTH = DIGIT_BITS
+*/
+module decoder_18 (
+    input [1:0] in,
+    output reg [3:0] out
   );
   
+  localparam WIDTH = 2'h2;
   
   
   always @* begin
-    sum = a ^ b ^ cin;
-    cout = (a & b) | (a & cin) | (b & cin);
+    out = 1'h0;
+    out[(in)*1+0-:1] = 1'h1;
   end
 endmodule

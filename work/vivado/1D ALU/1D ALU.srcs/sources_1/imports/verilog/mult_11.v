@@ -4,20 +4,15 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-/*
-   Parameters:
-     WIDTH = DIGIT_BITS
-*/
-module decoder_17 (
-    input [1:0] in,
-    output reg [3:0] out
+module mult_11 (
+    input [15:0] a,
+    input [15:0] b,
+    output reg [15:0] p
   );
   
-  localparam WIDTH = 2'h2;
   
   
   always @* begin
-    out = 1'h0;
-    out[(in)*1+0-:1] = 1'h1;
+    p = a * b;
   end
 endmodule
