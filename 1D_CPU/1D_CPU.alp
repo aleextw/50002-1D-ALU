@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="1D_CPU" board="Alchitry Au" language="Lucid" version="3">
+  <files>
+    <src>data_mem.luc</src>
+    <src>regfile.luc</src>
+    <component>pipeline.luc</component>
+    <src>inst_mem.luc</src>
+    <component>counter.luc</component>
+    <src>pc_unit.luc</src>
+    <src top="true">au_top.luc</src>
+    <src>alu.luc</src>
+    <src>adder.luc</src>
+    <component>pn_gen.luc</component>
+    <src>cu.luc</src>
+    <component>simple_ram.v</component>
+    <src>bool.luc</src>
+    <src>bitshift.luc</src>
+    <src>compare.luc</src>
+    <component>reset_conditioner.luc</component>
+    <component>edge_detector.luc</component>
+    <component>button_conditioner.luc</component>
+    <component>encoder.luc</component>
+    <constraint lib="true">alchitry.acf</constraint>
+    <constraint>io.acf</constraint>
+    <constraint lib="true">au.xdc</constraint>
+  </files>
+</project>

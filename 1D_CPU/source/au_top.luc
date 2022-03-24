@@ -1,0 +1,127 @@
+module au_top (
+    input clk,              // 100MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input usb_rx,           // USB->Serial input
+    output usb_tx,           // USB->Serial output
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8]     // DIP switches on IO Shield
+  ) {
+  
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    button_conditioner button_cond[8];
+    edge_detector edge_det[8];
+    
+    regfile rf;
+    alu arith;
+    data_mem data;
+    pc_unit pc;
+    
+    edge_detector slow_clock_edge_detector;
+    
+    .rst(rst) {
+      counter cnt(#SIZE(1), #DIV(26));
+    }
+  }
+  
+  cu cu;
+  inst_mem instructions;
+  
+  always {    
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    led = 8h00;             // turn LEDs off
+
+    io_led = 3x{{8h00}};    // turn LEDs off
+    io_seg = 8hff;          // turn segments off
+    io_sel = 4hf;           // select no digits
+    
+    usb_tx = usb_rx;        // echo the serial data
+    
+    
+    button_cond.in = io_button[1];
+    edge_det.in = button_cond.out;
+    
+    // Program Counter
+    slow_clock_edge_detector.in = cnt.value;
+    pc.slow_clock = slow_clock_edge_detector.out;
+    pc.rst = rst;
+    instructions.ia = pc.ia;
+    pc.id = instructions.id[15:0];
+    pc.pcsel = cu.pcsel;
+    pc.ra = rf.rd1;
+    
+    // Control Unit
+    cu.rst = rst;
+    rf.we = cu.werf;
+    cu.z = ~|rf.rd1;
+    cu.id = instructions.id[31:26];
+    arith.alufn = cu.alufn;
+    data.wr = cu.wr;
+    
+    // Regfile
+    case(cu.ra2sel) {
+      0: rf.ra2 = instructions.id[15:11];
+      1: rf.ra2 = instructions.id[25:21];
+      default: rf.ra2 = instructions.id[15:11];
+    }
+    rf.ra1 = instructions.id[20:16];
+    
+    case(cu.wasel) {
+      0: rf.wa = instructions.id[25:21];
+      1: rf.wa = b11110;
+      default: rf.wa = instructions.id[25:21];
+    }
+    rf.buttons = edge_det.out;
+    rf.ia = pc.ia[12];
+    
+    // TODO: LED Outputs
+    // io_led[2:1] = $build(rf.peg, 2);
+    io_led[2] = rf.peg[7:0];
+    io_led[1] = rf.val_op[7:0];
+    io_led[0] = rf.lvl[7:0];
+    
+    led[0] = cnt.value;
+    led[7:1] = pc.ia[6:0];
+    
+    // ALU
+    arith.rst = rst;
+    case (cu.bsel) {
+      0: arith.b = rf.rd2;
+      1: arith.b = instructions.id[15:0];
+      default: arith.b = rf.rd2;
+    }
+    
+    arith.a = rf.rd1;
+    case(cu.wdsel) {
+      0: rf.wd = c{pc.ia[15], pc.pc_4[14:0]};
+      1: rf.wd = arith.out;
+      2: rf.wd = data.out;
+      default: rf.wd = arith.out;
+    }
+    
+    // Data Memory
+    data.addr = arith.out;
+    data.wd = rf.rd2;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }
+}

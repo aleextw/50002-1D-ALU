@@ -1,0 +1,16 @@
+module inst_mem (
+    input ia[16],
+    output id[32]
+  ) {
+
+const INSTRUCTION = {
+  h775FFFFC,
+  hB358C800,
+  hC33F0002,
+  hC31F0007
+};
+  
+always {
+    id = INSTRUCTION[ia >> 2];
+  }
+}

@@ -1,0 +1,17 @@
+module compare (
+    input z,
+    input v,
+    input n,
+    input alufn[2],
+    output out[16]
+  ) {
+
+  always {
+    case(alufn) {
+      1: out = c{15b0, z};
+      2: out = c{15b0, n ^ v};
+      3: out = c{15b0, z + (n ^ v)};
+      default: out = 16b0;
+    }
+  }
+}

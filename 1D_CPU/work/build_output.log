@@ -1,0 +1,1328 @@
+Warnings in file C:\Users\Razer\Documents\alchitry\1D_CPU\source\data_mem.luc:
+    Line 14, Column 18 : The signal "addr" is wider than "ram.address" and the most significant bits will be dropped
+Warnings in file C:\Users\Razer\Documents\alchitry\1D_CPU\source\au_top.luc:
+    Line 11, Column 4 : "io_dip" was never used
+Starting Vivado...
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source {C:\Users\Razer\Documents\alchitry\1D_CPU\work\project.tcl}
+# set projDir "C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado"
+# set projName "1D_CPU"
+# set topName top
+# set device xc7a35tftg256-1
+# if {[file exists "$projDir/$projName"]} { file delete -force "$projDir/$projName" }
+# create_project $projName "$projDir/$projName" -part $device
+# set_property design_mode RTL [get_filesets sources_1]
+# set verilogSources [list "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/au_top_0.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/reset_conditioner_1.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/button_conditioner_2.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/edge_detector_3.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/regfile_4.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/alu_5.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/data_mem_6.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/pc_unit_7.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/counter_8.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/cu_9.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/inst_mem_10.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/pipeline_11.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/encoder_12.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/pn_gen_13.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/adder_14.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/bool_15.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/bitshift_16.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/compare_17.v" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/verilog/simple_ram_18.v" ]
+# import_files -fileset [get_filesets sources_1] -force -norecurse $verilogSources
+# set xdcSources [list "C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc" "C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc" "C:/Program\ Files/Alchitry/Alchitry\ Labs/library/components/au.xdc" ]
+# read_xdc $xdcSources
+# set_property STEPS.WRITE_BITSTREAM.ARGS.BIN_FILE true [get_runs impl_1]
+# update_compile_order -fileset sources_1
+# launch_runs -runs synth_1 -jobs 12
+[Thu Mar 24 17:58:54 2022] Launched synth_1...
+Run output will be captured here: C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/synth_1/runme.log
+# wait_on_run synth_1
+[Thu Mar 24 17:58:54 2022] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log au_top_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
+
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source au_top_0.tcl -notrace
+Command: synth_design -top au_top_0 -part xc7a35tftg256-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tftg256-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 35824 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 673.191 ; gain = 177.797
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/au_top_0.v:7]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner_2' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/button_conditioner_2.v:13]
+	Parameter CLK_FREQ bound to: 26'b10111110101111000010000000 
+	Parameter MIN_DELAY bound to: 5'b10100 
+	Parameter NUM_SYNC bound to: 2'b10 
+INFO: [Synth 8-6157] synthesizing module 'pipeline_11' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pipeline_11.v:11]
+	Parameter DEPTH bound to: 2'b10 
+INFO: [Synth 8-6155] done synthesizing module 'pipeline_11' (1#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pipeline_11.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_2' (2#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/button_conditioner_2.v:13]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector_3' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
+	Parameter RISE bound to: 1'b1 
+	Parameter FALL bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector_3' (3#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_1' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
+	Parameter STAGES bound to: 3'b100 
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_1' (4#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'regfile_4' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/regfile_4.v:7]
+INFO: [Synth 8-6157] synthesizing module 'encoder_12' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/encoder_12.v:11]
+	Parameter WIDTH bound to: 5'b10000 
+INFO: [Synth 8-6155] done synthesizing module 'encoder_12' (5#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/encoder_12.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'regfile_4' (6#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/regfile_4.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_5' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/alu_5.v:7]
+INFO: [Synth 8-6157] synthesizing module 'pn_gen_13' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pn_gen_13.v:11]
+	Parameter SEED bound to: 128'b10000100001100100011001101010010001110100110000100111001011001100100001000111011011000100010010101100010010110010010110001100010 
+INFO: [Synth 8-6155] done synthesizing module 'pn_gen_13' (7#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pn_gen_13.v:11]
+INFO: [Synth 8-6157] synthesizing module 'adder_14' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/adder_14.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/adder_14.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'adder_14' (8#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/adder_14.v:7]
+INFO: [Synth 8-6157] synthesizing module 'bool_15' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/bool_15.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'bool_15' (9#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/bool_15.v:7]
+INFO: [Synth 8-6157] synthesizing module 'bitshift_16' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/bitshift_16.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'bitshift_16' (10#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/bitshift_16.v:7]
+INFO: [Synth 8-6157] synthesizing module 'compare_17' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/compare_17.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'compare_17' (11#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/compare_17.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/alu_5.v:114]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/alu_5.v:117]
+INFO: [Synth 8-6155] done synthesizing module 'alu_5' (12#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/alu_5.v:7]
+INFO: [Synth 8-6157] synthesizing module 'data_mem_6' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/data_mem_6.v:7]
+INFO: [Synth 8-6157] synthesizing module 'simple_ram_18' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/simple_ram_18.v:50]
+	Parameter SIZE bound to: 5'b10000 
+	Parameter DEPTH bound to: 9'b100000000 
+INFO: [Synth 8-6155] done synthesizing module 'simple_ram_18' (13#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/simple_ram_18.v:50]
+INFO: [Synth 8-6155] done synthesizing module 'data_mem_6' (14#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/data_mem_6.v:7]
+INFO: [Synth 8-6157] synthesizing module 'pc_unit_7' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pc_unit_7.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'pc_unit_7' (15#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/pc_unit_7.v:7]
+INFO: [Synth 8-6157] synthesizing module 'counter_8' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/counter_8.v:14]
+	Parameter SIZE bound to: 1'b1 
+	Parameter DIV bound to: 5'b11010 
+	Parameter TOP bound to: 1'b0 
+	Parameter UP bound to: 1'b1 
+	Parameter MAX_VALUE bound to: 27'b011111111111111111111111111 
+INFO: [Synth 8-6155] done synthesizing module 'counter_8' (16#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/counter_8.v:14]
+INFO: [Synth 8-6157] synthesizing module 'cu_9' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/cu_9.v:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/cu_9.v:36]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/cu_9.v:104]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/cu_9.v:152]
+INFO: [Synth 8-6155] done synthesizing module 'cu_9' (17#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/cu_9.v:7]
+INFO: [Synth 8-6157] synthesizing module 'inst_mem_10' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/inst_mem_10.v:7]
+	Parameter INSTRUCTION bound to: 128'b01110111010111111111111111111100101100110101100011001000000000001100001100111111000000000000001011000011000111110000000000000111 
+INFO: [Synth 8-6155] done synthesizing module 'inst_mem_10' (18#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/inst_mem_10.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/au_top_0.v:203]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/au_top_0.v:216]
+INFO: [Synth 8-226] default block is never used [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/au_top_0.v:236]
+INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (19#1) [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/au_top_0.v:7]
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[7] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[6] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[5] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[4] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[3] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[2] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[1] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[0] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[3] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[2] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[1] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[0] driven by constant 1
+WARNING: [Synth 8-3331] design pc_unit_7 has unconnected port ra[15]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[15]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[14]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[13]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[12]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[11]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[10]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[9]
+WARNING: [Synth 8-3331] design data_mem_6 has unconnected port addr[8]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[15]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[14]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[13]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[12]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[11]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[10]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[9]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[8]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[7]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[6]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[5]
+WARNING: [Synth 8-3331] design bitshift_16 has unconnected port b[4]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[4]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[3]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[2]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[0]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[23]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[22]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[21]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[20]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[19]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[18]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[17]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[16]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[15]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[14]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[13]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[12]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[11]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[10]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[9]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[8]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[7]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[6]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[5]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[4]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[3]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 738.234 ; gain = 242.840
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 740.172 ; gain = 244.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 740.172 ; gain = 244.777
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc]
+Finished Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
+Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 873.211 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 873.211 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tftg256-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/adder_14.v:23]
+INFO: [Synth 8-5544] ROM "wdsel" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[2].button_cond'
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[3].button_cond'
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[4].button_cond'
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[5].button_cond'
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[6].button_cond'
+INFO: [Synth 8-223] decloning instance 'button_cond_gen_0[1].button_cond' (button_conditioner_2) to 'button_cond_gen_0[7].button_cond'
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   4 Input     32 Bit         XORs := 1     
+	   2 Input     16 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	              512 Bit    Registers := 1     
+	               32 Bit    Registers := 4     
+	               16 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 9     
++---RAMs : 
+	               4K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input    512 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 6     
+	   4 Input     16 Bit        Muxes := 4     
+	   7 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
+	   4 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	  17 Input      4 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	  10 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+	   4 Input      1 Bit        Muxes := 2     
+	  10 Input      1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module au_top_0 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+Module reset_conditioner_1 
+Detailed RTL Component Info : 
++---Registers : 
+	                4 Bit    Registers := 1     
+Module encoder_12 
+Detailed RTL Component Info : 
++---Muxes : 
+	  17 Input      4 Bit        Muxes := 1     
+Module regfile_4 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	              512 Bit    Registers := 1     
++---Muxes : 
+	   2 Input    512 Bit        Muxes := 2     
+	   2 Input     16 Bit        Muxes := 2     
+Module pn_gen_13 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   4 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module adder_14 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module bool_15 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input     16 Bit         XORs := 1     
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+Module bitshift_16 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      5 Bit       Adders := 1     
++---XORs : 
+	   2 Input     16 Bit         XORs := 1     
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+Module compare_17 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      1 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Muxes : 
+	   4 Input      1 Bit        Muxes := 1     
+Module alu_5 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 1     
+Module simple_ram_18 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
++---RAMs : 
+	               4K Bit         RAMs := 1     
+Module pc_unit_7 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
++---Muxes : 
+	   7 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+Module edge_detector_3 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module cu_9 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input      6 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	  10 Input      2 Bit        Muxes := 1     
+	  10 Input      1 Bit        Muxes := 3     
+	   4 Input      1 Bit        Muxes := 1     
+Module pipeline_11 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[2].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[3].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[4].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[5].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[6].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+INFO: [Synth 8-4471] merging register 'edge_det_gen_0[7].edge_det/M_last_q_reg' into 'edge_det_gen_0[1].edge_det/M_last_q_reg' [C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.srcs/sources_1/imports/verilog/edge_detector_3.v:42]
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[7] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[6] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[5] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[4] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[3] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[2] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[1] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_seg[0] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[3] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[2] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[1] driven by constant 1
+WARNING: [Synth 8-3917] design au_top_0 has port io_sel[0] driven by constant 1
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[15]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[14]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[13]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[12]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[11]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[10]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[9]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[8]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[7]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[6]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[5]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[4]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[1]
+WARNING: [Synth 8-3331] design inst_mem_10 has unconnected port ia[0]
+WARNING: [Synth 8-3331] design pc_unit_7 has unconnected port id[15]
+WARNING: [Synth 8-3331] design pc_unit_7 has unconnected port id[14]
+WARNING: [Synth 8-3331] design pc_unit_7 has unconnected port ra[15]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[4]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[3]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[2]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_button[0]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[23]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[22]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[21]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[20]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[19]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[18]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[17]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[16]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[15]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[14]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[13]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[12]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[11]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[10]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[9]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[8]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[7]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[6]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[5]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[4]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[3]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
+WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[0] )
+INFO: [Synth 8-3886] merging instance 'button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[1]' (FD) to 'button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[368]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[336]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[320]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[304]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[288]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[272]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[256]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[240]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[224]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[208]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[192]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[176]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[160]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[144]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[128]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[112]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[96]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[80]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[64]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[48]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[32]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[16]' (FDE) to 'rf/M_r_q_reg[0]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[0]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[369]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[337]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[321]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[305]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[289]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[273]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[257]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[241]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[225]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[209]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[193]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[177]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[161]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[145]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[129]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[113]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[97]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[81]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[65]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[49]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[33]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[17]' (FDE) to 'rf/M_r_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[1]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[370]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[338]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[322]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[306]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[290]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[274]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[258]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[242]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[226]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[210]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[194]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[178]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[162]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[146]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[130]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[114]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[98]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[82]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[66]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[50]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[34]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[18]' (FDE) to 'rf/M_r_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[2]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[371]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[355]' (FDE) to 'rf/M_r_q_reg[356]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[339]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[323]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[307]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[291]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[275]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[259]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[243]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[227]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[211]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[195]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[179]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[163]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[147]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[131]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[115]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[99]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[83]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[67]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[51]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[35]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[19]' (FDE) to 'rf/M_r_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[3]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[372]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[356]' (FDE) to 'rf/M_r_q_reg[357]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[340]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[324]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[308]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'rf/M_r_q_reg[292]' (FDE) to 'rf/M_r_q_reg[4]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (rf/\M_r_q_reg[367] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (rf/\M_r_q_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\edge_det_gen_0[1].edge_det/M_last_q_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (rf/\M_r_q_reg[354] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (rf/\M_r_q_reg[450] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 873.211 ; gain = 377.816
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    19|
+|3     |LUT1   |     3|
+|4     |LUT2   |     8|
+|5     |LUT3   |    57|
+|6     |LUT4   |    23|
+|7     |LUT5   |    29|
+|8     |LUT6   |    49|
+|9     |FDRE   |    83|
+|10    |FDSE   |     4|
+|11    |IBUF   |     3|
+|12    |OBUF   |    45|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------------+--------------------+------+
+|      |Instance                   |Module              |Cells |
++------+---------------------------+--------------------+------+
+|1     |top                        |                    |   324|
+|2     |  arith                    |alu_5               |     4|
+|3     |  cnt                      |counter_8           |    35|
+|4     |  pc                       |pc_unit_7           |   171|
+|5     |  reset_cond               |reset_conditioner_1 |     5|
+|6     |  rf                       |regfile_4           |    58|
+|7     |  slow_clock_edge_detector |edge_detector_3     |     2|
++------+---------------------------+--------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 57 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:25 . Memory (MB): peak = 874.230 ; gain = 245.797
+Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 874.230 ; gain = 378.836
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 881.555 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+182 Infos, 118 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 881.555 ; gain = 590.328
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 881.555 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/synth_1/au_top_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 24 17:59:32 2022...
+[Thu Mar 24 17:59:34 2022] synth_1 finished
+wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:40 . Memory (MB): peak = 291.457 ; gain = 0.000
+# launch_runs impl_1 -to_step write_bitstream -jobs 12
+[Thu Mar 24 17:59:34 2022] Launched impl_1...
+Run output will be captured here: C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/runme.log
+# wait_on_run impl_1
+[Thu Mar 24 17:59:34 2022] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log au_top_0.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source au_top_0.tcl -notrace
+
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source au_top_0.tcl -notrace
+Command: link_design -top au_top_0 -part xc7a35tftg256-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a35tftg256-1
+INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc]
+Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc]
+Finished Parsing XDC File [C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc]
+Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
+Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 622.199 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+7 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 626.180 ; gain = 335.309
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.604 . Memory (MB): peak = 643.547 ; gain = 17.367
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 2511173ea
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1189.336 ; gain = 545.789
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 2511173ea
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 1b1a05b90
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 1cb86b178
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-389] Phase Sweep created 4 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 1cb86b178
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 1cb86b178
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 20eb42337
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               0  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               4  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 1ccf16f0e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.065 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 1ccf16f0e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1ccf16f0e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 1ccf16f0e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+24 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1331.004 ; gain = 704.824
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.046 . Memory (MB): peak = 1331.004 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_opt.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file au_top_0_drc_opted.rpt -pb au_top_0_drc_opted.pb -rpx au_top_0_drc_opted.rpx
+Command: report_drc -file au_top_0_drc_opted.rpt -pb au_top_0_drc_opted.pb -rpx au_top_0_drc_opted.rpx
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_drc_opted.rpt.
+report_drc completed successfully
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 142809f23
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 8fb69c4b
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.691 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 15f205bf9
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.837 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 15f205bf9
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.839 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 15f205bf9
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.840 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: d7e53eaf
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.935 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 2.2 Global Placement Core
+
+Phase 2.2.1 Physical Synthesis In Placer
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+INFO: [Physopt 32-949] No candidate nets found for HD net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+----------------------------------------------------------------------------------------------------------------------------------------
+|  Very High Fanout              |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register                |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register                 |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  HD Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                         |            0  |              0  |                     0  |           0  |           2  |  00:00:00  |
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.2.1 Physical Synthesis In Placer | Checksum: 14c47ee63
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Phase 2.2 Global Placement Core | Checksum: 16f8ca94b
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 16f8ca94b
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 124df2d00
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: e864cd05
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 14b617a8f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 100caa659
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.5 Small Shape Detail Placement
+Phase 3.5 Small Shape Detail Placement | Checksum: 1435a88d8
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.6 Re-assign LUT pins
+Phase 3.6 Re-assign LUT pins | Checksum: 12ebdf074
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 3.7 Pipeline Register Optimization
+Phase 3.7 Pipeline Register Optimization | Checksum: dc3fe51a
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: dc3fe51a
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1331.004 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1cf9d1057
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1cf9d1057
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+INFO: [Place 30-746] Post Placement Timing Summary WNS=3.726. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: ee700e76
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+Phase 4.1 Post Commit Optimization | Checksum: ee700e76
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: ee700e76
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: ee700e76
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1335.754 ; gain = 0.000
+Phase 4.4 Final Placement Cleanup | Checksum: 4dbc3aa3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 4dbc3aa3
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+Ending Placer Task | Checksum: 3a6d5dd1
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 1335.754 ; gain = 4.750
+INFO: [Common 17-83] Releasing license: Implementation
+53 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1335.754 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.069 . Memory (MB): peak = 1335.812 ; gain = 0.059
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_placed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_io -file au_top_0_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.059 . Memory (MB): peak = 1335.812 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_placed.rpt -pb au_top_0_utilization_placed.pb
+INFO: [runtcl-4] Executing : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1335.812 ; gain = 0.000
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
+Checksum: PlaceDB: 20cf55b3 ConstDB: 0 ShapeSum: 199e081e RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 836c70c9
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1434.996 ; gain = 86.199
+Post Restoration Checksum: NetGraph: 5ac1ca53 NumContArr: 28aaa676 Constraints: 0 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 836c70c9
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1467.297 ; gain = 118.500
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 836c70c9
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1473.316 ; gain = 124.520
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 836c70c9
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1473.316 ; gain = 124.520
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 1b521243f
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.848  | TNS=0.000  | WHS=-0.060 | THS=-0.339 |
+
+Phase 2 Router Initialization | Checksum: 1c8ad47ae
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 250
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 250
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 15c4e045a
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 30
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.433  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 13ab10d68
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+Phase 4 Rip-up And Reroute | Checksum: 13ab10d68
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 13ab10d68
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 13ab10d68
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+Phase 5 Delay and Skew Optimization | Checksum: 13ab10d68
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: c1d5fd03
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.513  | TNS=0.000  | WHS=0.090  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: c1d5fd03
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+Phase 6 Post Hold Fix | Checksum: c1d5fd03
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.0920832 %
+  Global Horizontal Routing Utilization  = 0.0995575 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 17d0c1fdf
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1481.617 ; gain = 132.820
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 17d0c1fdf
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1482.320 ; gain = 133.523
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 13c5548d6
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 1482.320 ; gain = 133.523
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=3.513  | TNS=0.000  | WHS=0.090  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 13c5548d6
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 1482.320 ; gain = 133.523
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 1482.320 ; gain = 133.523
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+70 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:20 . Memory (MB): peak = 1482.320 ; gain = 146.508
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00 . Memory (MB): peak = 1482.320 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.060 . Memory (MB): peak = 1492.215 ; gain = 9.895
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_routed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file au_top_0_drc_routed.rpt -pb au_top_0_drc_routed.pb -rpx au_top_0_drc_routed.rpx
+Command: report_drc -file au_top_0_drc_routed.rpt -pb au_top_0_drc_routed.pb -rpx au_top_0_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_drc_routed.rpt.
+report_drc completed successfully
+INFO: [runtcl-4] Executing : report_methodology -file au_top_0_methodology_drc_routed.rpt -pb au_top_0_methodology_drc_routed.pb -rpx au_top_0_methodology_drc_routed.rpx
+Command: report_methodology -file au_top_0_methodology_drc_routed.rpt -pb au_top_0_methodology_drc_routed.pb -rpx au_top_0_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 2 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/au_top_0_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [runtcl-4] Executing : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
+Command: report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+82 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [runtcl-4] Executing : report_route_status -file au_top_0_route_status.rpt -pb au_top_0_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -file au_top_0_timing_summary_routed.rpt -pb au_top_0_timing_summary_routed.pb -rpx au_top_0_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [runtcl-4] Executing : report_incremental_reuse -file au_top_0_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [runtcl-4] Executing : report_clock_utilization -file au_top_0_clock_utilization_routed.rpt
+INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file au_top_0_bus_skew_routed.rpt -pb au_top_0_bus_skew_routed.pb -rpx au_top_0_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+Command: write_bitstream -force au_top_0.bit -bin_file
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado 12-3199] DRC finished with 0 Errors
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 2 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Bitstream compression saved 14671264 bits.
+Writing bitstream ./au_top_0.bit...
+Writing bitstream ./au_top_0.bin...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
+INFO: [Common 17-186] 'C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/impl_1/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Thu Mar 24 18:00:45 2022. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2019.1/doc/webtalk_introduction.html.
+INFO: [Common 17-83] Releasing license: Implementation
+102 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1936.641 ; gain = 418.340
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 24 18:00:45 2022...
+[Thu Mar 24 18:00:50 2022] impl_1 finished
+wait_on_run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:16 . Memory (MB): peak = 291.457 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 24 18:00:50 2022...
+Vivado exited.
+
+Finished building project.

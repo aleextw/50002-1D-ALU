@@ -1,0 +1,138 @@
+module cu (
+    input rst,
+    input id[6],    // Removed irq, ia31, clk,
+    input z,
+    output bsel,
+    output ra2sel,
+    output alufn[6],
+    output wdsel[2],
+    output pcsel[3],
+    output wasel,
+    output werf,
+    output wr
+  ) {
+
+  always {
+    alufn = b000000;
+    werf = b0;
+    bsel = b0;
+    wdsel = b0;
+    wr = b0;
+    ra2sel = b0;
+    pcsel = b0;
+    wasel = b0;
+    
+    case(id[5:4]) {
+      1:
+        case(id[3:0]) {
+          b1000:  // LD
+            alufn = b000000;
+            werf = b1;
+            bsel = b1;
+            wdsel = b10;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = b0;
+            wasel = b0;
+          b1001:  // ST
+            alufn = b000000;
+            werf = b0;
+            bsel = b1;
+            wdsel = b0;
+            wr = b1;
+            ra2sel = b1;
+            pcsel = b0;
+            wasel = b0;
+          b1011:  // JMP
+            werf = b0;
+            bsel = b1;
+            wdsel = b0;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = b10;
+            wasel = b0;
+          b1101:  // BEQ
+            werf = b1;
+            bsel = b0;
+            wdsel = b0;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = z;
+            wasel = b0;
+          b1110:  // BNE
+            werf = b1;
+            bsel = b0;
+            wdsel = b1;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = ~z;
+            wasel = b0;
+          b1111:
+            werf = b0;
+            bsel = b0;
+            wdsel = b0;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = b0;
+            wasel = b0;
+        }
+      2:
+        werf = b1;
+        bsel = b0;
+        wdsel = b1;
+        wr = b0;
+        ra2sel = b0;
+        pcsel = b0;
+        wasel = b0;
+        case(id[3:0]) {
+          b0000: alufn = b000000; // ADD
+          b0001: alufn = b000001; // SUB
+          b0111: alufn = b001000; // RAND
+          b1100: alufn = b100000; // SHL
+          b1101: alufn = b100001; // SHR
+          b1110: alufn = b100011; // SRA
+          b1000: alufn = b011000; // AND
+          b1001: alufn = b011110; // OR
+          b1010: alufn = b010110; // XOR
+          b0100: alufn = b110011; // CMPEQ
+          b0101: alufn = b110101; // CMPLT
+          b0110: alufn = b110111; // CMPLE
+        }
+      3:
+        werf = b1;
+        bsel = b1;
+        wdsel = b1;
+        wr = b0;
+        ra2sel = b0;
+        pcsel = b0;
+        wasel = b0;
+        case(id[3:0]) {
+          b0000: alufn = b000000; // ADD
+          b0001: alufn = b000001; // SUB
+          b0111: alufn = b001000; // RAND
+          b1100: alufn = b100000; // SHL
+          b1101: alufn = b100001; // SHR
+          b1110: alufn = b100011; // SRA
+          b1000: alufn = b011000; // AND
+          b1001: alufn = b011110; // OR
+          b1010: alufn = b010110; // XOR
+          b0100: alufn = b110011; // CMPEQ
+          b0101: alufn = b110101; // CMPLT
+          b0110: alufn = b110111; // CMPLE
+        }
+      default:  // IRQ
+        werf = b1;
+        bsel = b0;
+        wdsel = b0;
+        wr = b0;
+        ra2sel = b0;
+        pcsel = b100;
+        wasel = b1;
+      
+    }
+    
+    if (rst == 1) {
+      wr = 0;
+    }
+  }
+}

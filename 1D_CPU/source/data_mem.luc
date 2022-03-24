@@ -1,0 +1,19 @@
+module data_mem (
+    input clk,
+    input wr,
+    input wd[16],
+    input addr[16],
+    output out[16]
+  ) {
+  
+  .clk(clk) {
+      simple_ram ram (#SIZE(16), #DEPTH(256));
+  }
+  
+  always {
+    ram.address = addr;
+    ram.write_data = wd;
+    ram.write_en = wr;
+    out = ram.read_data;
+  }
+}

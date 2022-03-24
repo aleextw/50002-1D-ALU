@@ -1,0 +1,53 @@
+module regfile (
+    input clk,  // clock
+    input ra1[5],
+    input ra2[5],
+    input we,
+    input wd[16],
+    input wa[5],
+    input buttons[16],
+    input ia,
+    output rd1[16],
+    output rd2[16],
+    output lvl[16],
+    output peg[16],
+    output pegsel[16],
+    output val_op[16]
+  ) {
+
+  .clk(clk){
+    dff r[32][16];
+ 
+  }
+  
+  encoder button_encoder (#WIDTH(16));
+  
+  always {
+  button_encoder.in = buttons;
+    r.d[22] = 16 x{ia} & button_encoder.out;
+    
+    if (wa != b11111 & wa != b10101 & we) {
+      r.d[wa] = wd;
+    }
+    
+    if (ra1 != b11111) {
+      rd1 = r.q[ra1];
+    } else {
+      rd1 = 16b0;
+    }
+    
+    if (ra2 != b11111) {
+      rd2 = r.q[ra2];
+    } else {
+      rd2 = 16b0;
+    }
+    
+    
+    lvl = r.q[26];
+    peg = r.q[24];
+    pegsel = r.q[23];
+    val_op = r.q[25];
+    
+    
+  }
+}
