@@ -153,13 +153,21 @@ CMOVE(1, R2)
 SHL(R2, R1, R2)
 XOR(R24, R2, R24)
 
-PUSH(R31)    
-PUSH(R24)
-BEQ(R31, count_pegs, LP)
-DEALLOCATE(2)
+count_pegs_setup:
+MOVE(R24, R1)
+MOVE(R31, R0)
+CMOVE(1, R2)        		      || Set content of R2 to our bitmask
 
-CMPEQC(R0, 1, R0)
-BF(R0, game_start, R31)
+count_pegs:
+AND(R1, R2, R3)        			  || Mask off LSB to R4
+BEQ(R3, count_pegs_skip, R31)     || If R4 == 0, dont increment by 1
+ADDC(R0, 1, R0)         		  || Increment peg count by 1
+
+count_pegs_skip:
+BNE(R1, count_pegs, R31)          || Loop if there are still pegs
+
+CMPEQC(R0, 1, R0)                 || If counted only 1 peg, end level
+BF(R0, game_start, R31)           || Else, repeat game loop
 
 || TODO: Update game end effects (Different colour for different level)
 level_end:
@@ -174,44 +182,7 @@ BF(R31, start, R31)
 
 
 
-|| TODO: Remove function and incorporate directly into main game loop
-count_pegs:
-|| callee entry procedure
-PUSH(LP)
-PUSH(BP)
-MOVE(SP, BP)
 
-|| preserve old registers before using them
-PUSH(R1)
-PUSH(R2)
-PUSH(R3)
-PUSH(R4)
-
-|| function body
-LD(BP, -12, R1)  		 			  || Load argument 1 (peg positions)
-LD(BP, -16, R2)    					  || Load argument 2 (count)
-ADDC(R31, 1, R3)        		  || Set content of R3 to our bitmask
-AND(R1, R3, R4)        			  || Mask off LSB to R4
-BEQ(R4, count_pegs_skip, R31)    || If R4 == 0, dont increment by 1
-ADDC(R2, 1, R0)         		  || Increment peg count by 1
-
-count_pegs_skip:
-|| Recursive caller
-PUSH(R0)                       || Number of pegs variable
-PUSH(R1)                       || Peg positions
-BNE(R1, count_pegs, LP)       || Call our function if we still have pegs
-DEALLOCATE(2)
-
-|| Callee exit sequence
-POP(R4)
-POP(R3)
-POP(R2)
-POP(R1)
-
-MOVE(SP, BP)
-POP(BP)
-POP(LP)
-JMP(LP, R31)
 
 . = 256
 button_handler:
