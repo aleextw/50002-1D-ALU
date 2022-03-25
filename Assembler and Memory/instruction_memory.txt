@@ -213,5 +213,8 @@ POP(BP)
 POP(LP)
 JMP(LP, R31)
 
-
+. = 256
+button_handler:
+BEQ(R22, button_handler, R31)
+JMP(XP, R31)
 
