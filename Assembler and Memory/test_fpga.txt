@@ -1,0 +1,28 @@
+start:
+CMOVE(5, R0)       || R0 = 5    ALUFN 000000 | RD1 0 | ALUOUT 5       0
+CMOVE(10, R1)      || R1 = 10   ALUFN 000000 | RD1 0 | ALUOUT 10      4
+ADD(R1, R0, R0)    || R0 = 15   ALUFN 000000 | RD1 10| ALUOUT 15      8
+MOVE(R1, R0)       || R0 = 10   ALUFN 000000 | RD1 10| ALUOUT 10      12
+CMOVE(1, R1)       || R1 = 1    ALUFN 000000 | RD1 0 | ALUOUT 1       16
+SHL(R0, R1, R0)    || R0 = 20   ALUFN 100000 | RD1 10| ALUOUT 20      20
+SHLC(R0, 1, R0)    || R0 = 40   ALUFN 100000 | RD1 20| ALUOUT 40      24
+CMOVE(5, R0)       || R0 = 5    ALUFN 000000 | RD1 0 | ALUOUT 5       28
+SHR(R0, R1, R0)    || R0 = 2    ALUFN 100001 | RD1 5 | ALUOUT 2       32
+CMOVE(5, R0)       || R0 = 5    ALUFN 000000 | RD1 0 | ALUOUT 5       36
+SHRC(R0, 1, R0)    || R0 = 2    ALUFN 100001 | RD1 5 | ALUOUT 2       40
+CMOVE(5, R0)       || R0 = 5    ALUFN 000000 | RD1 0 | ALUOUT 5       44
+CMOVE(1, R1)       || R1 = 1    ALUFN 000000 | RD1 0 | ALUOUT 1       48
+SUB(R0, R1, R0)    || R0 = 4    ALUFN 000001 | RD1 5 | ALUOUT 4       52
+SUBC(R0, 1, R0)    || R0 = 3    ALUFN 000001 | RD1 4 | ALUOUT 3       56
+RAND(R0)           || R0 = RAND ALUFN 001000 | RD1 x | ALUOUT RAND    60
+RAND(R0)           || R0 = RAND ALUFN 001000 | RD1 x | ALUOUT RAND    64
+RAND(R0)           || R0 = RAND ALUFN 001000 | RD1 x | ALUOUT RAND    68
+CMOVE(3, R0)       || R0 = 3    ALUFN 000000 | RD1 0 | ALUOUT 3       72
+CMOVE(7, R1)       || R1 = 7    ALUFN 000000 | RD1 0 | ALUOUT 7       76
+AND(R0, R1, R0)    || R0 = 3    ALUFN 011000 | RD1 3 | ALUOUT 3       80
+ANDC(R0, 5, R0)    || R0 = 1    ALUFN 011000 | RD1 3 | ALUOUT 1       84
+CMOVE(5, R0)       || R0 = 5    ALUFN 000000 | RD1 0 | ALUOUT 5       88
+CMOVE(10, R1)      || R1 = 10   ALUFN 000000 | RD1 0 | ALUOUT 10      92
+OR(R0, R1, R0)     || R0 = 15   ALUFN 011110 | RD1 5 | ALUOUT 15      96
+ORC(R0, 16, R0)    || R0 = 31   ALUFN 011110 | RD1 15| ALUOUT 31      100
+BEQ(R31, start, R31)

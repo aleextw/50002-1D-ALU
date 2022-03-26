@@ -1,8 +1,8 @@
 init:
 SVC()
-BEQ(R22, init, R31)
+BEQ(R0, init, R31)
 
-SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
+SHRC(R0, 1, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BF(R0, init, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 CMOVE(1, R26) || Add 1 to our level count R26
 
@@ -57,7 +57,7 @@ BF(R5, array_setup_loop, R31) || Else, branch back to array_setup
 game_start:
 a_input:
 SVC()
-BEQ(R22, a_input, R31)
+BEQ(R0, a_input, R31)
 
 MOVE(R31, R23) || Set our 'currently selected peg' register to be 0
 MOVE(R31, R25) || Set our 'possible moves' register to be 0
@@ -109,10 +109,9 @@ BF(R3, a_input, R31)    || Invalid selectoin; branch back to a_input
 MOVE(R3, R25)           || Store possible moves
 MOVE(R0, R23)           || Store current button press
 
-
 b_input:
 SVC()
-BEQ(R22, b_input, R31)
+BEQ(R0, b_input, R31)
 
 SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BT(R0, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
@@ -180,12 +179,12 @@ SHRC(R24, 1, R24)
 BT(R24, light_loop, R24)
 BF(R31, start, R31)
 
-
-
-
-
 . = 256
 button_handler:
-BEQ(R22, button_handler, R31)
+MOVE(R31, R22)
+button_handler_loop:
+BEQ(R22, button_handler_loop, R31)
+MOVE(R22, R0)
+MOVE(R31, R22)
 JMP(XP, R31)
 
