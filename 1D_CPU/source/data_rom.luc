@@ -1,0 +1,18 @@
+module data_rom (
+    input address[16],
+    output out[16]
+  ) {
+  
+  const DATA = {
+b0000000000011111,
+b0000000000001111,
+b0000000000001010,
+b0000000000010101,
+b0000000000000101,
+b0000000000000001
+  };
+  
+  always {
+    out = DATA[address >> 1];
+  }
+}

@@ -3,8 +3,8 @@ module pc_unit (
     input rst,  // reset
     input id[16],
     input ra[16],
-    input pcsel[3],
     input slow_clock,
+    input pcsel[3],
     output ia[16],
     output pc_4[16]
   ) {
@@ -21,6 +21,7 @@ module pc_unit (
   always {
     ia = pc.q;
     pc_4 = pc.q + 4;
+    
     if (slow_clock) {
       internal_ia = pc.q;
       internal_pc_4 = pc.q + 4;
@@ -29,14 +30,13 @@ module pc_unit (
         0: pc.d = internal_pc_4;
         1: pc.d = internal_pc_4 + id * 4;
         2: pc.d = c{internal_ia[15], ra[14:0]};
-        3: pc.d = h8004;
-        4: pc.d = h8008;  // KIV change these to smaller addresses
+        3: pc.d = 1280;
+        4: pc.d = 1024;
         default: pc.d = internal_pc_4;
       }
       
       ia = internal_ia;
       pc_4 = c{internal_ia[15], internal_pc_4[14:0]};
     }
-    
   }
 }

@@ -4,10 +4,12 @@ module alu (
     input a[16],
     input b[16],
     input alufn[6],
+    input slow_clock,
     output out[16],
     output z,
     output v,
-    output n
+    output n,
+    output randout[16]
   ) {
   
   pn_gen rand;
@@ -24,7 +26,7 @@ module alu (
     rand.clk = clk;
     rand.rst = rst;
     rand.seed = 128h843233523a613966423b622562592c62;
-    rand.next = |alufn;
+    rand.next = slow_clock;
     
     add.a = a;
     add.b = b;
@@ -49,7 +51,7 @@ module alu (
     case(alufn[5:4]) {
       0: case(alufn[3]) {
         0: out = add.s;
-        1: out = rand.num[15:0];  
+        1: out = c{12b0, rand.num[3:0]};  
         default: out = a;
       }
       1: out = bl.out;
@@ -57,7 +59,7 @@ module alu (
       3: out = cmp.out;
       default: out = a;
     }
-    
+    randout = rand.num[15:0];
     z = temp_z;
     v = temp_v;
     n = temp_n;

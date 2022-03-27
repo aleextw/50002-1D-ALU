@@ -1,0 +1,39 @@
+module sixteen_bit_pn_gen #(
+    // SEED needs to always be non-zero
+    // Since seed is XORed with the 16MSBs of SEED, we need the 48 LSBs to be nonzero.
+    SEED = 64h423b622562592c62: SEED.WIDTH == 64 && SEED[47:0] != 0
+  )(
+    input clk,
+    input rst,
+    input next,      // generate next number flag
+    input seed [16], // seed used on reset
+    output num [16]  // "random" number output
+  ) {
+  
+  .clk(clk) {
+    dff x[16], y[16], z[16], w[16];
+  }
+  
+  sig t [16];                       // temporary results
+  
+  always {
+    if (rst) {
+      x.d = SEED[0+:16];
+      y.d = SEED[16+:16];
+      z.d = SEED[32+:16];
+      w.d = SEED[48+:16] ^ seed;
+    }
+    
+    num = w.q;                      // output is from w
+    t = x.q ^ (x.q << 7);          // calculate intermediate value
+    
+    if (next) {                     // if we need a new number
+      x.d = y.q;                    // shift values along
+      y.d = z.q;                   
+      z.d = w.q;
+      
+      // magic formula from Wikipedia
+      w.d = w.q ^ (w.q >> 9) ^ t ^ (t << 8);
+    }
+  }
+}

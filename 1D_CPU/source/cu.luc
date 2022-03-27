@@ -62,10 +62,10 @@ module cu (
           b1110:  // BNE
             werf = b1;
             bsel = b0;
-            wdsel = b1;
+            wdsel = b0;
             wr = b0;
             ra2sel = b0;
-            pcsel = ~z;
+            pcsel = !z;
             wasel = b0;
           b1111:
             werf = b0;
@@ -75,6 +75,15 @@ module cu (
             ra2sel = b0;
             pcsel = b0;
             wasel = b0;
+          b1010:
+            alufn = b0;
+            werf = b1;
+            bsel = b0;
+            wdsel = b0;
+            wr = b0;
+            ra2sel = b0;
+            pcsel = b100;
+            wasel = b1;
         }
       2:
         werf = b1;

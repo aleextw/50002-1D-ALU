@@ -12,34 +12,37 @@ module regfile (
     output lvl[16],
     output peg[16],
     output pegsel[16],
-    output val_op[16]
+    output val_op[16],
+    output sel_but[16]
   ) {
 
   .clk(clk){
     dff r[32][16];
- 
   }
   
-  encoder button_encoder (#WIDTH(16));
+  alex_encoder button_encoder (#WIDTH(16));
   
   always {
-  button_encoder.in = buttons;
-    r.d[22] = 16 x{ia} & button_encoder.out;
+    button_encoder.in = buttons;
     
-    if (wa != b11111 & wa != b10101 & we) {
+    if (button_encoder.out != 0) {
+        r.d[22] = button_encoder.out;
+    }
+    
+    if (wa != b11111 & we) {
       r.d[wa] = wd;
     }
     
     if (ra1 != b11111) {
       rd1 = r.q[ra1];
     } else {
-      rd1 = 16b0;
+      rd1 = 16 x{0};
     }
     
     if (ra2 != b11111) {
       rd2 = r.q[ra2];
     } else {
-      rd2 = 16b0;
+      rd2 = 16 x{0};
     }
     
     
@@ -48,6 +51,6 @@ module regfile (
     pegsel = r.q[23];
     val_op = r.q[25];
     
-    
+    sel_but = r.q[0];
   }
 }

@@ -11,7 +11,7 @@ module data_mem (
   }
   
   always {
-    ram.address = addr;
+    ram.address = addr >> 1;
     ram.write_data = wd;
     ram.write_en = wr;
     out = ram.read_data;

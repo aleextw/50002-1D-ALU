@@ -3,7 +3,7 @@ module au_top (
     input rst_n,            // reset button (active low)
     output led [8],         // 8 user controllable LEDs
     input usb_rx,           // USB->Serial input
-    output usb_tx,           // USB->Serial output
+    output usb_tx,          // USB->Serial output
     output io_led [3][8],   // LEDs on IO Shield
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
@@ -13,29 +13,52 @@ module au_top (
   
   sig rst;                  // reset signal
   
+  const NUM_DATA = 54;
+  
+  bin_to_dec btd(#DIGITS(16));
+  decoder ss_sel_dec(#WIDTH(2));
+  seven_seg ss;
+  
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-    button_conditioner button_cond[8];
-    edge_detector edge_det[8];
+    // button_conditioner button_cond[16];
+    edge_detector edge_det[16] (#RISE(1), #FALL(0));
     
-    regfile rf;
+    button_conditioner io_cnd;
+    button_conditioner dip_cnd;
+    
     alu arith;
+    regfile rf;
     data_mem data;
     pc_unit pc;
     
-    edge_detector slow_clock_edge_detector;
+    fsm ram_writer = {LOAD, WAIT, GO};
+    dff writer_counter[$clog2(NUM_DATA)];
+    
+    edge_detector slow_clock_edge_detector (#RISE(1), #FALL(1));
     
     .rst(rst) {
       counter cnt(#SIZE(1), #DIV(26));
+      counter ss_sel(#SIZE(2), #TOP(3), #DIV(16));
     }
   }
   
+ 
+  
   cu cu;
   inst_mem instructions;
+  data_rom drom;
   
-  always {    
+  always {      
+    rf.we = 0;
+    if (slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out)) {
+      rf.we = cu.werf;
+    }
+    
+    arith.slow_clock = slow_clock_edge_detector.out;
+    
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
@@ -47,13 +70,24 @@ module au_top (
     
     usb_tx = usb_rx;        // echo the serial data
     
+    io_cnd.in = io_button[0];
+    dip_cnd.in = io_dip[0][0];
     
-    button_cond.in = io_button[1];
-    edge_det.in = button_cond.out;
+    // Display PC on 7-segment display
+    ss_sel_dec.in = ss_sel.value;
+    btd.value = pc.ia;
+    ss.char = btd.digits[ss_sel.value];
+    io_sel = ~ss_sel_dec.out;
+    io_seg = ~ss.segs;
+    
+    io_cnd.in = io_button[0];
+    // edge_det.in = button_cond.out;
+    edge_det.in = $flatten(io_dip[2:1]);
     
     // Program Counter
     slow_clock_edge_detector.in = cnt.value;
-    pc.slow_clock = slow_clock_edge_detector.out;
+    pc.slow_clock = slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out);
+    // pc.but = io_cnd.out;
     pc.rst = rst;
     instructions.ia = pc.ia;
     pc.id = instructions.id[15:0];
@@ -62,7 +96,6 @@ module au_top (
     
     // Control Unit
     cu.rst = rst;
-    rf.we = cu.werf;
     cu.z = ~|rf.rd1;
     cu.id = instructions.id[31:26];
     arith.alufn = cu.alufn;
@@ -82,13 +115,21 @@ module au_top (
       default: rf.wa = instructions.id[25:21];
     }
     rf.buttons = edge_det.out;
-    rf.ia = pc.ia[12];
+    rf.ia = pc.ia[10];  // Kind of janky, but gives us 256 instructions before the SVC handler (change if more instruction space is needed)
     
     // TODO: LED Outputs
-    // io_led[2:1] = $build(rf.peg, 2);
-    io_led[2] = rf.peg[7:0];
-    io_led[1] = rf.val_op[7:0];
-    io_led[0] = rf.lvl[7:0];
+    io_led[2:1] = $build(rf.peg, 2);
+    // io_led[2] = rf.peg[7:0];
+    // io_led[1] = rf.val_op[7:0];
+    io_led[0] = arith.out[7:0];
+    // io_led[2:1] = $build(rf.sel_but, 2);
+    
+    // io_led[2] = rf.rd1[7:0];
+    // io_led[1] = rf.rd2[7:0];
+    
+    io_led[2] = data.out[7:0];
+    io_led[1] = arith.out[7:0];
+    io_led[0] = rf.peg[7:0];
     
     led[0] = cnt.value;
     led[7:1] = pc.ia[6:0];
@@ -113,15 +154,26 @@ module au_top (
     data.addr = arith.out;
     data.wd = rf.rd2;
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    drom.address = writer_counter.q;
+    case (ram_writer.q) {
+      ram_writer.LOAD:
+        cu.rst = 1;
+        writer_counter.d = writer_counter.q + 1;
+        data.wr = 1;
+        data.addr = writer_counter.q << 1;
+        data.wd = drom.out;
+        if (writer_counter.q == NUM_DATA) {
+          ram_writer.d = ram_writer.WAIT;
+        }
+      ram_writer.WAIT:
+        cu.rst = 1;
+        ram_writer.d = ram_writer.GO;
+      ram_writer.GO:
+        data.addr = rf.rd2;
+        data.wd = rf.rd2;
+        data.wr = cu.wr;
+        ram_writer.d = ram_writer.GO;
+    }
+    io_led[2] = writer_counter.q;
   }
 }

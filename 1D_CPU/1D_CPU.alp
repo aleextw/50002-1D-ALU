@@ -6,20 +6,26 @@
     <component>pipeline.luc</component>
     <src>inst_mem.luc</src>
     <component>counter.luc</component>
-    <src>pc_unit.luc</src>
-    <src top="true">au_top.luc</src>
     <src>alu.luc</src>
-    <src>adder.luc</src>
-    <component>pn_gen.luc</component>
+    <src>seven_seg.luc</src>
     <src>cu.luc</src>
-    <component>simple_ram.v</component>
+    <src>data_rom.luc</src>
     <src>bool.luc</src>
     <src>bitshift.luc</src>
-    <src>compare.luc</src>
     <component>reset_conditioner.luc</component>
-    <component>edge_detector.luc</component>
     <component>button_conditioner.luc</component>
     <component>encoder.luc</component>
+    <src>sixteen_bit_pn_gen.luc</src>
+    <src>pc_unit.luc</src>
+    <component>decoder.luc</component>
+    <src top="true">au_top.luc</src>
+    <src>alex_encoder.luc</src>
+    <src>adder.luc</src>
+    <component>pn_gen.luc</component>
+    <component>bin_to_dec.luc</component>
+    <component>simple_ram.v</component>
+    <src>compare.luc</src>
+    <component>edge_detector.luc</component>
     <constraint lib="true">alchitry.acf</constraint>
     <constraint>io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>

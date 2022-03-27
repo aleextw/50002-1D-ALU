@@ -19,7 +19,7 @@ module adder (
     s = sum;
     
     z = ~|sum;
-    v = (((b[15] ^ alufn) & a[15]) & ~sum[15]) | ((~(b[15] ^ alufn) & ~a[15]) & sum[15]);
+    v = (((b[15] ^ alufn) && a[15]) & !sum[15]) || ((!(b[15] ^ alufn) & !a[15]) && sum[15]);
     n = sum[15];
   }
 }
