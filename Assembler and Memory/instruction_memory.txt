@@ -2,7 +2,7 @@ init:
 SVC()
 BEQ(R0, init, R31)
 
-SHRC(R0, 1, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
+SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BF(R0, init, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 CMOVE(1, R26) || Add 1 to our level count R26
 
@@ -28,11 +28,11 @@ BF(R31, init, R31)
 || TODO: Add randomization to setup to load different level one / two stages
 || TODO: Add position arrays
 level_one_setup:
-LD(R26, level_one_position, R24) || Load level one peg positions to R24
+LD(level_one_position, R24) || Load level one peg positions to R24
 BF(R31, array_setup, R31) || Branch to array_setup
 
 level_two_setup:
-LD(R26, level_two_position, R24) || Load level two  peg positions to R24
+LD(level_two_position, R24) || Load level two  peg positions to R24
 BF(R31, array_setup, R31) || Branch to array_setup
 
 level_three_setup: 
