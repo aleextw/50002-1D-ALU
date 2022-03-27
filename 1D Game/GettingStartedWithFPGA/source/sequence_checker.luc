@@ -1,0 +1,81 @@
+module sequence_checker (
+    input buttons[3],
+    input exButton,
+    input clk,  // clock
+    input rst,  // reset
+    output out_result[3],
+    output out_buttonseq  
+  ) 
+
+{
+  
+  dff sequence[3](#INIT(0), .clk(clk), .rst(rst));
+  dff result[3](#INIT(0),.clk(clk), .rst(rst));
+  const MATCH = {b110, b101, b011}; // press button 4, then 3
+  
+  fsm brain(.clk(clk), .rst(rst)) = {
+    WAITFIRSTPRESS,
+    CHECKPRESS
+  };
+    
+
+  always{     
+    case (brain.q)
+    {
+      brain.WAITFIRSTPRESS:
+        if (buttons[2] | buttons[1] | buttons[0]){ //if any button is pressed
+            //TODO use the external button to change colours, depending on the state defined by ISA?
+            //TODO use the external start button to light up all colours
+            //each io_button press is saved to the sequence d flip flop
+            if (buttons[0]){ //blue
+                sequence.d = b110;
+            } 
+            
+            else if (buttons[1]) { //green
+                sequence.d = b101;
+            }
+            
+            else if (buttons[2]) { //red
+                sequence.d = b011;
+            }
+              
+            brain.d = brain.CHECKPRESS;
+          
+        }
+        else{
+            // reset result 
+            result.d = b111;
+            brain.d = brain.WAITFIRSTPRESS; //if no press, loop 
+        }
+        
+     brain.CHECKPRESS:
+        //depending on the sequence d flip flop
+        if (sequence.q[2:0] == MATCH[0]){
+            result.d = b110; //blue
+        }
+        else if (sequence.q[2:0] == MATCH[1]){
+            result.d = b101; //green
+        }
+        else if (sequence.q[2:0] == MATCH[2]){
+            result.d = b011; //red
+        }
+        else{
+            result.d = b111; //hopefully dont light up
+        }
+        
+        brain.d = brain.CHECKPRESS; 
+        
+        //if (buttons[0] | buttons[1] | buttons[2]) {
+        
+        if (exButton) {
+            sequence.d = b111;
+            result.d = b111;
+            brain.d = brain.WAITFIRSTPRESS;
+        }
+    }
+    
+    out_result = result.q;
+    out_buttonseq = sequence.q;
+    
+}
+}
