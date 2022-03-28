@@ -1,8 +1,8 @@
 start:
 LD(0, R24)
-LD(1, R24)
 LD(2, R24)
-LD(3, R24)
 LD(4, R24)
-LD(5, R24)
+LD(8, R24)
+LD(12, R24)
+LD(16, R24)
 BEQ(R31, start, R31)

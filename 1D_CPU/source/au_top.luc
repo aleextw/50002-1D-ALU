@@ -35,7 +35,7 @@ module au_top (
     pc_unit pc;
     
     fsm ram_writer = {LOAD, WAIT, GO};
-    dff writer_counter[$clog2(NUM_DATA)];
+    dff writer_counter[$clog2(NUM_DATA) + 1];
     
     edge_detector slow_clock_edge_detector (#RISE(1), #FALL(1));
     
@@ -118,18 +118,18 @@ module au_top (
     rf.ia = pc.ia[10];  // Kind of janky, but gives us 256 instructions before the SVC handler (change if more instruction space is needed)
     
     // TODO: LED Outputs
-    io_led[2:1] = $build(rf.peg, 2);
+    io_led[2] = rf.peg[7:0];
     // io_led[2] = rf.peg[7:0];
     // io_led[1] = rf.val_op[7:0];
-    io_led[0] = arith.out[7:0];
+    io_led[1:0] = $build(arith.out, 2);
     // io_led[2:1] = $build(rf.sel_but, 2);
     
     // io_led[2] = rf.rd1[7:0];
     // io_led[1] = rf.rd2[7:0];
     
-    io_led[2] = data.out[7:0];
-    io_led[1] = arith.out[7:0];
-    io_led[0] = rf.peg[7:0];
+    // io_led[2] = data.out[7:0];
+    // io_led[1] = arith.out[7:0];
+    // io_led[0] = rf.peg[7:0];
     
     led[0] = cnt.value;
     led[7:1] = pc.ia[6:0];
@@ -167,13 +167,15 @@ module au_top (
         }
       ram_writer.WAIT:
         cu.rst = 1;
+        data.wr = 0;
+        data.addr = writer_counter.q << 1;
+        data.wd = drom.out;
         ram_writer.d = ram_writer.GO;
       ram_writer.GO:
-        data.addr = rf.rd2;
+        data.addr = arith.out;
         data.wd = rf.rd2;
         data.wr = cu.wr;
         ram_writer.d = ram_writer.GO;
     }
-    io_led[2] = writer_counter.q;
   }
 }

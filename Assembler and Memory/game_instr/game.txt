@@ -37,7 +37,7 @@ BF(R31, array_setup, R31) || Branch to array_setup
 
 level_three_setup: 
 RAND(R0) || Store random value to R0
-XORC(R0, -1, R24)
+XORC(R0, 65535, R24)
 BF(R31, array_setup, R31) || Branch to array_setup
 
 array_setup: 
@@ -62,8 +62,8 @@ BEQ(R0, a_input, R31)
 MOVE(R31, R23) || Set our 'currently selected peg' register to be 0
 MOVE(R31, R25) || Set our 'possible moves' register to be 0
 
-SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
-BT(R0, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
+SHRC(R0, 4, R1) || Shift R0 right by 4 bits to get MSB of 5-bit value
+BT(R1, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 
 SUBC(R0, 1, R1)
 SHR(R24, R1, R2)    || Shift right by ID - 1 bits, then AND the result with 1 and store to R2
@@ -113,8 +113,8 @@ b_input:
 SVC()
 BEQ(R0, b_input, R31)
 
-SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
-BT(R0, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
+SHRC(R0, 4, R1) || Shift R0 right by 4 bits to get MSB of 5-bit value
+BT(R1, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 
 CMPEQ(R0, R23, R1)  || Check whether b_input == a_input
 BT(R1, a_input, R31)
@@ -125,29 +125,30 @@ SHL(R2, R1, R2)         || Create our b_input bitmask
 AND(R25, R2, R2)
 BF(R2, b_input, R31)   
 
+|| TODO: Build in error checking (after 4 cycles, consider it as invalid position, since there can be at most 4 possible moves)
+|| Right now its just looping in the event that there is no valid position; bad code
 peg_search:
-SUBC(R0, 1, R1)
 LD(R1, jump_array, R2)  || contains our constraints, stored as {space, peg}
-SHRC(R2, 8, R3)     || R5 stores space position
+SHRC(R2, 8, R3)     || R3 stores space position
 SHLC(R2, 8, R4)
-SHRC(R4, 8, R4)     || R6 stores peg position
+SHRC(R4, 8, R4)     || R4 stores peg position
 CMPEQ(R3, R0, R5)   || If our b_input == R5, then we have found our space position and peg position
 ADDC(R1, 2, R1)     || Go to next index
 BF(R5, peg_search, R31)
 
-|| At this point, R0 contains our b_input, R5 contains our space position, R6 contains our peg position
+|| At this point, R23 contains our starting peg, R3 contains our space position, R4 contains our peg position
 || Toggle all lights
-SUBC(R0, 1, R1)
+SUBC(R23, 1, R1)
 CMOVE(1, R2)
 SHL(R2, R1, R2)
 XOR(R24, R2, R24)
 
-SUBC(R5, 1, R1)
+SUBC(R3, 1, R1)
 CMOVE(1, R2)
 SHL(R2, R1, R2)
 XOR(R24, R2, R24)
 
-SUBC(R5, 1, R1)
+SUBC(R4, 1, R1)
 CMOVE(1, R2)
 SHL(R2, R1, R2)
 XOR(R24, R2, R24)
@@ -158,8 +159,8 @@ MOVE(R31, R0)
 CMOVE(1, R2)        		      || Set content of R2 to our bitmask
 
 count_pegs:
-AND(R1, R2, R3)        			  || Mask off LSB to R4
-BEQ(R3, count_pegs_skip, R31)     || If R4 == 0, dont increment by 1
+AND(R1, R2, R3)        			  || Mask off LSB to R3
+BEQ(R3, count_pegs_skip, R31)     || If R3 == 0, dont increment by 1
 ADDC(R0, 1, R0)         		  || Increment peg count by 1
 
 count_pegs_skip:

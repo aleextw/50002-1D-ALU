@@ -165,7 +165,7 @@ module au_top_0 (
   localparam GO_ram_writer = 2'd2;
   
   reg [1:0] M_ram_writer_d, M_ram_writer_q = LOAD_ram_writer;
-  reg [5:0] M_writer_counter_d, M_writer_counter_q = 1'h0;
+  reg [6:0] M_writer_counter_d, M_writer_counter_q = 1'h0;
   wire [1-1:0] M_slow_clock_edge_detector_out;
   reg [1-1:0] M_slow_clock_edge_detector_in;
   edge_detector_11 slow_clock_edge_detector (
@@ -289,11 +289,8 @@ module au_top_0 (
     endcase
     M_rf_buttons = M_edge_det_out;
     M_rf_ia = M_pc_ia[10+0-:1];
-    io_led[8+15-:16] = M_rf_peg;
-    io_led[0+7-:8] = M_arith_out[0+7-:8];
-    io_led[16+7-:8] = M_data_out[0+7-:8];
-    io_led[8+7-:8] = M_arith_out[0+7-:8];
-    io_led[0+7-:8] = M_rf_peg[0+7-:8];
+    io_led[16+7-:8] = M_rf_peg[0+7-:8];
+    io_led[0+15-:16] = M_arith_out;
     led[0+0-:1] = M_cnt_value;
     led[1+6-:7] = M_pc_ia[0+6-:7];
     M_arith_rst = rst;
@@ -342,16 +339,18 @@ module au_top_0 (
       end
       WAIT_ram_writer: begin
         M_cu_rst = 1'h1;
+        M_data_wr = 1'h0;
+        M_data_addr = M_writer_counter_q << 1'h1;
+        M_data_wd = M_drom_out;
         M_ram_writer_d = GO_ram_writer;
       end
       GO_ram_writer: begin
-        M_data_addr = M_rf_rd2;
+        M_data_addr = M_arith_out;
         M_data_wd = M_rf_rd2;
         M_data_wr = M_cu_wr;
         M_ram_writer_d = GO_ram_writer;
       end
     endcase
-    io_led[16+7-:8] = M_writer_counter_q;
   end
   
   always @(posedge clk) begin
