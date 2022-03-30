@@ -207,5 +207,4 @@ BEQ(R22, button_handler_loop, R31)
 MOVE(R22, R0)
 MOVE(R31, R22)
 JMP(XP, R31)
-    
-    
+
