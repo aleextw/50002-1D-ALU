@@ -77,6 +77,9 @@ MOVE(R31, R3) || Set R3 to be 0. This will be used to store our potential jump d
 SHLC(R1, 3, R1) || Convert our ID - 1 to an array index
 check_a_position:
 LD(R1, jump_array, R4)  || contains our constraints, stored as {space, peg}
+
+BEQ(R4, any_position_exist_check, R31)
+
 SHRC(R4, 8, R5)     || R5 stores space position
 SUBC(R5, 1, R7)
 SHLC(R7, 1, R7)     || R7 stores array index of space position
@@ -128,6 +131,7 @@ CMOVE(1, R2)
 SHL(R2, R1, R2)         || Create our b_input bitmask
 AND(R25, R2, R2)
 BF(R2, b_input, R31)   
+SHLC(R23, 3, R1)        || Get our selected peg's array index
 
 || TODO: Build in error checking (after 4 cycles, consider it as invalid position, since there can be at most 4 possible moves)
 || Right now its just looping in the event that there is no valid position; bad code

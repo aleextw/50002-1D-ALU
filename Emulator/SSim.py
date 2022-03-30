@@ -19,6 +19,8 @@ def ld(args):
     global registers
     if len(args) == 2:
         args.insert(0, 31)
+    print(args)
+    print((registers[args[0]] + args[1]) // 2)
     if args[2] != 31:
         registers[args[2]] = int(data[(registers[args[0]] + args[1]) // 2], 2)
 
@@ -307,8 +309,6 @@ for idx, row in enumerate(parsed_rows):
 
 instruction_counter = 0
 
-
-
 flip_labels = {labels[i]: i for i in labels}
 
 flip_data_labels = {data_labels[i]: i for i in data_labels}
@@ -328,17 +328,50 @@ while True:
     reg_disp_left = [f"R{i:<2}:    {bin(registers[i])[2:].zfill(16):<39}" for i in range(16)]
     reg_disp_right = [f"R{i:<2}:    {bin(registers[i])[2:].zfill(16):<29}" for i in range(16, 32)]
 
+    start_idx = 0
+    pyramid = [""]
+
+    if registers[23] - 1 > 0:
+        sel_peg = 1 << registers[23] - 1
+    else:
+        sel_peg = 0
+
+    for i in range(1, 6):
+        temp = ["x"] * i
+        for j in range(i):
+            if bin(registers[24])[2:].zfill(16)[15 - (start_idx + j)] == "1" :
+                temp[j] = 'o'
+            if bin(registers[25])[2:].zfill(16)[15 - (start_idx + j)] == "1" :
+                temp[j] = 'p'
+            if bin(sel_peg)[2:].zfill(16)[15 - (start_idx + j)] == "1" :
+                temp[j] = 's'
+        start_idx += i
+            
+        pyramid.append(" ".join(temp))
+
     for idx, val in enumerate(instr_lookahead):
         print(f"{val}{data_lookahead[idx]}")
     
     cont = len(instr_lookahead) + 1
     print(" " * 84 + data_lookahead[cont - 1])
 
+    data_lookahead_end_idx = 0
+    last_pyramid_idx = 0
+
     for idx, val in enumerate(reg_disp_left):
         if cont + idx < len(data_lookahead):
             print(f"{val}{reg_disp_right[idx]}{data_lookahead[cont + idx]}")
         else:
-            print(f"{val}{reg_disp_right[idx]}")
+            if not data_lookahead_end_idx:
+                data_lookahead_end_idx = idx
+            if idx - data_lookahead_end_idx < 5:
+                print(f"{val}{reg_disp_right[idx]}{pyramid[idx - data_lookahead_end_idx]:^20}")
+                last_pyramid_idx = idx - data_lookahead_end_idx
+    
+    for i in range(last_pyramid_idx + 1, 6):
+        print(f"{' ' * 84}{pyramid[i]:^20}")
+    
+
 
     if row[0] == ".":
         address = row.split("=")[1].strip()
