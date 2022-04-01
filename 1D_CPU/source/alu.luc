@@ -37,7 +37,7 @@ module alu (
     
     bl.a = a;
     bl.b = b;
-    bl.alufn = alufn[2:0];
+    bl.alufn = alufn[3:0];
     
     bs.a = a;
     bs.b = b;

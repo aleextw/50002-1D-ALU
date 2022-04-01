@@ -8,174 +8,113 @@ module au_top (
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
     input io_button [5],    // 5 buttons on IO Shield
-    input io_dip [3][8]     // DIP switches on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+    
+    // to matrix. See custom.acf for pins
+    output red0,
+    output green0, 
+    output blue0,
+    output red1,
+    output green1,
+    output blue1,
+    output latch, 
+    output blank, // also known as oe
+    output sclk_out,
+    output address[4] // row address current write to LED matrix
   ) {
   
   sig rst;                  // reset signal
   
-  const NUM_DATA = 54;
+  matrix_writer matrixwriter(.clk(clk), .rst(rst));
+  matrix_ram_writer ramwriter(#DATA_WIDTH(16), .clk(clk), .rst(rst));
+  matrix_ram matrixram(.clk(clk), .rst(rst));
   
-  bin_to_dec btd(#DIGITS(16));
-  decoder ss_sel_dec(#WIDTH(2));
-  seven_seg ss;
+  dff row_index[8](.clk(clk));
+  dff col_index[8](.clk(clk));
+  
+  decoder sel_peg_dec(#WIDTH(4));
   
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-    // button_conditioner button_cond[16];
-    edge_detector edge_det[16] (#RISE(1), #FALL(0));
-    
-    button_conditioner io_cnd;
-    button_conditioner dip_cnd;
-    
-    alu arith;
-    regfile rf;
-    data_mem data;
-    pc_unit pc;
-    
-    fsm ram_writer = {LOAD, WAIT, GO};
-    dff writer_counter[$clog2(NUM_DATA) + 1];
-    
-    edge_detector slow_clock_edge_detector (#RISE(1), #FALL(1));
+    edge_detector sced (#RISE(1), #FALL(1));
     
     .rst(rst) {
+      sigma_cpu sigma;
       counter cnt(#SIZE(1), #DIV(26));
-      counter ss_sel(#SIZE(2), #TOP(3), #DIV(16));
     }
   }
   
- 
-  
-  cu cu;
-  inst_mem instructions;
-  data_rom drom;
-  
   always {      
-    rf.we = 0;
-    if (slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out)) {
-      rf.we = cu.werf;
-    }
-    
-    arith.slow_clock = slow_clock_edge_detector.out;
-    
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
-    led = 8h00;             // turn LEDs off
+    led = c{7h00,rst};             // turn LEDs off
 
-    io_led = 3x{{8h00}};    // turn LEDs off
-    io_seg = 8hff;          // turn segments off
-    io_sel = 4hf;           // select no digits
-    
     usb_tx = usb_rx;        // echo the serial data
     
-    io_cnd.in = io_button[0];
-    dip_cnd.in = io_dip[0][0];
+    sced.in = cnt.value;
+    ramwriter.reload = sced.out;
     
-    // Display PC on 7-segment display
-    ss_sel_dec.in = ss_sel.value;
-    btd.value = pc.ia;
-    ss.char = btd.digits[ss_sel.value];
-    io_sel = ~ss_sel_dec.out;
-    io_seg = ~ss.segs;
+    sigma.buttons = $flatten(io_dip[2:1]);
+    sigma.io_button = io_button;
+    sigma.clk_dip = io_dip[0][0];
+    io_sel = sigma.io_sel;
+    io_seg = sigma.io_seg;
+    io_led = sigma.io_led;
+    led = sigma.led;
     
-    io_cnd.in = io_button[0];
-    // edge_det.in = button_cond.out;
-    edge_det.in = $flatten(io_dip[2:1]);
+    sel_peg_dec.in = sigma.selected_peg[3:0];
     
-    // Program Counter
-    slow_clock_edge_detector.in = cnt.value;
-    pc.slow_clock = slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out);
-    // pc.but = io_cnd.out;
-    pc.rst = rst;
-    instructions.ia = pc.ia;
-    pc.id = instructions.id[15:0];
-    pc.pcsel = cu.pcsel;
-    pc.ra = rf.rd1;
+    ramwriter.new_data = {sel_peg_dec.out >> 1, sigma.val_move, sigma.pegs};
     
-    // Control Unit
-    cu.rst = rst;
-    cu.z = ~|rf.rd1;
-    cu.id = instructions.id[31:26];
-    arith.alufn = cu.alufn;
-    data.wr = cu.wr;
+    matrixram.row_address_top = ramwriter.row_address_top;
+    matrixram.col_address_top = ramwriter.col_address_top;
+    matrixram.we_top = ramwriter.we_top;
+    matrixram.wd_top = ramwriter.wd_top;
     
-    // Regfile
-    case(cu.ra2sel) {
-      0: rf.ra2 = instructions.id[15:11];
-      1: rf.ra2 = instructions.id[25:21];
-      default: rf.ra2 = instructions.id[15:11];
-    }
-    rf.ra1 = instructions.id[20:16];
+    matrixram.row_address_btm = ramwriter.row_address_btm;
+    matrixram.col_address_btm = ramwriter.col_address_btm;
+    matrixram.we_btm = ramwriter.we_btm;
+    matrixram.wd_btm = ramwriter.wd_btm;
     
-    case(cu.wasel) {
-      0: rf.wa = instructions.id[25:21];
-      1: rf.wa = b11110;
-      default: rf.wa = instructions.id[25:21];
-    }
-    rf.buttons = edge_det.out;
-    rf.ia = pc.ia[10];  // Kind of janky, but gives us 256 instructions before the SVC handler (change if more instruction space is needed)
+    matrixram.ready = ramwriter.ready;
     
-    // TODO: LED Outputs
-    io_led[2] = rf.peg[7:0];
-    // io_led[2] = rf.peg[7:0];
-    // io_led[1] = rf.val_op[7:0];
-    io_led[1:0] = $build(arith.out, 2);
-    // io_led[2:1] = $build(rf.sel_but, 2);
+    // these indexes are offset by 2 for unknown reasons
+    // to debug with more data in the matrix_ram so that we know if we don't offset the rows too 
+    // right now it is handled inside matrix_ram by reducing by 2 before feeding it to the ram
+    matrixram.row_address = matrixwriter.row_index;
+    matrixram.col_address = matrixwriter.col_index;
     
-    // io_led[2] = rf.rd1[7:0];
-    // io_led[1] = rf.rd2[7:0];
+    // matrixram.row_address = matrixwriter.address;
+    // matrixram.col_address = matrixwriter.debug;
+   
     
-    // io_led[2] = data.out[7:0];
-    // io_led[1] = arith.out[7:0];
-    // io_led[0] = rf.peg[7:0];
+   // matrixwriter.data = 6b100100; // BLUE sample. change to the output of some RAM unit 
+    matrixwriter.data = c{matrixram.bottom_out, matrixram.top_out};
+  
+    red0 = matrixwriter.red0;
+    red1 = matrixwriter.red1;
+    green0 = matrixwriter.green0;
+    green1 = matrixwriter.green1;
+    blue0 = matrixwriter.blue0;
+    blue1 = matrixwriter.blue1; 
+    latch = matrixwriter.latch;
+    sclk_out = matrixwriter.sclk_out;
+    blank = matrixwriter.blank;
+    address = matrixwriter.address;
     
-    led[0] = cnt.value;
-    led[7:1] = pc.ia[6:0];
     
-    // ALU
-    arith.rst = rst;
-    case (cu.bsel) {
-      0: arith.b = rf.rd2;
-      1: arith.b = instructions.id[15:0];
-      default: arith.b = rf.rd2;
+    if (matrixwriter.row_index != 0){
+      row_index.d = matrixwriter.row_index;
     }
     
-    arith.a = rf.rd1;
-    case(cu.wdsel) {
-      0: rf.wd = c{pc.ia[15], pc.pc_4[14:0]};
-      1: rf.wd = arith.out;
-      2: rf.wd = data.out;
-      default: rf.wd = arith.out;
+    if (matrixwriter.col_index != 0){
+      col_index.d = matrixwriter.col_index;
     }
     
-    // Data Memory
-    data.addr = arith.out;
-    data.wd = rf.rd2;
-    
-    drom.address = writer_counter.q;
-    case (ram_writer.q) {
-      ram_writer.LOAD:
-        cu.rst = 1;
-        writer_counter.d = writer_counter.q + 1;
-        data.wr = 1;
-        data.addr = writer_counter.q << 1;
-        data.wd = drom.out;
-        if (writer_counter.q == NUM_DATA) {
-          ram_writer.d = ram_writer.WAIT;
-        }
-      ram_writer.WAIT:
-        cu.rst = 1;
-        data.wr = 0;
-        data.addr = writer_counter.q << 1;
-        data.wd = drom.out;
-        ram_writer.d = ram_writer.GO;
-      ram_writer.GO:
-        data.addr = arith.out;
-        data.wd = rf.rd2;
-        data.wr = cu.wr;
-        ram_writer.d = ram_writer.GO;
-    }
+    io_led[2] = sigma.possible[7:0];
+    io_led[1:0] = $build(sigma.space_check, 2);
   }
 }

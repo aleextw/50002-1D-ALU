@@ -74,9 +74,8 @@ set rc [catch {
   set_property ip_output_repo C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   add_files -quiet C:/Users/Razer/Documents/alchitry/1D_CPU/work/vivado/1D_CPU/1D_CPU.runs/synth_1/au_top_0.dcp
-  read_xdc C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/alchitry.xdc
-  read_xdc C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/io.xdc
   read_xdc {{C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc}}
+  read_xdc C:/Users/Razer/Documents/alchitry/1D_CPU/work/constraint/custom.xdc
   link_design -top au_top_0 -part xc7a35tftg256-1
   close_msg_db -file init_design.pb
 } RESULT]

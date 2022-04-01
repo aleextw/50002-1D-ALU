@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Mar 28 12:42:34 2022
+| Date         : Thu Mar 31 19:50:44 2022
 | Host         : ALEX-LAPTOP running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    41 |
-|    Minimum number of control sets                        |    41 |
+| Total control sets                                       |    49 |
+|    Minimum number of control sets                        |    49 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    32 |
+| Unused register locations in slices containing registers |    63 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    41 |
-| >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     2 |
-| >= 6 to < 8        |     1 |
-| >= 8 to < 10       |     0 |
+| Total control sets |    49 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     4 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |    36 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    38 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,62 +58,70 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              25 |           12 |
+| No           | No                    | No                     |              28 |           13 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              50 |           16 |
-| Yes          | No                    | No                     |             500 |          255 |
+| No           | Yes                   | No                     |              85 |           26 |
+| Yes          | No                    | No                     |             509 |          239 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             193 |           55 |
+| Yes          | Yes                   | No                     |             283 |           90 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+--------------------------------------------+--------------------------------------------+------------------+----------------+
-|  Clock Signal  |                Enable Signal               |              Set/Reset Signal              | Slice Load Count | Bel Load Count |
-+----------------+--------------------------------------------+--------------------------------------------+------------------+----------------+
-|  clk_IBUF_BUFG |                                            | reset_cond/M_reset_cond_in                 |                2 |              4 |
-|  clk_IBUF_BUFG | edge_det_gen_0[15].edge_det/M_last_q_reg_0 |                                            |                5 |              5 |
-|  clk_IBUF_BUFG | M_writer_counter_d                         |                                            |                3 |              7 |
-|  clk_IBUF_BUFG | edge_det_gen_0[15].edge_det/M_last_q_reg_0 | edge_det_gen_0[15].edge_det/M_last_q_reg_3 |                6 |             11 |
-|  clk_IBUF_BUFG | slow_clock_edge_detector/E[0]              | reset_cond/Q[0]                            |                8 |             15 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_14                       |                                            |                8 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_6                        |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_7                        |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_8                        |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_17                       |                                            |               11 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_19                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_20                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_25                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_3                        |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_5                        |                                            |                8 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_24                       |                                            |               10 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_18                       |                                            |                6 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_1                        |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_13                       |                                            |               10 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_15                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_2                        |                                            |               10 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_21                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_10                       |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_12                       |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_22                       |                                            |                9 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_26                       |                                            |                6 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_6_0                        |                                            |               12 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_8_0                        |                                            |               10 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_9                        |                                            |                6 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_8_1                        |                                            |                6 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_6_1                        |                                            |                8 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_16                       |                                            |                5 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_11                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_23                       |                                            |                7 |             16 |
-|  clk_IBUF_BUFG | io_cnd/sel                                 | io_cnd/sync/clear                          |                5 |             20 |
-|  clk_IBUF_BUFG | dip_cnd/M_ctr_q_reg[11]_0                  | dip_cnd/sync/M_pipe_q_reg[1]_0             |                5 |             20 |
-|  clk_IBUF_BUFG | pc/M_r_q[495]_i_5_4                        |                                            |               12 |             24 |
-|  clk_IBUF_BUFG |                                            |                                            |               12 |             25 |
-|  clk_IBUF_BUFG | slow_clock_edge_detector/M_last_q_reg_0    | reset_cond/Q[0]                            |                9 |             31 |
-|  clk_IBUF_BUFG |                                            | reset_cond/Q[0]                            |               14 |             46 |
-|  clk_IBUF_BUFG | cnt/E[0]                                   | reset_cond/Q[0]                            |               22 |             96 |
-+----------------+--------------------------------------------+--------------------------------------------+------------------+----------------+
++----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
+|  Clock Signal  |                   Enable Signal                  |                 Set/Reset Signal                 | Slice Load Count | Bel Load Count |
++----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG | matrixwriter/M_sclk_d1_out                       | reset_cond/M_stage_q_reg[3]_0                    |                1 |              1 |
+|  clk_IBUF_BUFG | matrixwriter/M_state_q0                          | reset_cond/Q[0]                                  |                1 |              1 |
+|  clk_IBUF_BUFG | ramwriter/CEA2                                   | reset_cond/Q[0]                                  |                1 |              4 |
+|  clk_IBUF_BUFG |                                                  | reset_cond/M_reset_cond_in                       |                3 |              4 |
+|  clk_IBUF_BUFG | matrixwriter/M_current_address_q[3]_i_1_n_0      | reset_cond/Q[0]                                  |                2 |              4 |
+|  clk_IBUF_BUFG | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_3 |                                                  |                3 |              5 |
+|  clk_IBUF_BUFG | ramwriter/M_data_col_address_q[5]_i_1_n_0        | reset_cond/Q[0]                                  |                3 |              6 |
+|  clk_IBUF_BUFG | matrixwriter/M_rgb_data_d                        | reset_cond/Q[0]                                  |                2 |              6 |
+|  clk_IBUF_BUFG | matrixwriter/M_state_d19_out                     | matrixwriter/clear                               |                3 |              7 |
+|  clk_IBUF_BUFG | sigma/M_writer_counter_d                         |                                                  |                4 |              8 |
+|  clk_IBUF_BUFG | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_3 | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_2 |                7 |             11 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_27                       |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_3                        |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_5                        |                                                  |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_7                        |                                                  |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_8                        |                                                  |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_4                        |                                                  |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_9                        |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_13                       |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_11                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_28                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_0                        |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_22                       |                                                  |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_12                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_2                        |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_15                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_10                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_16                       |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_18                       |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_19                       |                                                  |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_20                       |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_21                       |                                                  |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_23                       |                                                  |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_24                       |                                                  |                6 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_1                        |                                                  |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_25                       |                                                  |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_0                        |                                                  |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_14                       |                                                  |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_26                       |                                                  |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_17                       |                                                  |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/dip_cnd/M_ctr_q_reg[11]_0                  | sigma/dip_cnd/sync/M_pipe_q_reg[1]_0             |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/io_cnd/sel                                 | sigma/io_cnd/sync/clear                          |                5 |             20 |
+|  clk_IBUF_BUFG |                                                  |                                                  |               13 |             28 |
+|  clk_IBUF_BUFG | sigma/slow_clock_edge_detector/M_pc_slow_clock   | reset_cond/Q[0]                                  |               20 |             29 |
+|  clk_IBUF_BUFG | sigma/slow_clock_edge_detector/M_last_q_reg_0    | reset_cond/Q[0]                                  |                9 |             31 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_1                        |                                                  |               12 |             32 |
+|  clk_IBUF_BUFG | ramwriter/M_data_q[46]_i_1_n_0                   | reset_cond/Q[0]                                  |               11 |             47 |
+|  clk_IBUF_BUFG |                                                  | reset_cond/Q[0]                                  |               23 |             81 |
+|  clk_IBUF_BUFG | sigma/cnt/E[0]                                   | reset_cond/Q[0]                                  |               20 |             96 |
++----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
 
 

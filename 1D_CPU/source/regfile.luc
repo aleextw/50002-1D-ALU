@@ -6,14 +6,14 @@ module regfile (
     input wd[16],
     input wa[5],
     input buttons[16],
-    input ia,
     output rd1[16],
     output rd2[16],
-    output lvl[16],
-    output peg[16],
-    output pegsel[16],
-    output val_op[16],
-    output sel_but[16]
+    output level[16],
+    output pegs[16],
+    output selected_peg[16],
+    output val_move[16],
+    output space_check[16],
+    output possible[16]
   ) {
 
   .clk(clk){
@@ -46,11 +46,12 @@ module regfile (
     }
     
     
-    lvl = r.q[26];
-    peg = r.q[24];
-    pegsel = r.q[23];
-    val_op = r.q[25];
+    level = r.q[26];
+    pegs = r.q[24];
+    selected_peg = r.q[23];
+    val_move = r.q[25];
     
-    sel_but = r.q[0];
+    space_check = r.q[4];
+    possible = r.q[3];
   }
 }

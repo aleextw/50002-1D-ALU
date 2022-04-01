@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Mon Mar 28 12:43:16 2022
+| Date             : Thu Mar 31 19:51:28 2022
 | Host             : ALEX-LAPTOP running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.134        |
+| Total On-Chip Power (W)  | 0.117        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.062        |
+| Dynamic (W)              | 0.045        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 84.3         |
-| Junction Temperature (C) | 25.7         |
+| Max Ambient (C)          | 84.4         |
+| Junction Temperature (C) | 25.6         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.003 |        3 |       --- |             --- |
-| Slice Logic    |     0.003 |     2294 |       --- |             --- |
-|   LUT as Logic |     0.002 |     1122 |     20800 |            5.39 |
-|   Register     |    <0.001 |      768 |     41600 |            1.85 |
-|   CARRY4       |    <0.001 |       52 |      8150 |            0.64 |
-|   F7/F8 Muxes  |    <0.001 |      128 |     32600 |            0.39 |
-|   Others       |     0.000 |       57 |       --- |             --- |
-| Signals        |     0.007 |     1931 |       --- |             --- |
-| Block RAM      |     0.001 |      0.5 |        50 |            1.00 |
-| I/O            |     0.048 |       66 |       170 |           38.82 |
+| Clocks         |     0.004 |        3 |       --- |             --- |
+| Slice Logic    |     0.004 |     2787 |       --- |             --- |
+|   LUT as Logic |     0.004 |     1328 |     20800 |            6.38 |
+|   Register     |    <0.001 |      905 |     41600 |            2.18 |
+|   CARRY4       |    <0.001 |       59 |      8150 |            0.72 |
+|   F7/F8 Muxes  |    <0.001 |      209 |     32600 |            0.64 |
+|   Others       |     0.000 |       71 |       --- |             --- |
+| Signals        |     0.007 |     2168 |       --- |             --- |
+| Block RAM      |     0.002 |      1.5 |        50 |            3.00 |
+| I/O            |     0.028 |       79 |       170 |           46.47 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.134 |          |           |                 |
+| Total          |     0.117 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.023 |       0.014 |      0.010 |
-| Vccaux    |       1.800 |     0.014 |       0.002 |      0.013 |
-| Vcco33    |       3.300 |     0.015 |       0.014 |      0.001 |
+| Vccint    |       1.000 |     0.026 |       0.017 |      0.010 |
+| Vccaux    |       1.800 |     0.014 |       0.001 |      0.013 |
+| Vcco33    |       3.300 |     0.009 |       0.008 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -139,16 +139,18 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+----------+-----------+
-| Name     | Power (W) |
-+----------+-----------+
-| au_top_0 |     0.062 |
-|   arith  |     0.001 |
-|     rand |     0.001 |
-|   data   |     0.001 |
-|     ram  |     0.001 |
-|   pc     |     0.005 |
-|   rf     |     0.005 |
-+----------+-----------+
++-------------+-----------+
+| Name        | Power (W) |
++-------------+-----------+
+| au_top_0    |     0.045 |
+|   ramwriter |     0.001 |
+|   sigma     |     0.014 |
+|     arith   |     0.001 |
+|       rand  |     0.001 |
+|     data    |     0.001 |
+|       ram   |     0.001 |
+|     pc      |     0.006 |
+|     rf      |     0.005 |
++-------------+-----------+
 
 
