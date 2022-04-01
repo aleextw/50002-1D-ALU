@@ -91,6 +91,8 @@ SHLC(R8, 1, R8)     || R8 stores array index of peg position
 
 LD(R7, pegboard_array, R7)  || Get status of peg at space position
 LD(R8, pegboard_array, R8)  || Get status of peg at peg position
+SUBC(R7, 0, R7)
+SUBC(R8, 0, R8)
 CMPLE(R8, R7, R7)
 BF(R7, add_position, R31)
 
@@ -124,14 +126,15 @@ SHRC(R0, 4, R1) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BT(R1, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 
 CMPEQ(R0, R23, R1)  || Check whether b_input == a_input
-BT(R1, a_input, R31)
+BT(R1, start, R31)
 
 SUBC(R0, 1, R1)
-SHLC(R1, 3, R1) || Convert our ID - 1 to an array index
 CMOVE(1, R2)
 SHL(R2, R1, R2)         || Create our b_input bitmask
 AND(R25, R2, R2)
 BF(R2, b_input, R31)   
+SUBC(R23, 1, R1)
+SHLC(R1, 3, R1)        || Get our selected peg's array index
 
 || TODO: Build in error checking (after 4 cycles, consider it as invalid position, since there can be at most 4 possible moves)
 || Right now its just looping in the event that there is no valid position; bad code
@@ -140,7 +143,7 @@ LD(R1, jump_array, R2)  || contains our constraints, stored as {space, peg}
 SHRC(R2, 8, R3)     || R3 stores space position
 SHLC(R2, 8, R4)
 SHRC(R4, 8, R4)     || R4 stores peg position
-CMPEQ(R3, R0, R5)   || If our b_input == R5, then we have found our space position and peg position
+CMPEQ(R3, R0, R5)   || If our b_input == R3, then we have found our space position and peg position
 ADDC(R1, 2, R1)     || Go to next index
 BF(R5, peg_search, R31)
 

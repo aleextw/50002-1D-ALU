@@ -124,7 +124,7 @@ SHRC(R0, 4, R1) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BT(R1, start, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 
 CMPEQ(R0, R23, R1)  || Check whether b_input == a_input
-BT(R1, a_input, R31)
+BT(R1, start, R31)
 
 SUBC(R0, 1, R1)
 CMOVE(1, R2)
