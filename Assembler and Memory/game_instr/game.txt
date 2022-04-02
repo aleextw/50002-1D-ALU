@@ -89,12 +89,11 @@ SHRC(R6, 8, R6)     || R6 stores peg position
 SUBC(R6, 1, R8)
 SHLC(R8, 1, R8)     || R8 stores array index of peg position
 
-LD(R7, pegboard_array, R7)  || Get status of peg at space position
-LD(R8, pegboard_array, R8)  || Get status of peg at peg position
-SUBC(R7, 0, R7)
-SUBC(R8, 0, R8)
-CMPLE(R8, R7, R7)
-BF(R7, add_position, R31)
+LD(R7, pegboard_array, R9)  || Get status of peg at space position
+LD(R8, pegboard_array, R10)  || Get status of peg at peg position
+
+CMPLE(R10, R9, R11)
+BF(R11, add_position, R31)
 
 ADDC(R2, 1, R2)
 ADDC(R1, 2, R1)
