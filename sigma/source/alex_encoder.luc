@@ -1,0 +1,19 @@
+module alex_encoder #(
+    WIDTH : WIDTH > 1 // width of the input
+  )(
+    input in[WIDTH],
+    output out[$clog2(WIDTH) + 1] // ceiling log base 2
+  ) {
+  
+  var i;
+  
+  always {
+    out = 0; // default to junk
+    
+    // for each bit
+    for (i = 0; i < WIDTH; i++) {
+      if (in[i]) // if the bit is set
+        out = i + 1; // the output is the index of that bit
+    }
+  }
+}

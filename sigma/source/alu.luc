@@ -1,0 +1,67 @@
+module alu (
+    input clk,    // clk and rst used for our random number generator
+    input rst,
+    input a[16],
+    input b[16],
+    input alufn[6],
+    input slow_clock,
+    output out[16],
+    output z,
+    output v,
+    output n,
+    output randout[16]
+  ) {
+  
+  pn_gen rand;
+  adder add;
+  bool bl;
+  bitshift bs;
+  compare cmp;
+  
+  sig temp_z;
+  sig temp_v;
+  sig temp_n;
+  
+  always {
+    rand.clk = clk;
+    rand.rst = rst;
+    rand.seed = 128h843233523a613966423b622562592c62;
+    rand.next = slow_clock;
+    
+    add.a = a;
+    add.b = b;
+    add.alufn = alufn[0];
+    temp_z = add.z;
+    temp_v = add.v;
+    temp_n = add.n;
+    
+    bl.a = a;
+    bl.b = b;
+    bl.alufn = alufn[3:0];
+    
+    bs.a = a;
+    bs.b = b;
+    bs.alufn = alufn[1:0];
+    
+    cmp.z = temp_z;
+    cmp.v = temp_v;
+    cmp.n = temp_n;
+    cmp.alufn = alufn[2:1];
+    
+    case(alufn[5:4]) {
+      0: case(alufn[3:0]) {
+        b0000: out = add.s;
+        b0001: out = add.s;
+        b1000: out = c{12b0, rand.num[3:0]};  
+        default: out = 0;
+      }
+      1: out = bl.out;
+      2: out = bs.out;
+      3: out = cmp.out;
+    }
+    randout = rand.num[15:0];
+    z = temp_z;
+    v = temp_v;
+    n = temp_n;
+  }
+}

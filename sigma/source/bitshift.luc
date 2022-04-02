@@ -1,0 +1,19 @@
+module bitshift (
+    input a[16],
+    input b[16],
+    input alufn[2],
+    output out[16]
+  ) {
+
+  always {
+    case(alufn) {
+      // 100000 SHL
+      0: out = a << b[3:0];  
+      // 100001 SHR
+      1: out = a >> b[3:0];
+      // 100011 SRA (Signed right shift not working for some reason)
+      3: out = a >>> b[3:0] ^ (16x{a[15]} << (16 - b[3:0]));
+      default: out = a;
+    }
+  }
+}

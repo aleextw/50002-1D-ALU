@@ -1,0 +1,77 @@
+module regfile (
+    input clk,  // clock
+    input ra1[5],
+    input ra2[5],
+    input we,
+    input wd[16],
+    input wa[5],
+    input buttons[16],
+    output rd1[16],
+    output rd2[16],
+    output level[16],
+    output pegs[16],
+    output selected_peg[16],
+    output val_move[16],
+    output space_check[16],
+    output possible[16],
+    output debug[16][16]
+  ) {
+
+  .clk(clk){
+    dff r[32][16];
+  }
+  
+  alex_encoder button_encoder (#WIDTH(16));
+  
+  always {
+     button_encoder.in = buttons;
+    
+    if (button_encoder.out != 0) {
+        r.d[22] = button_encoder.out;
+    }
+    
+    if (wa != b11111 & we) {
+      r.d[wa] = wd;
+    }
+    
+    if (ra1 != b11111) {
+      rd1 = r.q[ra1];
+    } else {
+      rd1 = 16 x{0};
+    }
+    
+    if (ra2 != b11111) {
+      rd2 = r.q[ra2];
+    } else {
+      rd2 = 16 x{0};
+    }
+    
+    
+    level = r.q[26];
+    pegs = r.q[24];
+    selected_peg = r.q[23];
+    val_move = r.q[25];
+    
+    space_check = r.q[24]; // right now set to peg board 
+    
+    
+    possible = r.q[0]; // set to r0
+    
+    debug[0] = r.q[0];
+    debug[1] = r.q[1];
+    debug[2] = r.q[2];
+    debug[3] = r.q[3];
+    debug[4] = r.q[4];
+    debug[5] = r.q[5];
+    debug[6] = r.q[6];
+    debug[7] = r.q[7];
+    debug[8] = r.q[8];
+    debug[9] = r.q[9];
+    debug[10] = r.q[10];
+    debug[11] = r.q[23];
+    debug[12] = r.q[24];
+    debug[13] = r.q[25];
+    debug[14] = r.q[26];
+    debug[15] = r.q[30];
+  }
+}

@@ -1,0 +1,193 @@
+module au_top (
+    input clk,              // 100MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input usb_rx,           // USB->Serial input
+    output usb_tx,          // USB->Serial output
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+    
+    // to matrix. See custom.acf for pins
+    output red0,
+    output green0, 
+    output blue0,
+    output red1,
+    output green1,
+    output blue1,
+    output latch, 
+    output blank, // also known as oe
+    output sclk_out,
+    output address[4] // row address current write to LED matrix
+  ) {
+  
+    sig rst;                  // reset signal
+  
+    const NUM_DATA = 78;
+    inst_mem inst_mem;
+    data_rom data_rom;
+    bin_to_dec btd(#DIGITS(16));
+    decoder ss_sel_dec(#WIDTH(2));
+    seven_seg ss;
+  
+    decoder sel_peg_dec(#WIDTH(4));
+  
+  .clk(clk) {
+    edge_detector edge_det[16] (#RISE(1), #FALL(0));
+    fsm ram_writer = {LOAD, WAIT, GO};
+    dff writer_counter[$clog2(NUM_DATA)+1];
+    button_conditioner io_cnd;
+    button_conditioner dip_cnd;
+    
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    edge_detector slow_clock_edge_detector (#RISE(1), #FALL(1));
+    data_mem data_mem;
+    sigma sigma;
+    .rst(rst) {
+      matrix_writer matrixwriter;
+      matrix_ram_writer ramwriter(#DATA_WIDTH(16));
+      matrix_ram matrixram;
+      counter cnt0(#SIZE(1), #DIV(20)); 
+      counter cnt1(#SIZE(1), #DIV(26));
+      counter cnt2(#SIZE(1), #DIV(27));
+      counter cnt3(#SIZE(1), #DIV(28));
+       
+      counter ss_sel(#SIZE(2), #TOP(3), #DIV(16));
+    }
+  }
+  
+  always {
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    usb_tx = usb_rx;        // loop serial port
+    
+    led = 8h00;             // turn LEDs off
+    
+    io_led = 3x{{8h00}};    // turn LEDs off
+    io_seg = 8hff;          // turn segments off
+    io_sel = 4hf;           // select no digits
+  
+    case(io_dip[0][7:6]){
+      b00: led[0] = cnt0.value;
+      b01: led[0] = cnt1.value;
+      b10: led[0] = cnt2.value;
+      b11: led[0] = cnt3.value;
+    }
+
+    // Display PC on 7-segment display
+    ss_sel_dec.in = ss_sel.value;
+    btd.value = sigma.ia[15:0];
+    ss.char = btd.digits[ss_sel.value];
+    io_sel = ~ss_sel_dec.out;
+    io_seg = ~ss.segs;
+    
+    io_cnd.in = io_button[0];
+    dip_cnd.in = io_dip[0][0];
+
+    edge_det.in = $flatten(io_dip[2:1]);
+     
+    case(io_dip[0][7:6]){
+      b00: slow_clock_edge_detector.in = cnt0.value;
+      b01: slow_clock_edge_detector.in = cnt1.value;
+      b10: slow_clock_edge_detector.in = cnt2.value;
+      b11: slow_clock_edge_detector.in = cnt3.value;
+      default: slow_clock_edge_detector.in = cnt0.value;
+    }
+
+    sigma.slowclock = slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out);
+    sigma.rst = rst;
+    data_mem.wr = sigma.wr;
+    data_mem.addr = sigma.ma;
+    data_mem.wd = sigma.mwd;
+    inst_mem.ia = sigma.ia;
+    sigma.id = inst_mem.id;
+    sigma.md = data_mem.out;
+    
+    // io_led[0][7:0] = sigma.ma; // alu out
+    // io_led[1][7:0] = sigma.ia; // pc out
+    // io_led[2][7:0] = data_mem.out; // content of memory 
+
+   
+    sigma.rst = 0;
+   
+    matrixwriter.data = c{matrixram.bottom_out, matrixram.top_out};
+  
+    red0 = matrixwriter.red0;
+    red1 = matrixwriter.red1;
+    green0 = matrixwriter.green0;
+    green1 = matrixwriter.green1;
+    blue0 = matrixwriter.blue0;
+    blue1 = matrixwriter.blue1; 
+    latch = matrixwriter.latch;
+    sclk_out = matrixwriter.sclk_out;
+    blank = matrixwriter.blank;
+    address = matrixwriter.address;
+    
+    ramwriter.reload = slow_clock_edge_detector.out;
+    sigma.buttons = edge_det.out;
+    led = sigma.led;
+    sel_peg_dec.in = sigma.selected_peg[3:0];
+    
+    ramwriter.new_data = {sel_peg_dec.out >> 1, sigma.val_move, sigma.pegs};
+    
+    matrixram.row_address_top = ramwriter.row_address_top;
+    matrixram.col_address_top = ramwriter.col_address_top;
+    matrixram.we_top = ramwriter.we_top;
+    matrixram.wd_top = ramwriter.wd_top;
+    
+    matrixram.row_address_btm = ramwriter.row_address_btm;
+    matrixram.col_address_btm = ramwriter.col_address_btm;
+    matrixram.we_btm = ramwriter.we_btm;
+    matrixram.wd_btm = ramwriter.wd_btm;
+    
+    matrixram.ready = ramwriter.ready;
+    matrixram.row_address = matrixwriter.row_index;
+    matrixram.col_address = matrixwriter.col_index;
+
+    case(io_dip[0][1]){
+      b0: io_led[2] = inst_mem.id[7:0];
+      b1: io_led[2] = sigma.ma[7:0];
+    }
+    
+    case(io_dip[2][1:0]){
+      b00: led = sigma.alufn;
+      b01: led = sigma.alu_a;
+      b10: led = sigma.alu_b;
+      b11: led = data_mem.out;
+      
+    }
+
+    io_led[1:0] = $build(sigma.debug[io_dip[0][5:2]],2);
+    
+    
+     // Data Memory
+    data_rom.address = writer_counter.q;
+    case (ram_writer.q) {
+      ram_writer.LOAD:
+        sigma.rst = 1;
+        writer_counter.d = writer_counter.q + 1;
+        data_mem.wr = 1;
+        data_mem.addr = writer_counter.q << 1;
+        data_mem.wd = data_rom.out;
+        if (writer_counter.q == NUM_DATA) {
+          ram_writer.d = ram_writer.WAIT;
+        }
+      ram_writer.WAIT:
+        sigma.rst = 1;
+        data_mem.wr = 0;
+        data_mem.addr = writer_counter.q << 1;
+        data_mem.wd = data_rom.out;
+        ram_writer.d = ram_writer.GO;
+      ram_writer.GO:
+        sigma.rst = 0;
+        ram_writer.d = ram_writer.GO;
+    }
+    
+    
+  }
+}
