@@ -55,8 +55,8 @@ module cu_20 (
             wasel = 1'h0;
           end
           4'hb: begin
-            werf = 1'h0;
-            bsel = 1'h1;
+            werf = 1'h1;
+            bsel = 1'h0;
             wdsel = 1'h0;
             wr = 1'h0;
             ra2sel = 1'h0;

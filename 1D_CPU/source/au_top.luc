@@ -42,7 +42,7 @@ module au_top (
     
     .rst(rst) {
       sigma_cpu sigma;
-      counter cnt(#SIZE(1), #DIV(26));
+      counter cnt(#SIZE(1), #DIV(16));
     }
   }
   

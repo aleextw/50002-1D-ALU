@@ -286,7 +286,7 @@ module sigma_cpu_7 (
     selected_peg = M_rf_selected_peg;
     val_move = M_rf_val_move;
     space_check = M_rf_space_check;
-    possible = M_arith_out;
+    possible = M_rf_possible;
     led[0+0-:1] = M_cnt_value;
     led[1+6-:7] = M_pc_ia[0+6-:7];
     M_arith_rst = rst;
