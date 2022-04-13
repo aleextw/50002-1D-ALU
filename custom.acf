@@ -60,7 +60,7 @@ pin exButtons[6] A5 pulldown;
 pin button_c1[0] A48;
 pin button_c1[1] A49;
 pin button_c1[2] A3;
-pin exButtons[7] A2 pulldown;
+pin exButtons[7] C8 pulldown;
 
 // bank b
 
