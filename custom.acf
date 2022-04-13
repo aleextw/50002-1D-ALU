@@ -55,7 +55,7 @@ pin exButtons[5] A8 pulldown;
 pin button_d4[0] A45;
 pin button_d4[1] A46;
 pin button_d4[2] A6;
-pin exButtons[6] A5 pulldown;
+pin exButtons[6] C42 pulldown;
 
 pin button_c1[0] A48;
 pin button_c1[1] A49;
@@ -102,10 +102,13 @@ pin exButtons[14] B2 pulldown;
 pin button_reset C9 pulldown;
 
 //bank c (must be pullup?)
-pin seven_seg[0] C49;
-pin seven_seg[1] C48;
-pin seven_seg[2] C2;
-pin seven_seg[3] C3;
-pin seven_seg[4] C46;
-pin seven_seg[5] C45;
-pin seven_seg[6] C5;
+pin seven_seg[0] C6;
+pin seven_seg[1] C2;
+pin seven_seg[2] C3;
+pin seven_seg[3] C46; //IN USE (c)
+pin seven_seg[4] C45; //IN USE (e)
+pin seven_seg[5] C5; //IN USE (b)
+pin seven_seg[6] C37;
+pin seven_seg[7] C36;
+pin seven_seg[8] C14;
+pin seven_seg[9] C15; //IN USE (a,g,d)
