@@ -11,9 +11,7 @@ module regfile (
     output level[16],
     output pegs[16],
     output selected_peg[16],
-    output val_move[16],
-    output space_check[16],
-    output possible[16]
+    output val_move[16]
   ) {
 
   .clk(clk){
@@ -50,8 +48,5 @@ module regfile (
     pegs = r.q[24];
     selected_peg = r.q[23];
     val_move = r.q[25];
-    
-    space_check = r.q[4];
-    possible = r.q[3];
   }
 }

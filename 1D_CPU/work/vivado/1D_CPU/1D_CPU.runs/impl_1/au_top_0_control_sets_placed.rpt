@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sun Apr  3 18:31:20 2022
+| Date         : Wed Apr 13 18:35:48 2022
 | Host         : ALEX-LAPTOP running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    49 |
-|    Minimum number of control sets                        |    49 |
+| Total control sets                                       |    54 |
+|    Minimum number of control sets                        |    54 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    57 |
+| Unused register locations in slices containing registers |    91 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    49 |
-| >= 0 to < 4        |     2 |
-| >= 4 to < 6        |     4 |
-| >= 6 to < 8        |     3 |
+| Total control sets |    54 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |    37 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    50 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,70 +58,75 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              28 |           14 |
+| No           | No                    | No                     |              53 |           24 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              65 |           21 |
-| Yes          | No                    | No                     |             517 |          251 |
+| No           | Yes                   | No                     |              23 |            8 |
+| Yes          | No                    | No                     |             493 |          245 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             269 |           76 |
+| Yes          | Yes                   | No                     |             476 |          134 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
-|  Clock Signal  |                   Enable Signal                  |                 Set/Reset Signal                 | Slice Load Count | Bel Load Count |
-+----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
-|  clk_IBUF_BUFG | matrixwriter/M_sclk_d1_out                       | reset_cond/M_stage_q_reg[3]_0                    |                1 |              1 |
-|  clk_IBUF_BUFG | matrixwriter/M_state_q0                          | reset_cond/Q[0]                                  |                1 |              1 |
-|  clk_IBUF_BUFG |                                                  | reset_cond/M_reset_cond_in                       |                3 |              4 |
-|  clk_IBUF_BUFG | ramwriter/CEA2                                   | reset_cond/Q[0]                                  |                1 |              4 |
-|  clk_IBUF_BUFG | matrixwriter/M_current_address_q[3]_i_1_n_0      | reset_cond/Q[0]                                  |                2 |              4 |
-|  clk_IBUF_BUFG | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_3 |                                                  |                3 |              5 |
-|  clk_IBUF_BUFG | ramwriter/M_data_col_address_q[5]_i_1_n_0        | reset_cond/Q[0]                                  |                2 |              6 |
-|  clk_IBUF_BUFG | matrixwriter/M_rgb_data_d                        | reset_cond/Q[0]                                  |                3 |              6 |
-|  clk_IBUF_BUFG | matrixwriter/M_state_d19_out                     | matrixwriter/clear                               |                3 |              7 |
-|  clk_IBUF_BUFG | sigma/M_writer_counter_d                         |                                                  |                4 |              8 |
-|  clk_IBUF_BUFG | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_3 | sigma/edge_det_gen_0[15].edge_det/M_last_q_reg_2 |                5 |             11 |
-|  clk_IBUF_BUFG | sigma/slow_clock_edge_detector/E[0]              | reset_cond/Q[0]                                  |                8 |             15 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_21                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_0                        |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_4                        |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_5                        |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_7                        |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_17                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_24                       |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_27                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_3                        |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_2                        |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_11                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_12                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_28                       |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_15                       |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_13                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_19                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_1                        |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_18                       |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_22                       |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_8                        |                                                  |               10 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_9                        |                                                  |                8 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_25                       |                                                  |               10 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_14                       |                                                  |               10 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_3_0                        |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_10                       |                                                  |                6 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_23                       |                                                  |                9 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_16                       |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_26                       |                                                  |                7 |             16 |
-|  clk_IBUF_BUFG | sigma/dip_cnd/M_ctr_q_reg[11]_0                  | sigma/dip_cnd/sync/M_pipe_q_reg[1]_0             |                5 |             20 |
-|  clk_IBUF_BUFG | sigma/io_cnd/sel                                 | sigma/io_cnd/sync/clear                          |                5 |             20 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_6                        |                                                  |                9 |             24 |
-|  clk_IBUF_BUFG |                                                  |                                                  |               14 |             28 |
-|  clk_IBUF_BUFG | sigma/slow_clock_edge_detector/M_last_q_reg_0    | reset_cond/Q[0]                                  |                9 |             31 |
-|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_3_1                        |                                                  |                9 |             32 |
-|  clk_IBUF_BUFG | ramwriter/M_data_q[46]_i_1_n_0                   | reset_cond/Q[0]                                  |               11 |             47 |
-|  clk_IBUF_BUFG |                                                  | reset_cond/Q[0]                                  |               18 |             61 |
-|  clk_IBUF_BUFG | sigma/cnt/E[0]                                   | reset_cond/Q[0]                                  |               20 |             96 |
-+----------------+--------------------------------------------------+--------------------------------------------------+------------------+----------------+
++----------------+---------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+
+|  Clock Signal  |                         Enable Signal                         |                        Set/Reset Signal                        | Slice Load Count | Bel Load Count |
++----------------+---------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[15].button_cond/M_last_q_reg_2        |                                                                |                4 |              5 |
+|  clk_IBUF_BUFG |                                                               | reset_cond/M_reset_cond_in                                     |                2 |              5 |
+|  clk_IBUF_BUFG | sigma/M_writer_counter_d                                      |                                                                |                4 |              8 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[15].button_cond/M_last_q_reg_2        | sigma/button_cond_gen_0[15].button_cond/M_last_q_reg_1         |                8 |             11 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_23                                    |                                                                |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_4                                     |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_25                                    |                                                                |               11 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_24                                    |                                                                |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_5                                     |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_7                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_6_0                                     |                                                                |               11 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_6_1                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_12                                    |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_1                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_15                                    |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_9                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_8                                     |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_19                                    |                                                                |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_13                                    |                                                                |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_10                                    |                                                                |                6 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_11                                    |                                                                |                6 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_16                                    |                                                                |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_20                                    |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_21                                    |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_22                                    |                                                                |                6 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_26                                    |                                                                |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_0                                     |                                                                |                8 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_17                                    |                                                                |                6 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_2                                     |                                                                |                5 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_18                                    |                                                                |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_14                                    |                                                                |               10 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_1                                     |                                                                |                9 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_8_0                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG | sigma/pc/M_r_q[495]_i_5_3                                     |                                                                |                7 |             16 |
+|  clk_IBUF_BUFG |                                                               | reset_cond/Q[0]                                                |                6 |             18 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[13].button_cond/M_ctr_q[0]_i_2__1_n_0 | sigma/button_cond_gen_0[13].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[14].button_cond/M_ctr_q[0]_i_2__0_n_0 | sigma/button_cond_gen_0[14].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[15].button_cond/sel                   | sigma/button_cond_gen_0[15].button_cond/sync/clear             |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[1].button_cond/M_ctr_q[0]_i_2__13_n_0 | sigma/button_cond_gen_0[1].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[2].button_cond/M_ctr_q[0]_i_2__12_n_0 | sigma/button_cond_gen_0[2].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[3].button_cond/M_ctr_q[0]_i_2__11_n_0 | sigma/button_cond_gen_0[3].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[4].button_cond/M_ctr_q[0]_i_2__10_n_0 | sigma/button_cond_gen_0[4].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[7].button_cond/M_ctr_q[0]_i_2__7_n_0  | sigma/button_cond_gen_0[7].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[8].button_cond/M_ctr_q[0]_i_2__6_n_0  | sigma/button_cond_gen_0[8].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[9].button_cond/M_ctr_q[0]_i_2__5_n_0  | sigma/button_cond_gen_0[9].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[12].button_cond/M_ctr_q[0]_i_2__2_n_0 | sigma/button_cond_gen_0[12].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[0].button_cond/M_ctr_q[0]_i_2__14_n_0 | sigma/button_cond_gen_0[0].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[10].button_cond/M_ctr_q[0]_i_2__4_n_0 | sigma/button_cond_gen_0[10].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[11].button_cond/M_ctr_q[0]_i_2__3_n_0 | sigma/button_cond_gen_0[11].button_cond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[5].button_cond/M_ctr_q[0]_i_2__9_n_0  | sigma/button_cond_gen_0[5].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/button_cond_gen_0[6].button_cond/M_ctr_q[0]_i_2__8_n_0  | sigma/button_cond_gen_0[6].button_cond/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | sigma/slow_clock_edge_detector/M_last_q_reg_1                 | reset_cond/Q[0]                                                |               13 |             31 |
+|  clk_IBUF_BUFG |                                                               |                                                                |               24 |             53 |
+|  clk_IBUF_BUFG | sigma/cnt/M_arith_slow_clock                                  | reset_cond/Q[0]                                                |               33 |            114 |
++----------------+---------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+
 
 

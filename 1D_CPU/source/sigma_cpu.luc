@@ -1,33 +1,18 @@
 module sigma_cpu (
     input clk,              // 100MHz clock
     input rst,            // reset button (active low)
-    input io_button [5],    // 5 buttons on IO Shield
-    input buttons [16],   // DIP switches on IO Shield
-    input clk_dip,
-    output led [8],         // 8 user controllable LEDs
-    output io_led [3][8],   // LEDs on IO Shield
-    output io_seg [8],      // 7-segment LEDs on IO Shield
-    output io_sel [4],     // Digit select on IO Shield
+    input buttons [16],   // Button input
     output level [16],
     output pegs [16],
     output selected_peg [16],
-    output val_move [16],
-    output space_check [16],
-    output possible [16]
+    output val_move [16]
   ) {
   
   const NUM_DATA = 84;
   
-  bin_to_dec btd(#DIGITS(16));
-  decoder ss_sel_dec(#WIDTH(2));
-  seven_seg ss;
-  
   .clk(clk) {
-    // button_conditioner button_cond[16];
+    button_conditioner button_cond[16];
     edge_detector edge_det[16] (#RISE(1), #FALL(0));
-    
-    button_conditioner io_cnd;
-    button_conditioner dip_cnd;
     
     alu arith;
     regfile rf;
@@ -41,7 +26,6 @@ module sigma_cpu (
     
     .rst(rst) {
       counter cnt(#SIZE(1), #DIV(16));
-      counter ss_sel(#SIZE(2), #TOP(3), #DIV(16));
     }
   }
   
@@ -51,36 +35,18 @@ module sigma_cpu (
   
   always {      
     rf.we = 0;
-    if (slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out)) {
+    if (slow_clock_edge_detector.out) {
       rf.we = cu.werf;
     }
     
     arith.slow_clock = slow_clock_edge_detector.out;
     
-    led = 8h00;             // turn LEDs off
-
-    io_led = 3x{{8h00}};    // turn LEDs off
-    io_seg = 8hff;          // turn segments off
-    io_sel = 4hf;           // select no digits
-    
-    io_cnd.in = io_button[0];
-    dip_cnd.in = clk_dip;
-    
-    // Display PC on 7-segment display
-    ss_sel_dec.in = ss_sel.value;
-    btd.value = pc.ia;
-    ss.char = btd.digits[ss_sel.value];
-    io_sel = ~ss_sel_dec.out;
-    io_seg = ~ss.segs;
-    
-    io_cnd.in = io_button[0];
-    // edge_det.in = button_cond.out;
-    edge_det.in = buttons[15:0];
+    button_cond.in = buttons;
+    edge_det.in = button_cond.out;
     
     // Program Counter
     slow_clock_edge_detector.in = cnt.value;
-    pc.slow_clock = slow_clock_edge_detector.out & (io_cnd.out | dip_cnd.out);
-    // pc.but = io_cnd.out;
+    pc.slow_clock = slow_clock_edge_detector.out;
     pc.rst = rst;
     instructions.ia = pc.ia;
     pc.id = instructions.id[15:0];
@@ -114,11 +80,6 @@ module sigma_cpu (
     level = rf.level;
     selected_peg = rf.selected_peg;
     val_move = rf.val_move;
-    space_check = rf.space_check;
-    possible = rf.possible;
-    
-    led[0] = cnt.value;
-    led[7:1] = pc.ia[6:0];
     
     // ALU
     arith.rst = rst;

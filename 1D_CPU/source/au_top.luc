@@ -4,45 +4,22 @@ module au_top (
     output led [8],         // 8 user controllable LEDs
     input usb_rx,           // USB->Serial input
     output usb_tx,          // USB->Serial output
-    output io_led [3][8],   // LEDs on IO Shield
-    output io_seg [8],      // 7-segment LEDs on IO Shield
-    output io_sel [4],      // Digit select on IO Shield
-    input io_button [5],    // 5 buttons on IO Shield
-    input io_dip [3][8],     // DIP switches on IO Shield
-    
-    // to matrix. See custom.acf for pins
-    output red0,
-    output green0, 
-    output blue0,
-    output red1,
-    output green1,
-    output blue1,
-    output latch, 
-    output blank, // also known as oe
-    output sclk_out,
-    output address[4] // row address current write to LED matrix
+    input button[16],
+    output out_led[3][15],
+    output seven_seg[7]
   ) {
   
   sig rst;                  // reset signal
   
-  matrix_writer matrixwriter(.clk(clk), .rst(rst));
-  matrix_ram_writer ramwriter(#DATA_WIDTH(16), .clk(clk), .rst(rst));
-  matrix_ram matrixram(.clk(clk), .rst(rst));
-  
-  dff row_index[8](.clk(clk));
-  dff col_index[8](.clk(clk));
-  
-  decoder sel_peg_dec(#WIDTH(4));
+  seven_seg ss_decoder;
   
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-    edge_detector sced (#RISE(1), #FALL(1));
     
     .rst(rst) {
       sigma_cpu sigma;
-      counter cnt(#SIZE(1), #DIV(16));
     }
   }
   
@@ -54,67 +31,12 @@ module au_top (
 
     usb_tx = usb_rx;        // echo the serial data
     
-    sced.in = cnt.value;
-    ramwriter.reload = sced.out;
+    sigma.buttons = button;
+    out_led[0] = ~sigma.val_move[14:0];
+    out_led[1] = ~sigma.pegs[14:0];
+    out_led[2] = ~sigma.selected_peg[14:0];
     
-    sigma.buttons = $flatten(io_dip[2:1]);
-    sigma.io_button = io_button;
-    sigma.clk_dip = io_dip[0][0];
-    io_sel = sigma.io_sel;
-    io_seg = sigma.io_seg;
-    io_led = sigma.io_led;
-    led = sigma.led;
-    
-    sel_peg_dec.in = sigma.selected_peg[3:0];
-    
-    ramwriter.new_data = {sel_peg_dec.out >> 1, sigma.val_move, sigma.pegs};
-    
-    matrixram.row_address_top = ramwriter.row_address_top;
-    matrixram.col_address_top = ramwriter.col_address_top;
-    matrixram.we_top = ramwriter.we_top;
-    matrixram.wd_top = ramwriter.wd_top;
-    
-    matrixram.row_address_btm = ramwriter.row_address_btm;
-    matrixram.col_address_btm = ramwriter.col_address_btm;
-    matrixram.we_btm = ramwriter.we_btm;
-    matrixram.wd_btm = ramwriter.wd_btm;
-    
-    matrixram.ready = ramwriter.ready;
-    
-    // these indexes are offset by 2 for unknown reasons
-    // to debug with more data in the matrix_ram so that we know if we don't offset the rows too 
-    // right now it is handled inside matrix_ram by reducing by 2 before feeding it to the ram
-    matrixram.row_address = matrixwriter.row_index;
-    matrixram.col_address = matrixwriter.col_index;
-    
-    // matrixram.row_address = matrixwriter.address;
-    // matrixram.col_address = matrixwriter.debug;
-   
-    
-   // matrixwriter.data = 6b100100; // BLUE sample. change to the output of some RAM unit 
-    matrixwriter.data = c{matrixram.bottom_out, matrixram.top_out};
-  
-    red0 = matrixwriter.red0;
-    red1 = matrixwriter.red1;
-    green0 = matrixwriter.green0;
-    green1 = matrixwriter.green1;
-    blue0 = matrixwriter.blue0;
-    blue1 = matrixwriter.blue1; 
-    latch = matrixwriter.latch;
-    sclk_out = matrixwriter.sclk_out;
-    blank = matrixwriter.blank;
-    address = matrixwriter.address;
-    
-    
-    if (matrixwriter.row_index != 0){
-      row_index.d = matrixwriter.row_index;
-    }
-    
-    if (matrixwriter.col_index != 0){
-      col_index.d = matrixwriter.col_index;
-    }
-    
-    io_led[2] = sigma.possible[7:0];
-    io_led[1:0] = $build(sigma.space_check, 2);
+    ss_decoder.char = sigma.selected_peg[3:0];
+    seven_seg = ~ss_decoder.segs;
   }
 }
