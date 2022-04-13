@@ -7,6 +7,16 @@ BF(R0, init, R31) || If MSB == 1, means we pressed the start button, continue, e
 CMOVE(1, R26) || Add 1 to our level count R26
 
 start:
+game_start_light_loop:
+CMOVE(65535, R25)
+CMOVE(65535, R24)
+CMOVE(65535, R23)
+CMOVE(32767, R0)
+game_start_noop_loop_on:
+NOP()
+SUBC(R0, 1, R0)
+BNE(R0, game_start_noop_loop_on, R31)
+
 || If R26 == 1, branch to level_one_setup
 CMPEQC(R26,1,R0) || if R26 == 1, then R0 is 1, else R0 is 0
 BT(R0, level_one_setup, R31) 
