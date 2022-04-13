@@ -9,7 +9,7 @@ game_start_light_loop:
 CMOVE(65535, R25)
 CMOVE(65535, R24)
 CMOVE(65535, R23)
-CMOVE(32767, R0)
+CMOVE(1525, R0)
 game_start_noop_loop_on:
 NOP()
 SUBC(R0, 1, R0)
@@ -23,7 +23,7 @@ BT(R0, level_three_setup, R31)
 CMOVE(-1, R24)
 game_end_light_loop:
 SHRC(R24, 1, R24)
-CMOVE(32767, R0)
+CMOVE(1525, R0)
 game_end_noop_loop:
 NOP()
 SUBC(R0, 1, R0)
@@ -167,7 +167,7 @@ MOVE(R31, R25)
 CMOVE(-1, R24)
 level_end_light_loop:
 SHRC(R24, 1, R24)
-CMOVE(32767, R0)
+CMOVE(1525, R0)
 level_end_noop_loop:
 NOP()
 SUBC(R0, 1, R0)
