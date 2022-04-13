@@ -1,0 +1,111 @@
+pin clk CLOCK;
+clock clk 100MHz;
+
+pin rst_n RESET;
+
+pin led[0] LED0;
+pin led[1] LED1;
+pin led[2] LED2;
+pin led[3] LED3;
+pin led[4] LED4;
+pin led[5] LED5;
+pin led[6] LED6;
+pin led[7] LED7;
+
+// flip the Tx/Rx lines
+pin usb_rx USB_TX;
+pin usb_tx USB_RX;
+
+//io_button
+pin io_button[0] B28 pulldown; //input pins need to pulldown
+pin io_button[1] B27 pulldown;
+pin io_button[2] B23 pulldown;
+
+// bank a
+pin button_a1[0] A27;
+pin button_a1[1] A28;
+pin button_a1[2] A24;
+pin exButtons[0] A23 pulldown;
+
+pin button_b1[0] A30;
+pin button_b1[1] A31;
+pin button_b1[2] A21;
+pin exButtons[1] A20 pulldown;
+
+pin button_b2[0] A33;
+pin button_b2[1] A34;
+pin button_b2[2] A18;
+pin exButtons[2] A17 pulldown;
+
+pin button_d1[0] A36;
+pin button_d1[1] A37;
+pin button_d1[2] A15;
+pin exButtons[3] A14 pulldown;
+
+pin button_d2[0] A39;
+pin button_d2[1] A40;
+pin button_d2[2] A12;
+pin exButtons[4] A11 pulldown;
+
+pin button_d3[0] A42;
+pin button_d3[1] A43;
+pin button_d3[2] A9;
+pin exButtons[5] A8 pulldown;
+
+pin button_d4[0] A45;
+pin button_d4[1] A46;
+pin button_d4[2] A6;
+pin exButtons[6] A5 pulldown;
+
+pin button_c1[0] A48;
+pin button_c1[1] A49;
+pin button_c1[2] A3;
+pin exButtons[7] A2 pulldown;
+
+// bank b
+
+pin button_c2[0] B30;
+pin button_c2[1] B31;
+pin button_c2[2] B21;
+pin exButtons[8] B20 pulldown;
+
+pin button_c3[0] C40;
+pin button_c3[1] C39;
+pin button_c3[2] C11;
+pin exButtons[9] C12 pulldown;
+
+pin button_e1[0] B36;
+pin button_e1[1] B37;
+pin button_e1[2] B15;
+pin exButtons[10] B14 pulldown;
+
+pin button_e2[0] B39;
+pin button_e2[1] B40;
+pin button_e2[2] B12;
+pin exButtons[11] B11 pulldown;
+
+pin button_e3[0] B42;
+pin button_e3[1] B43;
+pin button_e3[2] B9;
+pin exButtons[12] B8 pulldown;
+
+pin button_e4[0] B45;
+pin button_e4[1] B46;
+pin button_e4[2] B6;
+pin exButtons[13] B5 pulldown;
+
+pin button_e5[0] B48;
+pin button_e5[1] B49;
+pin button_e5[2] B3;
+pin exButtons[14] B2 pulldown;
+
+pin button_reset C9 pulldown;
+
+//bank c (must be pullup?)
+pin seven_seg[0] C49;
+pin seven_seg[1] C48;
+pin seven_seg[2] C2;
+pin seven_seg[3] C3;
+pin seven_seg[4] C46;
+pin seven_seg[5] C45;
+pin seven_seg[6] C5;
