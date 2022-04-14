@@ -273,7 +273,7 @@ def parse_op_arg(s, mem=False):
     if s[0].lower() == "r":
         s = s[1:]
         return int(s)
-    elif s.isnumeric():
+    elif s.isnumeric() or (s[0] == '-' and s[1:].isnumeric()):
         # We are reading a literal:
         return int(s)
     elif s[1:].isnumeric():
@@ -313,8 +313,6 @@ flip_labels = {labels[i]: i for i in labels}
 
 flip_data_labels = {data_labels[i]: i for i in data_labels}
 
-print(flip_data_labels)
-input()
 
 while True:
     row = instructions[instruction_counter]
