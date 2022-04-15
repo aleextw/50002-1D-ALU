@@ -11,34 +11,48 @@ module au_top_0 (
     input usb_rx,
     output reg usb_tx,
     input [15:0] button,
-    output reg [44:0] out_led,
-    output reg [6:0] seven_seg
+    output reg [47:0] bank_io,
+    output reg [3:0] seven_segment
   );
   
   
   
   reg rst;
   
-  wire [7-1:0] M_ss_decoder_segs;
-  reg [4-1:0] M_ss_decoder_char;
-  seven_seg_1 ss_decoder (
-    .char(M_ss_decoder_char),
-    .segs(M_ss_decoder_segs)
+  wire [16-1:0] M_sel_peg_dec_out;
+  reg [4-1:0] M_sel_peg_dec_in;
+  decoder_1 sel_peg_dec (
+    .in(M_sel_peg_dec_in),
+    .out(M_sel_peg_dec_out)
+  );
+  
+  wire [7-1:0] M_ss_segs;
+  reg [4-1:0] M_ss_char;
+  seven_seg_2 ss (
+    .char(M_ss_char),
+    .segs(M_ss_segs)
   );
   
   wire [1-1:0] M_reset_cond_out;
   reg [1-1:0] M_reset_cond_in;
-  reset_conditioner_2 reset_cond (
+  reset_conditioner_3 reset_cond (
     .clk(clk),
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
+  );
+  wire [1-1:0] M_sced_out;
+  reg [1-1:0] M_sced_in;
+  edge_detector_4 sced (
+    .clk(clk),
+    .in(M_sced_in),
+    .out(M_sced_out)
   );
   wire [16-1:0] M_sigma_level;
   wire [16-1:0] M_sigma_pegs;
   wire [16-1:0] M_sigma_selected_peg;
   wire [16-1:0] M_sigma_val_move;
   reg [16-1:0] M_sigma_buttons;
-  sigma_cpu_3 sigma (
+  sigma_cpu_5 sigma (
     .clk(clk),
     .rst(rst),
     .buttons(M_sigma_buttons),
@@ -47,17 +61,26 @@ module au_top_0 (
     .selected_peg(M_sigma_selected_peg),
     .val_move(M_sigma_val_move)
   );
+  wire [1-1:0] M_cnt_value;
+  counter_6 cnt (
+    .clk(clk),
+    .rst(rst),
+    .value(M_cnt_value)
+  );
   
   always @* begin
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
     led = {7'h00, rst};
     usb_tx = usb_rx;
+    M_sced_in = M_cnt_value;
     M_sigma_buttons = button;
-    out_led[0+14-:15] = ~M_sigma_val_move[0+14-:15];
-    out_led[15+14-:15] = ~M_sigma_pegs[0+14-:15];
-    out_led[30+14-:15] = ~M_sigma_selected_peg[0+14-:15];
-    M_ss_decoder_char = M_sigma_selected_peg[0+3-:4];
-    seven_seg = ~M_ss_decoder_segs;
+    M_sel_peg_dec_in = M_sigma_selected_peg[0+3-:4];
+    M_sel_peg_dec_in = M_sigma_selected_peg[0+3-:4];
+    bank_io[0+15-:16] = M_sigma_pegs ^ (M_sel_peg_dec_out >> 1'h1);
+    bank_io[16+15-:16] = (M_sel_peg_dec_out >> 1'h1);
+    bank_io[32+15-:16] = M_sigma_val_move;
+    M_ss_char = M_sigma_level[0+3-:4];
+    seven_segment = {~M_ss_segs[4+0-:1], ~M_ss_segs[2+0-:1], ~M_ss_segs[1+0-:1], ~M_ss_segs[0+0-:1]};
   end
 endmodule

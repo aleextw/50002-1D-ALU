@@ -16,78 +16,93 @@ pin led[7] LED7;
 pin usb_rx USB_TX;
 pin usb_tx USB_RX;
 
-// Input button
-pin button[0] B23 pulldown;
-pin button[1] B20 pulldown;
-pin button[2] B17 pulldown;
-pin button[3] B14 pulldown;
-pin button[4] B11 pulldown;
-pin button[5] B8 pulldown;
-pin button[6] B5 pulldown;
-pin button[7] B2 pulldown;
-pin button[8] C24 pulldown;
-pin button[9] C21 pulldown;
-pin button[10] C18 pulldown;
-pin button[11] C15 pulldown;
-pin button[12] C12 pulldown;
-pin button[13] C9 pulldown;
-pin button[14] C6 pulldown;
-pin button[15] C3 pulldown;
+// input buttons
+pin button[0] B27 pulldown;
+pin button[1] B24 pulldown;
+pin button[2] B33 pulldown;
+pin button[3] B36 pulldown;
+pin button[4] B39 pulldown;
+pin button[5] B42 pulldown;
+pin button[6] B45 pulldown;
+pin button[7] B48 pulldown;
+pin button[8] B28 pulldown;
+pin button[9] B31 pulldown;
+pin button[10] B34 pulldown;
+pin button[11] B37 pulldown;
+pin button[12] B40 pulldown;
+pin button[13] B43 pulldown;
+pin button[14] B46 pulldown;
+pin button[15] B49 pulldown;
 
-// Output LEDs
-pin out_led[0][0] B27;
-pin out_led[0][1] B30;
-pin out_led[0][2] B33;    // Not working
-pin out_led[0][3] B36;
-pin out_led[0][4] B39;
-pin out_led[0][5] B42;
-pin out_led[0][6] B45;
-pin out_led[0][7] B48;
-pin out_led[0][8] C28;
-pin out_led[0][9] C31;
-pin out_led[0][10] C34;
-pin out_led[0][11] C37;
-pin out_led[0][12] C40;
-pin out_led[0][13] C43;
-pin out_led[0][14] C49;
+// output LEDs
+pin bank_io[0][0] A27;
+pin bank_io[0][1] A30;
+pin bank_io[0][2] A33;
+pin bank_io[0][3] A36;
+pin bank_io[0][4] A39;
+pin bank_io[0][5] A42;
+pin bank_io[0][6] A6;
+pin bank_io[0][7] A48;
+pin bank_io[0][8] C28;
+pin bank_io[0][9] C31;
+pin bank_io[0][10] C34;
+pin bank_io[0][11] C37;
+pin bank_io[0][12] C40;
+pin bank_io[0][13] C43;
+pin bank_io[0][14] C46;
+pin bank_io[0][15] C49;
 
-pin out_led[1][0] B28;
-pin out_led[1][1] B31;
-pin out_led[1][2] B34;
-pin out_led[1][3] B37;
-pin out_led[1][4] B40;
-pin out_led[1][5] B43;
-pin out_led[1][6] B46;
-pin out_led[1][7] B49;
-pin out_led[1][8] C27;
-pin out_led[1][9] C30;
-pin out_led[1][10] C33;
-pin out_led[1][11] C36;
-pin out_led[1][12] C39;
-pin out_led[1][13] C42;
-pin out_led[1][14] C45;
+pin bank_io[1][0] A28;
+pin bank_io[1][1] A31;
+pin bank_io[1][2] A34;
+pin bank_io[1][3] A37;
+pin bank_io[1][4] A40;
+pin bank_io[1][5] A43;
+pin bank_io[1][6] A46;
+pin bank_io[1][7] A49;
+pin bank_io[1][8] C27;
+pin bank_io[1][9] C30;
+pin bank_io[1][10] C33;
+pin bank_io[1][11] C36;
+pin bank_io[1][12] C39;
+pin bank_io[1][13] C42;
+pin bank_io[1][14] C45;
+pin bank_io[1][15] C48;
 
-pin out_led[2][0] B24;
-pin out_led[2][1] B21;
-pin out_led[2][2] B18;
-pin out_led[2][3] B15;
-pin out_led[2][4] B12;
-pin out_led[2][5] B9;
-pin out_led[2][6] B6;
-pin out_led[2][7] B3;
-pin out_led[2][8] C23;
-pin out_led[2][9] C20;
-pin out_led[2][10] C17;
-pin out_led[2][11] C14;
-pin out_led[2][12] C11;
-pin out_led[2][13] C8;
-pin out_led[2][14] C5;
+pin bank_io[2][0] A24;
+pin bank_io[2][1] A21;
+pin bank_io[2][2] A18;
+pin bank_io[2][3] A15;
+pin bank_io[2][4] A12;
+pin bank_io[2][5] A9;
+pin bank_io[2][6] A45;  // LED is reversed; bank_io[2][6] swapped with bank_io[0][6]
+pin bank_io[2][7] A3;
+pin bank_io[2][8] C23;
+pin bank_io[2][9] C20;
+pin bank_io[2][10] C17;
+pin bank_io[2][11] C14;
+pin bank_io[2][12] C11;
+pin bank_io[2][13] C8;
+pin bank_io[2][14] C5;
+pin bank_io[2][15] C2;
 
-// Seven segment
-pin seven_seg[0] A27;
-pin seven_seg[1] A30;
-pin seven_seg[2] A33;
-pin seven_seg[3] A36;
-pin seven_seg[4] A39;
-pin seven_seg[5] A42;
-pin seven_seg[6] A45;
+// 7 segment
+pin seven_segment[0] B21;
+pin seven_segment[1] B18;
+pin seven_segment[2] B15;
+pin seven_segment[3] B12;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

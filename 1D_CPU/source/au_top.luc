@@ -4,22 +4,27 @@ module au_top (
     output led [8],         // 8 user controllable LEDs
     input usb_rx,           // USB->Serial input
     output usb_tx,          // USB->Serial output
-    input button[16],
-    output out_led[3][15],
-    output seven_seg[7]
+    input button [16],
+    output bank_io[3][16],
+    output seven_segment[4]
   ) {
   
   sig rst;                  // reset signal
   
-  seven_seg ss_decoder;
+  
+  decoder sel_peg_dec(#WIDTH(4));
+  
+  seven_seg ss;
   
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
+    edge_detector sced (#RISE(1), #FALL(1));
     
     .rst(rst) {
       sigma_cpu sigma;
+      counter cnt(#SIZE(1), #DIV(16));
     }
   }
   
@@ -31,12 +36,18 @@ module au_top (
 
     usb_tx = usb_rx;        // echo the serial data
     
-    sigma.buttons = button;
-    out_led[0] = ~sigma.val_move[14:0];
-    out_led[1] = ~sigma.pegs[14:0];
-    out_led[2] = ~sigma.selected_peg[14:0];
+    sced.in = cnt.value;
     
-    ss_decoder.char = sigma.selected_peg[3:0];
-    seven_seg = ~ss_decoder.segs;
+    sigma.buttons = button;
+    sel_peg_dec.in = sigma.selected_peg[3:0];
+    
+    sel_peg_dec.in = sigma.selected_peg[3:0];
+    bank_io[0] = sigma.pegs ^ (sel_peg_dec.out >> 1);
+    bank_io[1] = (sel_peg_dec.out >> 1);
+    bank_io[2] = sigma.val_move;
+    
+    ss.char = sigma.level[3:0];
+    seven_segment = c{~ss.segs[4], ~ss.segs[2], ~ss.segs[1], ~ss.segs[0]};
+    
   }
 }

@@ -11,7 +11,7 @@ module sigma_cpu (
   const NUM_DATA = 84;
   
   .clk(clk) {
-    button_conditioner button_cond[16];
+    button_conditioner button_cond[16] (#CLK_FREQ(100000000), #MIN_DELAY(40));
     edge_detector edge_det[16] (#RISE(1), #FALL(0));
     
     alu arith;
