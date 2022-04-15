@@ -47,7 +47,7 @@ array_setup:
 CMOVE(0, R1)
 CMOVE(1, R0)
 array_setup_loop:
-SHR(R24, R1, R2)
+SHR(R22, R1, R2)
 AND(R2, R0, R3)
 SHLC(R1, 1, R4)
 ST(R3, pegboard_array, R4)

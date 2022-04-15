@@ -58,7 +58,7 @@ CMOVE(0, R1) || Set R1 to 0 to use as our counter
 CMOVE(1, R0) || Set R0 to 1 to use as our mask
 
 array_setup_loop: 
-SHR(R24, R1, R2) || to get the i-th peg as the LSB
+SHR(R22, R1, R2) || to get the i-th peg as the LSB
 AND(R2, R0, R3) || returns 1 if a peg is at the i-th position, and 0 if there is no peg
 SHLC(R1, 1, R4) || gives us the array index, accounting for the 2-byte indexing of our data memory
 ST(R3, pegboard_array, R4) || stores our result of whether there is a peg in the i-th position in our data memory
