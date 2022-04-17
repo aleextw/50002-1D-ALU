@@ -40,8 +40,6 @@ module au_top (
     
     sigma.buttons = button;
     sel_peg_dec.in = sigma.selected_peg[3:0];
-    
-    sel_peg_dec.in = sigma.selected_peg[3:0];
     bank_io[0] = sigma.pegs ^ (sel_peg_dec.out >> 1);
     bank_io[1] = (sel_peg_dec.out >> 1);
     bank_io[2] = sigma.val_move;
