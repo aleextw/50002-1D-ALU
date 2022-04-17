@@ -7,19 +7,17 @@ SHRC(R0, 4, R0) || Shift R0 right by 4 bits to get MSB of 5-bit value
 BF(R0, init, R31) || If MSB == 1, means we pressed the start button, continue, else branch back to start and wait for button input
 CMOVE(1, R26) || Add 1 to our level count R26
 
-start:
-CMOVE(-1, R23) || Set our 'currently selected peg' register to be 0
+MOVE(R31, R23) || Set our 'currently selected peg' register to be 0
 MOVE(R31, R24)
 MOVE(R31, R25) || Set our 'possible moves' register to be 0
 game_start_light_loop:
-SHRC(R23, 1, R23)
-CMOVE(1525, R0)
-game_start_noop_loop_on:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, game_start_noop_loop_on, R31)
-BT(R23, game_start_light_loop, R31)
+ADDC(R23, 1, R23)
+BR(noop_loop_entry_point, XP)
+CMPEQC(R23, 15, R1)
+BF(R1, game_start_light_loop, R31)
+MOVE(R31, R23)
 
+start:
 || If R26 == 1, branch to level_one_setup
 CMPEQC(R26,1,R0) || if R26 == 1, then R0 is 1, else R0 is 0
 BT(R0, level_one_setup, R31) 
@@ -221,11 +219,7 @@ level_one_end:
 CMOVE(-1, R24)
 level_one_end_light_loop:
 SHRC(R24, 1, R24)
-CMOVE(1525, R0)
-level_one_end_noop_loop:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, level_one_end_noop_loop, R31)
+BR(noop_loop_entry_point, XP)
 BT(R24, level_one_end_light_loop, R31)
 BF(R31, start, R31)
 
@@ -233,11 +227,7 @@ level_two_end:
 CMOVE(-1, R25)
 level_two_end_light_loop:
 SHRC(R25, 1, R25)
-CMOVE(1525, R0)
-level_two_end_noop_loop:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, level_two_end_noop_loop, R31)
+BR(noop_loop_entry_point, XP)
 BT(R25, level_two_end_light_loop, R31)
 BF(R31, start, R31)
 
@@ -247,11 +237,7 @@ MOVE(R31, R24)
 MOVE(R31, R25)
 game_end_light_loop_one:
 SHRC(R23, 1, R23)
-CMOVE(1525, R0)
-game_end_noop_loop_one:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_one, R31)
+BR(noop_loop_entry_point, XP)
 BT(R23, game_end_light_loop_one, R31)
 
 CMOVE(-1, R24)
@@ -259,11 +245,7 @@ MOVE(R31, R23)
 MOVE(R31, R25)
 game_end_light_loop_two:
 SHRC(R24, 1, R24)
-CMOVE(1525, R0)
-game_end_noop_loop_two:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_two, R31)
+BR(noop_loop_entry_point, XP)
 BT(R24, game_end_light_loop_two, R31)
 
 CMOVE(-1, R25)
@@ -271,55 +253,41 @@ MOVE(R31, R23)
 MOVE(R31, R24)
 game_end_light_loop_three:
 SHRC(R25, 1, R25)
-CMOVE(1525, R0)
-game_end_noop_loop_three:
-NOP()
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_three, R31)
+BR(noop_loop_entry_point, XP)
 BT(R25, game_end_light_loop_three, R31)
 
 CMOVE(-1, R23)                          || Flash green triangle on and off once
 MOVE(R31, R24)
 MOVE(R31, R25)
-CMOVE(1525, R0)
-game_end_noop_loop_four:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_four, R31)
+BR(noop_loop_entry_point, XP)
 
 MOVE(R31, R23)
-CMOVE(1525, R0)
-game_end_noop_loop_five:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_five, R31)
+BR(noop_loop_entry_point, XP)
 
 CMOVE(-1, R24)                          || Flash blue triangle on and off once
 MOVE(R31, R23)
 MOVE(R31, R25)
-CMOVE(1525, R0)
-game_end_noop_loop_six:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_six, R31)
+BR(noop_loop_entry_point, XP)
 
 MOVE(R31, R24)
-CMOVE(1525, R0)
-game_end_noop_loop_seven:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_seven, R31)
+BR(noop_loop_entry_point, XP)
 
 CMOVE(-1, R25)                          || Flash red triangle on and off once
 MOVE(R31, R23)
 MOVE(R31, R24)
-CMOVE(1525, R0)
-game_end_noop_loop_eight:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_eight, R31)
+BR(noop_loop_entry_point, XP)
 
 MOVE(R31, R25)
-CMOVE(1525, R0)
-game_end_noop_loop_nine:
-SUBC(R0, 1, R0)
-BNE(R0, game_end_noop_loop_nine, R31)
+BR(noop_loop_entry_point, XP)
 BR(init)
+
+noop_loop_entry_point:
+CMOVE(1525, R0)
+noop_loop:
+NOP()
+SUBC(R0, 1, R0)
+BNE(R0, noop_loop, R31)
+JMP(XP, R31)
 
 . = 384
 button_handler:

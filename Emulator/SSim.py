@@ -41,7 +41,7 @@ def beq(args):
     if len(args) == 2:
         args.append(31)
     if args[2] != 31:
-        registers[args[2]] = instruction_counter + 4
+        registers[args[2]] = instruction_counter
     if not registers[args[0]]:
         instruction_counter = instruction_counter + (args[1] * 4)
     
@@ -51,7 +51,7 @@ def bne(args):
     if len(args) == 2:
         args.append(31)
     if args[2] != 31:
-        registers[args[2]] = instruction_counter + 4
+        registers[args[2]] = instruction_counter
     if registers[args[0]]:
         instruction_counter = instruction_counter + (args[1] * 4)
 
@@ -61,7 +61,7 @@ def jmp(args):
     if len(args) == 1:
         args.append(31)
     if args[1] != 31:
-        registers[args[1]] = instruction_counter + 4
+        registers[args[1]] = instruction_counter
     instruction_counter = registers[args[0]] >> 2 << 2
 
 def nop(args):
