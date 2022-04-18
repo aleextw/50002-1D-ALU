@@ -25,7 +25,7 @@ module alu_15 (
   reg [1-1:0] M_rand_rst;
   reg [1-1:0] M_rand_next;
   reg [32-1:0] M_rand_seed;
-  pn_gen_24 rand (
+  pn_gen_18 rand (
     .clk(M_rand_clk),
     .rst(M_rand_rst),
     .next(M_rand_next),
@@ -40,7 +40,7 @@ module alu_15 (
   reg [16-1:0] M_add_a;
   reg [16-1:0] M_add_b;
   reg [1-1:0] M_add_alufn;
-  adder_25 add (
+  adder_19 add (
     .a(M_add_a),
     .b(M_add_b),
     .alufn(M_add_alufn),
@@ -54,7 +54,7 @@ module alu_15 (
   reg [16-1:0] M_bl_a;
   reg [16-1:0] M_bl_b;
   reg [4-1:0] M_bl_alufn;
-  bool_26 bl (
+  bool_20 bl (
     .a(M_bl_a),
     .b(M_bl_b),
     .alufn(M_bl_alufn),
@@ -65,7 +65,7 @@ module alu_15 (
   reg [16-1:0] M_bs_a;
   reg [16-1:0] M_bs_b;
   reg [2-1:0] M_bs_alufn;
-  bitshift_27 bs (
+  bitshift_21 bs (
     .a(M_bs_a),
     .b(M_bs_b),
     .alufn(M_bs_alufn),
@@ -77,7 +77,7 @@ module alu_15 (
   reg [1-1:0] M_cmp_v;
   reg [1-1:0] M_cmp_n;
   reg [2-1:0] M_cmp_alufn;
-  compare_28 cmp (
+  compare_22 cmp (
     .z(M_cmp_z),
     .v(M_cmp_v),
     .n(M_cmp_n),
@@ -116,15 +116,18 @@ module alu_15 (
     case (alufn[4+1-:2])
       1'h0: begin
         
-        case (alufn[3+0-:1])
-          1'h0: begin
+        case (alufn[0+3-:4])
+          4'h0: begin
             out = M_add_s;
           end
-          1'h1: begin
+          4'h1: begin
+            out = M_add_s;
+          end
+          4'h8: begin
             out = {12'h000, M_rand_num[0+3-:4]};
           end
           default: begin
-            out = a;
+            out = 1'h0;
           end
         endcase
       end
@@ -136,9 +139,6 @@ module alu_15 (
       end
       2'h3: begin
         out = M_cmp_out;
-      end
-      default: begin
-        out = a;
       end
     endcase
     randout = M_rand_num[0+15-:16];

@@ -11,7 +11,10 @@ module regfile (
     output level[16],
     output pegs[16],
     output selected_peg[16],
-    output val_move[16]
+    output val_move[16],
+    output space_check[16],
+    output possible[16],
+    output debug[16][16]
   ) {
 
   .clk(clk){
@@ -21,7 +24,7 @@ module regfile (
   alex_encoder button_encoder (#WIDTH(16));
   
   always {
-    button_encoder.in = buttons;
+     button_encoder.in = buttons;
     
     if (button_encoder.out != 0) {
         r.d[22] = button_encoder.out;
@@ -48,5 +51,27 @@ module regfile (
     pegs = r.q[24];
     selected_peg = r.q[23];
     val_move = r.q[25];
+    
+    space_check = r.q[24]; // right now set to peg board 
+    
+    
+    possible = r.q[0]; // set to r0
+    
+    debug[0] = r.q[0];
+    debug[1] = r.q[1];
+    debug[2] = r.q[2];
+    debug[3] = r.q[3];
+    debug[4] = r.q[4];
+    debug[5] = r.q[5];
+    debug[6] = r.q[6];
+    debug[7] = r.q[7];
+    debug[8] = r.q[8];
+    debug[9] = r.q[9];
+    debug[10] = r.q[10];
+    debug[11] = r.q[23];
+    debug[12] = r.q[24];
+    debug[13] = r.q[25];
+    debug[14] = r.q[26];
+    debug[15] = r.q[30];
   }
 }

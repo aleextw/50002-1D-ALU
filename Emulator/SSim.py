@@ -382,7 +382,7 @@ while True:
             print(row)
             raise e
         
-        # row[:3] != "SVC" and input()
+        row[:3] != "SVC" and input()
         
         instruction_counter += 4
 

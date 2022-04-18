@@ -6,46 +6,96 @@ module au_top (
     output usb_tx,          // USB->Serial output
     input button [16],
     output bank_io[3][16],
-    output seven_segment[4]
+    output seven_segment[4] // row address current write to LED matrix
   ) {
   
-  sig rst;                  // reset signal
+    sig rst;                  // reset signal
   
+    const NUM_DATA = 84;
+    inst_mem inst_mem;
+    data_rom data_rom;
+    seven_seg ss;
   
-  decoder sel_peg_dec(#WIDTH(4));
-  
-  seven_seg ss;
+    decoder sel_peg_dec(#WIDTH(4));
   
   .clk(clk) {
+    fsm ram_writer = {LOAD, WAIT, GO};
+    dff writer_counter[$clog2(NUM_DATA)+1];
+    button_conditioner button_cond[16] (#CLK_FREQ(100000000), #MIN_DELAY(40));
+    edge_detector edge_det[16] (#RISE(1), #FALL(0));
+    
+    
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
-    edge_detector sced (#RISE(1), #FALL(1));
+    edge_detector slow_clock_edge_detector (#RISE(1), #FALL(1));
+    data_mem data_mem;
+    sigma sigma;
     
     .rst(rst) {
-      sigma_cpu sigma;
-      counter cnt(#SIZE(1), #DIV(16));
-    }
+      counter cnt(#SIZE(1), #DIV(16)); 
+     }
   }
   
-  always {      
+  always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
-    led = c{7h00,rst};             // turn LEDs off
+    usb_tx = usb_rx;        // loop serial port
+    
+    led = 8h00;             // turn LEDs off
+    
+    // set sigma's clock to be cnt
+    slow_clock_edge_detector.in = cnt.value;
+    sigma.slowclock = slow_clock_edge_detector.out;
+    
+    // connect sigma with data and instruction memory
+    sigma.rst = rst;
+    data_mem.wr = sigma.wr;
+    data_mem.addr = sigma.ma;
+    data_mem.wd = sigma.mwd;
+    inst_mem.ia = sigma.ia;
+    sigma.id = inst_mem.id;
+    sigma.md = data_mem.out;
+   
+    sigma.rst = 0;
+    button_cond.in = button;
+    edge_det.in = button_cond.out;
+    sigma.buttons = edge_det.out;
 
-    usb_tx = usb_rx;        // echo the serial data
-    
-    sced.in = cnt.value;
-    
-    sigma.buttons = button;
     sel_peg_dec.in = sigma.selected_peg[3:0];
+    
+    // output
+    ss.char = sigma.level[3:0];
+    seven_segment = c{~ss.segs[4], ~ss.segs[2], ~ss.segs[1], ~ss.segs[0]};
     bank_io[0] = sigma.pegs ^ (sel_peg_dec.out >> 1);
     bank_io[1] = (sel_peg_dec.out >> 1);
     bank_io[2] = sigma.val_move;
+
     
-    ss.char = sigma.level[3:0];
-    seven_segment = c{~ss.segs[4], ~ss.segs[2], ~ss.segs[1], ~ss.segs[0]};
+     // Data Memory
+    data_rom.address = writer_counter.q;
+    case (ram_writer.q) {
+      ram_writer.LOAD:
+        sigma.rst = 1;
+        writer_counter.d = writer_counter.q + 1;
+        data_mem.wr = 1;
+        data_mem.addr = writer_counter.q << 1;
+        data_mem.wd = data_rom.out;
+        if (writer_counter.q == NUM_DATA) {
+          ram_writer.d = ram_writer.WAIT;
+        }
+      ram_writer.WAIT:
+        sigma.rst = 1;
+        data_mem.wr = 0;
+        data_mem.addr = writer_counter.q << 1;
+        data_mem.wd = data_rom.out;
+        ram_writer.d = ram_writer.GO;
+      ram_writer.GO:
+        sigma.rst = 0;
+        ram_writer.d = ram_writer.GO;
+    }
+    
     
   }
 }

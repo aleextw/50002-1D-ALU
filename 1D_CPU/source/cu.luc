@@ -34,7 +34,7 @@ module cu (
             ra2sel = b0;
             pcsel = b0;
             wasel = b0;
-          b1001:  // ST
+          b1001:  // ST 
             alufn = b000000;
             werf = b0;
             bsel = b1;
@@ -44,8 +44,8 @@ module cu (
             pcsel = b0;
             wasel = b0;
           b1011:  // JMP
-            werf = b1;
-            bsel = b0;
+            werf = b0;
+            bsel = b1;
             wdsel = b0;
             wr = b0;
             ra2sel = b0;

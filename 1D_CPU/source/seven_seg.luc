@@ -5,11 +5,11 @@ module seven_seg (
 
   always {
     case (char) {
-      0: segs = 7b0111111;
+      0: segs = 7b0000000;
       1: segs = 7b0000110;
       2: segs = 7b1011011;
       3: segs = 7b1001111;
-      4: segs = 7b1100110;
+      4: segs = 7b0000000;
       5: segs = 7b1101101;
       6: segs = 7b1111101;
       7: segs = 7b0000111;

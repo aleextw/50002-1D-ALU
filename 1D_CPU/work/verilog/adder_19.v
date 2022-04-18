@@ -22,10 +22,10 @@ module adder_19 (
     
     case (alufn)
       1'h0: begin
-        sum = a + b;
+        sum = $signed(a) + $signed(b);
       end
       1'h1: begin
-        sum = a - b;
+        sum = $signed(a) - $signed(b);
       end
       default: begin
         sum = 16'h0000;

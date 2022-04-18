@@ -19,67 +19,202 @@ module au_top_0 (
   
   reg rst;
   
-  wire [16-1:0] M_sel_peg_dec_out;
-  reg [4-1:0] M_sel_peg_dec_in;
-  decoder_1 sel_peg_dec (
-    .in(M_sel_peg_dec_in),
-    .out(M_sel_peg_dec_out)
+  localparam NUM_DATA = 7'h54;
+  
+  wire [32-1:0] M_inst_mem_id;
+  reg [16-1:0] M_inst_mem_ia;
+  inst_mem_1 inst_mem (
+    .ia(M_inst_mem_ia),
+    .id(M_inst_mem_id)
+  );
+  
+  wire [16-1:0] M_data_rom_out;
+  reg [16-1:0] M_data_rom_address;
+  data_rom_2 data_rom (
+    .address(M_data_rom_address),
+    .out(M_data_rom_out)
   );
   
   wire [7-1:0] M_ss_segs;
   reg [4-1:0] M_ss_char;
-  seven_seg_2 ss (
+  seven_seg_3 ss (
     .char(M_ss_char),
     .segs(M_ss_segs)
   );
   
+  wire [16-1:0] M_sel_peg_dec_out;
+  reg [4-1:0] M_sel_peg_dec_in;
+  decoder_4 sel_peg_dec (
+    .in(M_sel_peg_dec_in),
+    .out(M_sel_peg_dec_out)
+  );
+  
+  localparam LOAD_ram_writer = 2'd0;
+  localparam WAIT_ram_writer = 2'd1;
+  localparam GO_ram_writer = 2'd2;
+  
+  reg [1:0] M_ram_writer_d, M_ram_writer_q = LOAD_ram_writer;
+  reg [7:0] M_writer_counter_d, M_writer_counter_q = 1'h0;
+  wire [(5'h10+0)-1:0] M_button_cond_out;
+  reg [(5'h10+0)-1:0] M_button_cond_in;
+  
+  genvar GEN_button_cond0;
+  generate
+  for (GEN_button_cond0=0;GEN_button_cond0<5'h10;GEN_button_cond0=GEN_button_cond0+1) begin: button_cond_gen_0
+    button_conditioner_5 button_cond (
+      .clk(clk),
+      .in(M_button_cond_in[GEN_button_cond0*(1)+(1)-1-:(1)]),
+      .out(M_button_cond_out[GEN_button_cond0*(1)+(1)-1-:(1)])
+    );
+  end
+  endgenerate
+  wire [(5'h10+0)-1:0] M_edge_det_out;
+  reg [(5'h10+0)-1:0] M_edge_det_in;
+  
+  genvar GEN_edge_det0;
+  generate
+  for (GEN_edge_det0=0;GEN_edge_det0<5'h10;GEN_edge_det0=GEN_edge_det0+1) begin: edge_det_gen_0
+    edge_detector_6 edge_det (
+      .clk(clk),
+      .in(M_edge_det_in[GEN_edge_det0*(1)+(1)-1-:(1)]),
+      .out(M_edge_det_out[GEN_edge_det0*(1)+(1)-1-:(1)])
+    );
+  end
+  endgenerate
   wire [1-1:0] M_reset_cond_out;
   reg [1-1:0] M_reset_cond_in;
-  reset_conditioner_3 reset_cond (
+  reset_conditioner_7 reset_cond (
     .clk(clk),
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
   );
-  wire [1-1:0] M_sced_out;
-  reg [1-1:0] M_sced_in;
-  edge_detector_4 sced (
+  wire [1-1:0] M_slow_clock_edge_detector_out;
+  reg [1-1:0] M_slow_clock_edge_detector_in;
+  edge_detector_8 slow_clock_edge_detector (
     .clk(clk),
-    .in(M_sced_in),
-    .out(M_sced_out)
+    .in(M_slow_clock_edge_detector_in),
+    .out(M_slow_clock_edge_detector_out)
   );
+  wire [16-1:0] M_data_mem_out;
+  reg [1-1:0] M_data_mem_wr;
+  reg [16-1:0] M_data_mem_wd;
+  reg [16-1:0] M_data_mem_addr;
+  data_mem_9 data_mem (
+    .clk(clk),
+    .wr(M_data_mem_wr),
+    .wd(M_data_mem_wd),
+    .addr(M_data_mem_addr),
+    .out(M_data_mem_out)
+  );
+  wire [32-1:0] M_sigma_ia;
+  wire [16-1:0] M_sigma_ma;
+  wire [16-1:0] M_sigma_mwd;
+  wire [1-1:0] M_sigma_wr;
+  wire [8-1:0] M_sigma_led;
   wire [16-1:0] M_sigma_level;
   wire [16-1:0] M_sigma_pegs;
   wire [16-1:0] M_sigma_selected_peg;
   wire [16-1:0] M_sigma_val_move;
+  wire [16-1:0] M_sigma_space_check;
+  wire [16-1:0] M_sigma_possible;
+  wire [256-1:0] M_sigma_debug;
+  wire [6-1:0] M_sigma_alufn;
+  wire [8-1:0] M_sigma_alu_a;
+  wire [8-1:0] M_sigma_alu_b;
+  wire [8-1:0] M_sigma_wdsel_out;
+  reg [1-1:0] M_sigma_rst;
+  reg [1-1:0] M_sigma_slowclock;
+  reg [32-1:0] M_sigma_id;
+  reg [16-1:0] M_sigma_md;
   reg [16-1:0] M_sigma_buttons;
-  sigma_cpu_5 sigma (
+  sigma_10 sigma (
     .clk(clk),
-    .rst(rst),
+    .rst(M_sigma_rst),
+    .slowclock(M_sigma_slowclock),
+    .id(M_sigma_id),
+    .md(M_sigma_md),
     .buttons(M_sigma_buttons),
+    .ia(M_sigma_ia),
+    .ma(M_sigma_ma),
+    .mwd(M_sigma_mwd),
+    .wr(M_sigma_wr),
+    .led(M_sigma_led),
     .level(M_sigma_level),
     .pegs(M_sigma_pegs),
     .selected_peg(M_sigma_selected_peg),
-    .val_move(M_sigma_val_move)
+    .val_move(M_sigma_val_move),
+    .space_check(M_sigma_space_check),
+    .possible(M_sigma_possible),
+    .debug(M_sigma_debug),
+    .alufn(M_sigma_alufn),
+    .alu_a(M_sigma_alu_a),
+    .alu_b(M_sigma_alu_b),
+    .wdsel_out(M_sigma_wdsel_out)
   );
   wire [1-1:0] M_cnt_value;
-  counter_6 cnt (
+  counter_11 cnt (
     .clk(clk),
     .rst(rst),
     .value(M_cnt_value)
   );
   
   always @* begin
+    M_ram_writer_d = M_ram_writer_q;
+    M_writer_counter_d = M_writer_counter_q;
+    
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
-    led = {7'h00, rst};
     usb_tx = usb_rx;
-    M_sced_in = M_cnt_value;
-    M_sigma_buttons = button;
+    led = 8'h00;
+    M_slow_clock_edge_detector_in = M_cnt_value;
+    M_sigma_slowclock = M_slow_clock_edge_detector_out;
+    M_sigma_rst = rst;
+    M_data_mem_wr = M_sigma_wr;
+    M_data_mem_addr = M_sigma_ma;
+    M_data_mem_wd = M_sigma_mwd;
+    M_inst_mem_ia = M_sigma_ia;
+    M_sigma_id = M_inst_mem_id;
+    M_sigma_md = M_data_mem_out;
+    M_sigma_rst = 1'h0;
+    M_button_cond_in = button;
+    M_edge_det_in = M_button_cond_out;
+    M_sigma_buttons = M_edge_det_out;
     M_sel_peg_dec_in = M_sigma_selected_peg[0+3-:4];
+    M_ss_char = M_sigma_level[0+3-:4];
+    seven_segment = {~M_ss_segs[4+0-:1], ~M_ss_segs[2+0-:1], ~M_ss_segs[1+0-:1], ~M_ss_segs[0+0-:1]};
     bank_io[0+15-:16] = M_sigma_pegs ^ (M_sel_peg_dec_out >> 1'h1);
     bank_io[16+15-:16] = (M_sel_peg_dec_out >> 1'h1);
     bank_io[32+15-:16] = M_sigma_val_move;
-    M_ss_char = M_sigma_level[0+3-:4];
-    seven_segment = {~M_ss_segs[4+0-:1], ~M_ss_segs[2+0-:1], ~M_ss_segs[1+0-:1], ~M_ss_segs[0+0-:1]};
+    M_data_rom_address = M_writer_counter_q;
+    
+    case (M_ram_writer_q)
+      LOAD_ram_writer: begin
+        M_sigma_rst = 1'h1;
+        M_writer_counter_d = M_writer_counter_q + 1'h1;
+        M_data_mem_wr = 1'h1;
+        M_data_mem_addr = M_writer_counter_q << 1'h1;
+        M_data_mem_wd = M_data_rom_out;
+        if (M_writer_counter_q == 7'h54) begin
+          M_ram_writer_d = WAIT_ram_writer;
+        end
+      end
+      WAIT_ram_writer: begin
+        M_sigma_rst = 1'h1;
+        M_data_mem_wr = 1'h0;
+        M_data_mem_addr = M_writer_counter_q << 1'h1;
+        M_data_mem_wd = M_data_rom_out;
+        M_ram_writer_d = GO_ram_writer;
+      end
+      GO_ram_writer: begin
+        M_sigma_rst = 1'h0;
+        M_ram_writer_d = GO_ram_writer;
+      end
+    endcase
   end
+  
+  always @(posedge clk) begin
+    M_writer_counter_q <= M_writer_counter_d;
+    M_ram_writer_q <= M_ram_writer_d;
+  end
+  
 endmodule

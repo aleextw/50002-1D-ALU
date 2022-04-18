@@ -49,15 +49,15 @@ module alu (
     cmp.alufn = alufn[2:1];
     
     case(alufn[5:4]) {
-      0: case(alufn[3]) {
-        0: out = add.s;
-        1: out = c{12b0, rand.num[3:0]};  
-        default: out = a;
+      0: case(alufn[3:0]) {
+        b0000: out = add.s;
+        b0001: out = add.s;
+        b1000: out = c{12b0, rand.num[3:0]};  
+        default: out = 0;
       }
       1: out = bl.out;
       2: out = bs.out;
       3: out = cmp.out;
-      default: out = a;
     }
     randout = rand.num[15:0];
     z = temp_z;

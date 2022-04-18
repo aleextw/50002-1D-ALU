@@ -1,0 +1,114 @@
+module sigma (
+    input clk,  // clock
+    input rst,  // reset
+    input slowclock,
+    input id[32],
+    input md[16],
+    input buttons[16],
+    output ia[32],
+    output ma[16],
+    output mwd[16],
+    output wr,
+    output led [8],         // 8 user controllable LEDs
+    output level [16],
+    output pegs [16],
+    output selected_peg [16],
+    output val_move [16],
+    output space_check [16],
+    output possible [16],
+    output debug[16][16],
+    output alufn[6],
+    output alu_a[8],
+    output alu_b[8],
+    output wdsel_out[8]
+  ) {
+  
+  cu cu(.rst(rst));
+  
+  .clk(clk){
+    alu alu(.rst(rst));
+    regfile regfile;
+    pc_unit pc_unit(.rst(rst));
+  }
+  
+  always {
+    debug = regfile.debug;
+    cu.id = id[31:26];
+  
+    pc_unit.slow_clock = slowclock;
+    pc_unit.pcsel = cu.pcsel;
+    pc_unit.ra = regfile.rd1;
+    pc_unit.c = id[15:0];
+    ia = pc_unit.ia;
+    
+    regfile.ra1 = id[20:16];
+    
+    case(cu.ra2sel){
+      b0: regfile.ra2 = id[15:11];
+      b1: regfile.ra2 = id[25:21];
+      default: regfile.ra2 = id[15:11];
+    }
+    
+    regfile.buttons = buttons;
+    case(cu.wasel){
+      b0: regfile.wa = id[25:21];
+      b1: regfile.wa = 5b11110;
+      default: regfile.wa = id[25:21];
+    }
+    
+    regfile.we = 0;
+    if (slowclock){
+        regfile.we = cu.werf;
+    }
+    
+    cu.z = ~|regfile.rd1;
+    alu.alufn = cu.alufn;
+    alu.a = regfile.rd1;
+    
+    case(cu.bsel){
+      b0: 
+        alu.b = regfile.rd2;
+        alu_b = regfile.rd2;
+      b1: 
+        alu.b = id[15:0];
+        alu_b = id[15:0];
+      default: 
+        alu_b = regfile.rd2;
+        alu.b = regfile.rd2;
+    }
+    
+    alu.slow_clock = slowclock;
+    ma = alu.out;
+    mwd = regfile.rd2;
+    wr = cu.wr;
+    
+    case(cu.wdsel){
+      b00: 
+        regfile.wd = pc_unit.pc_4[15:0];
+        wdsel_out = pc_unit.pc_4[15:0];
+      b01: 
+        regfile.wd = alu.out;
+        wdsel_out = alu.out;
+      
+      b10: 
+        regfile.wd = md[15:0];
+        wdsel_out = md[15:0];
+      default: 
+        regfile.wd = 0;
+        wdsel_out = 0;
+    }
+    
+    // TODO: LED Outputs
+    pegs = regfile.pegs;
+    level = regfile.level;
+    selected_peg = regfile.selected_peg;
+    val_move = regfile.val_move;
+    space_check = regfile.space_check;
+    possible = regfile.possible;
+    
+    led[7:0] = 0;
+    alufn = cu.alufn;
+    alu_a = regfile.rd1;
+
+  }
+}

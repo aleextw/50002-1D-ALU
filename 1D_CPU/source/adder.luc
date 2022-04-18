@@ -12,8 +12,8 @@ module adder (
 
   always {
     case(alufn) {
-      0: sum = a + b;
-      1: sum = a - b;
+      0: sum = $signed(a) + $signed(b);
+      1: sum = $signed(a) - $signed(b);
       default: sum = 16b0;
     }
     s = sum;

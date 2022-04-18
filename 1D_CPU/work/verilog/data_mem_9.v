@@ -18,7 +18,7 @@ module data_mem_9 (
   reg [8-1:0] M_ram_address;
   reg [16-1:0] M_ram_write_data;
   reg [1-1:0] M_ram_write_en;
-  simple_ram_24 #(.SIZE(5'h10), .DEPTH(9'h100)) ram (
+  simple_ram_13 #(.SIZE(5'h10), .DEPTH(9'h100)) ram (
     .clk(clk),
     .address(M_ram_address),
     .write_data(M_ram_write_data),

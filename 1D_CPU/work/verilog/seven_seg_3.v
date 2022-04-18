@@ -15,7 +15,7 @@ module seven_seg_3 (
     
     case (char)
       1'h0: begin
-        segs = 7'h3f;
+        segs = 7'h00;
       end
       1'h1: begin
         segs = 7'h06;
@@ -27,7 +27,7 @@ module seven_seg_3 (
         segs = 7'h4f;
       end
       3'h4: begin
-        segs = 7'h66;
+        segs = 7'h00;
       end
       3'h5: begin
         segs = 7'h6d;

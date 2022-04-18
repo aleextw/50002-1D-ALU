@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sigma" board="Alchitry Au" language="Lucid" version="3">
+  <files>
+    <src>matrix_writer.luc</src>
+    <src top="true">au_top.luc</src>
+    <src>inst_mem.luc</src>
+    <component>pipeline.luc</component>
+    <src>sigma.luc</src>
+    <src>data_mem.luc</src>
+    <component>counter.luc</component>
+    <src>cu.luc</src>
+    <src>regfile.luc</src>
+    <src>adder.luc</src>
+    <src>bool.luc</src>
+    <src>alex_encoder.luc</src>
+    <component>reset_conditioner.luc</component>
+    <src>matrix_ram.luc</src>
+    <component>encoder.luc</component>
+    <component>button_conditioner.luc</component>
+    <src>bitshift.luc</src>
+    <component>simple_dual_ram.v</component>
+    <src>compare.luc</src>
+    <component>decoder.luc</component>
+    <src>pc_unit.luc</src>
+    <src>matrix_ram_writer.luc</src>
+    <src>data_rom.luc</src>
+    <component>pn_gen.luc</component>
+    <component>bin_to_dec.luc</component>
+    <component>simple_ram.v</component>
+    <src>control_unit.luc</src>
+    <src>alu.luc</src>
+    <src>seven_seg.luc</src>
+    <component>edge_detector.luc</component>
+    <constraint>custom.acf</constraint>
+    <constraint lib="true">au.xdc</constraint>
+  </files>
+</project>

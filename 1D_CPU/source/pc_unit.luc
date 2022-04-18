@@ -1,42 +1,39 @@
 module pc_unit (
     input clk,  // clock
     input rst,  // reset
-    input id[16],
+    input c[16], 
     input ra[16],
     input slow_clock,
     input pcsel[3],
-    output ia[16],
-    output pc_4[16]
+    output ia[32], // why was this just 16?
+    output pc_4[32] // why was this just 16?
   ) {
   
   .clk(clk) {
     .rst(rst) {
-      dff pc[16];
+      dff pc[32]; // why was this just 16?
     }
   }
   
-  sig internal_ia[16];
-  sig internal_pc_4[16];
-  
+
   always {
     ia = pc.q;
     pc_4 = pc.q + 4;
     
     if (slow_clock) {
-      internal_ia = pc.q;
-      internal_pc_4 = pc.q + 4;
       
       case(pcsel) {
-        0: pc.d = internal_pc_4;
-        1: pc.d = internal_pc_4 + id * 4;
-        2: pc.d = c{internal_ia[15], ra[14:0]};
+        0: pc.d = pc.q + 4;
+        1: pc.d = pc.q + 4 + c{c[15], c[15:0]} * 4; // internal_pc_4 + id * 4 --> initially not sign extended
+        2: pc.d = c{ra[15], ra[14:0]}; // c{internal_ia[15], ra[14:0]} --> using MSB?
         3: pc.d = 1280;
-        4: pc.d = 1024;
-        default: pc.d = internal_pc_4;
+        4: pc.d = 1536; // the SVC address 
+        default: pc.d = pc.q; // changed to unchanging pc with invalid pcsel
       }
       
-      ia = internal_ia;
-      pc_4 = c{internal_ia[15], internal_pc_4[14:0]};
+      if(rst){
+        pc.d = 0;
+      }
     }
   }
 }

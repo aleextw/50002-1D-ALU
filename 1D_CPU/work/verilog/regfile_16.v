@@ -19,7 +19,8 @@ module regfile_16 (
     output reg [15:0] selected_peg,
     output reg [15:0] val_move,
     output reg [15:0] space_check,
-    output reg [15:0] possible
+    output reg [15:0] possible,
+    output reg [255:0] debug
   );
   
   
@@ -28,7 +29,7 @@ module regfile_16 (
   
   wire [5-1:0] M_button_encoder_out;
   reg [16-1:0] M_button_encoder_in;
-  alex_encoder_29 button_encoder (
+  alex_encoder_23 button_encoder (
     .in(M_button_encoder_in),
     .out(M_button_encoder_out)
   );
@@ -57,8 +58,24 @@ module regfile_16 (
     pegs = M_r_q[384+15-:16];
     selected_peg = M_r_q[368+15-:16];
     val_move = M_r_q[400+15-:16];
-    space_check = M_r_q[64+15-:16];
-    possible = M_r_q[48+15-:16];
+    space_check = M_r_q[384+15-:16];
+    possible = M_r_q[0+15-:16];
+    debug[0+15-:16] = M_r_q[0+15-:16];
+    debug[16+15-:16] = M_r_q[16+15-:16];
+    debug[32+15-:16] = M_r_q[32+15-:16];
+    debug[48+15-:16] = M_r_q[48+15-:16];
+    debug[64+15-:16] = M_r_q[64+15-:16];
+    debug[80+15-:16] = M_r_q[80+15-:16];
+    debug[96+15-:16] = M_r_q[96+15-:16];
+    debug[112+15-:16] = M_r_q[112+15-:16];
+    debug[128+15-:16] = M_r_q[128+15-:16];
+    debug[144+15-:16] = M_r_q[144+15-:16];
+    debug[160+15-:16] = M_r_q[160+15-:16];
+    debug[176+15-:16] = M_r_q[368+15-:16];
+    debug[192+15-:16] = M_r_q[384+15-:16];
+    debug[208+15-:16] = M_r_q[400+15-:16];
+    debug[224+15-:16] = M_r_q[416+15-:16];
+    debug[240+15-:16] = M_r_q[480+15-:16];
   end
   
   always @(posedge clk) begin
