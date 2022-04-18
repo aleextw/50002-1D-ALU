@@ -46,7 +46,7 @@ module pc_unit_12 (
           M_pc_d = 11'h500;
         end
         3'h4: begin
-          M_pc_d = 11'h400;
+          M_pc_d = 11'h600;
         end
         default: begin
           M_pc_d = internal_pc_4;

@@ -76,7 +76,6 @@ module au_top_0 (
     M_sced_in = M_cnt_value;
     M_sigma_buttons = button;
     M_sel_peg_dec_in = M_sigma_selected_peg[0+3-:4];
-    M_sel_peg_dec_in = M_sigma_selected_peg[0+3-:4];
     bank_io[0+15-:16] = M_sigma_pegs ^ (M_sel_peg_dec_out >> 1'h1);
     bank_io[16+15-:16] = (M_sel_peg_dec_out >> 1'h1);
     bank_io[32+15-:16] = M_sigma_val_move;

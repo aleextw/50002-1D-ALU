@@ -8,14 +8,16 @@ BF(R0, init, R31) || If MSB == 1, means we pressed the start button, continue, e
 CMOVE(1, R26) || Add 1 to our level count R26
 
 MOVE(R31, R23) || Set our 'currently selected peg' register to be 0
-MOVE(R31, R24)
+CMOVE(1, R24)
 MOVE(R31, R25) || Set our 'possible moves' register to be 0
 game_start_light_loop:
 ADDC(R23, 1, R23)
 BR(noop_loop_entry_point, XP)
+SHLC(R24, 1, R24)
 CMPEQC(R23, 15, R1)
 BF(R1, game_start_light_loop, R31)
 MOVE(R31, R23)
+MOVE(R31, R24)
 
 start:
 || If R26 == 1, branch to level_one_setup
@@ -33,14 +35,14 @@ level_one_setup:
 RAND(R0)    || Random value 0-15
 SHRC(R0, 2, R0)     || Random value 0-3
 LD(R0, level_one_position, R24) || Load level one peg positions to R24
-MOVE(R24, R22)  || Bodge; the group wants to be able to reload the same level
+MOVE(R24, R21)  || Bodge; the group wants to be able to reload the same level
 BF(R31, array_setup, R31) || Branch to array_setup
 
 level_two_setup:
 RAND(R0)    || Random value 0-15
 SHRC(R0, 2, R0)     || Random value 0-3
 LD(R0, level_two_position, R24) || Load level two peg positions to R24
-MOVE(R24, R22)  || Bodge; the group wants to be able to reload the same level
+MOVE(R24, R21)  || Bodge; the group wants to be able to reload the same level
 BF(R31, array_setup, R31) || Branch to array_setup
 
 level_three_setup: 
@@ -48,7 +50,7 @@ RAND(R0) || Store random value to R0
 CMOVE(1, R1)    || Set 1 to R1
 SHL(R1, R0, R1)     || SHL with R0 as offset (0-15)
 XORC(R1, 65535, R24)    || XOR with one-hot R1
-MOVE(R24, R22)  || Bodge; the group wants to be able to reload the same level
+MOVE(R24, R21)  || Bodge; the group wants to be able to reload the same level
 BF(R31, array_setup, R31) || Branch to array_setup
 
 array_setup: 
@@ -56,7 +58,7 @@ CMOVE(0, R1) || Set R1 to 0 to use as our counter
 CMOVE(1, R0) || Set R0 to 1 to use as our mask
 
 array_setup_loop: 
-SHR(R22, R1, R2) || to get the i-th peg as the LSB
+SHR(R21, R1, R2) || to get the i-th peg as the LSB
 AND(R2, R0, R3) || returns 1 if a peg is at the i-th position, and 0 if there is no peg
 SHLC(R1, 1, R4) || gives us the array index, accounting for the 2-byte indexing of our data memory
 ST(R3, pegboard_array, R4) || stores our result of whether there is a peg in the i-th position in our data memory
@@ -282,7 +284,7 @@ BR(noop_loop_entry_point, XP)
 BR(init)
 
 noop_loop_entry_point:
-CMOVE(1525, R0)
+CMOVE(50, R0)
 noop_loop:
 NOP()
 SUBC(R0, 1, R0)

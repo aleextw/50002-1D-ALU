@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Fri Apr 15 17:49:18 2022
+| Date         : Mon Apr 18 11:53:20 2022
 | Host         : ALEX-LAPTOP running 64-bit major release  (build 9200)
 | Command      : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
 | Design       : au_top_0
@@ -36,8 +36,8 @@ Table of Contents
 | Slice Registers         | 1073 |     0 |     41600 |  2.58 |
 |   Register as Flip Flop | 1073 |     0 |     41600 |  2.58 |
 |   Register as Latch     |    0 |     0 |     41600 |  0.00 |
-| F7 Muxes                |  219 |     0 |     16300 |  1.34 |
-| F8 Muxes                |   18 |     0 |      8150 |  0.22 |
+| F7 Muxes                |  214 |     0 |     16300 |  1.31 |
+| F8 Muxes                |   12 |     0 |      8150 |  0.15 |
 +-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -148,18 +148,18 @@ Table of Contents
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     | 1012 |        Flop & Latch |
-| LUT6     |  720 |                 LUT |
-| MUXF7    |  219 |               MuxFx |
-| LUT5     |  184 |                 LUT |
-| LUT4     |  139 |                 LUT |
+| LUT6     |  724 |                 LUT |
+| MUXF7    |  214 |               MuxFx |
+| LUT5     |  186 |                 LUT |
+| LUT4     |  137 |                 LUT |
 | CARRY4   |  113 |          CarryLogic |
-| LUT3     |   66 |                 LUT |
+| LUT3     |   62 |                 LUT |
 | OBUF     |   61 |                  IO |
 | FDSE     |   61 |        Flop & Latch |
-| LUT2     |   50 |                 LUT |
+| LUT2     |   46 |                 LUT |
 | LUT1     |   44 |                 LUT |
 | IBUF     |   19 |                  IO |
-| MUXF8    |   18 |               MuxFx |
+| MUXF8    |   12 |               MuxFx |
 | RAMB18E1 |    1 |        Block Memory |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+

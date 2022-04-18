@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Fri Apr 15 17:51:37 2022
+| Date             : Mon Apr 18 11:55:44 2022
 | Host             : ALEX-LAPTOP running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.082        |
+| Total On-Chip Power (W)  | 0.099        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.010        |
+| Dynamic (W)              | 0.027        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 84.6         |
-| Junction Temperature (C) | 25.4         |
+| Max Ambient (C)          | 84.5         |
+| Junction Temperature (C) | 25.5         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.005 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |     2755 |       --- |             --- |
-|   LUT as Logic |    <0.001 |     1142 |     20800 |            5.49 |
-|   Register     |    <0.001 |     1091 |     41600 |            2.62 |
+| Slice Logic    |     0.007 |     2740 |       --- |             --- |
+|   LUT as Logic |     0.006 |     1140 |     20800 |            5.48 |
 |   CARRY4       |    <0.001 |      113 |      8150 |            1.39 |
-|   F7/F8 Muxes  |    <0.001 |      237 |     32600 |            0.73 |
+|   Register     |    <0.001 |     1091 |     41600 |            2.62 |
+|   F7/F8 Muxes  |    <0.001 |      226 |     32600 |            0.69 |
 |   Others       |     0.000 |      112 |       --- |             --- |
-| Signals        |     0.002 |     2153 |       --- |             --- |
-| Block RAM      |    <0.001 |      0.5 |        50 |            1.00 |
-| I/O            |    <0.001 |       80 |       170 |           47.06 |
+| Signals        |     0.013 |     2168 |       --- |             --- |
+| Block RAM      |     0.001 |      0.5 |        50 |            1.00 |
+| I/O            |     0.002 |       80 |       170 |           47.06 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.082 |          |           |                 |
+| Total          |     0.099 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.019 |       0.009 |      0.010 |
+| Vccint    |       1.000 |     0.035 |       0.025 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -142,11 +142,14 @@ Table of Contents
 +------------+-----------+
 | Name       | Power (W) |
 +------------+-----------+
-| au_top_0   |     0.010 |
-|   sigma    |     0.009 |
+| au_top_0   |     0.027 |
+|   sigma    |     0.025 |
 |     arith  |     0.001 |
 |       rand |     0.001 |
-|     rf     |     0.002 |
+|     data   |     0.001 |
+|       ram  |     0.001 |
+|     pc     |     0.012 |
+|     rf     |     0.007 |
 +------------+-----------+
 
 
