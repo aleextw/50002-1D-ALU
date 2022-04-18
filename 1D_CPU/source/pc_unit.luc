@@ -31,7 +31,7 @@ module pc_unit (
         1: pc.d = internal_pc_4 + id * 4;
         2: pc.d = c{internal_ia[15], ra[14:0]};
         3: pc.d = 1280;
-        4: pc.d = 1536;
+        4: pc.d = 1024;
         default: pc.d = internal_pc_4;
       }
       

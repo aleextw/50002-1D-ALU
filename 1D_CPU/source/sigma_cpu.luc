@@ -8,7 +8,7 @@ module sigma_cpu (
     output val_move [16]
   ) {
   
-  const NUM_DATA = 84;
+  const NUM_DATA = 78;
   
   .clk(clk) {
     button_conditioner button_cond[16] (#CLK_FREQ(100000000), #MIN_DELAY(40));

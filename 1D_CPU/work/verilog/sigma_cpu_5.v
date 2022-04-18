@@ -16,7 +16,7 @@ module sigma_cpu_5 (
   
   
   
-  localparam NUM_DATA = 7'h54;
+  localparam NUM_DATA = 7'h4e;
   
   wire [(5'h10+0)-1:0] M_button_cond_out;
   reg [(5'h10+0)-1:0] M_button_cond_in;
@@ -274,7 +274,7 @@ module sigma_cpu_5 (
         M_data_wr = 1'h1;
         M_data_addr = M_writer_counter_q << 1'h1;
         M_data_wd = M_drom_out;
-        if (M_writer_counter_q == 7'h54) begin
+        if (M_writer_counter_q == 7'h4e) begin
           M_ram_writer_d = WAIT_ram_writer;
         end
       end

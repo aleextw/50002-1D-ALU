@@ -2,7 +2,7 @@ module alex_encoder #(
     WIDTH : WIDTH > 1 // width of the input
   )(
     input in[WIDTH],
-    output out[WIDTH] // ceiling log base 2
+    output out[$clog2(WIDTH)+1] // ceiling log base 2
   ) {
   
   var i;
